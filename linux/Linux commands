@@ -1,0 +1,82 @@
+========================================================
+	PHP
+========================================================
+1) How to start apache in ubuntu
+sudo service apache2 start
+------------------------------------------------------------
+
+========================================================
+	Mysql 
+========================================================
+1) To install mysql extensions like mysqli,pdo etc.
+
+sudo apt-get install php5-mysqlnd
+------------------------------------------------------------
+
+========================================================
+	GIT
+========================================================
+1) To check git is installed or not 
+git --version
+
+2) To check git configuration file details [go to local repository e.g. /var/www/html/Tututs then type following command]
+cat .git/config
+
+To commit
+
+Step 1) Go to root of the project e.g. /var/www/html/Tututs
+
+Step 2) Type command  git add <file_path_to_commit>
+    e.g. git add /var/www/html/Tututs/Redis/string.php
+
+Step 3) Type command 
+        git commit -m <add_comment_if_any> <file_path>
+        e.g. git commit -m changed string in Redis | used get & set method /var/www/html/Tututs/Redis/string.php
+
+Step 4) Type command 
+
+        git push <destination_git_project_name> <source_git_project_branch>
+        e.g. git push https://shreenivas.madagundi%40gmail.com@github.com/shreenivasan/Tututs.git refs/heads/master:refs/heads/master
+        or
+        git push origin <name_of_branch>
+        e.g. git push origin testing1
+------------------------------------------------------------
+
+
+========================================================
+    Linux File System
+========================================================
+
+ls : get the list of files and directory
+------------------------------------------------------------
+ls -l : get formated list of all files and directory
+------------------------------------------------------------
+ls -t : time wise listing
+------------------------------------------------------------
+ls *.txt : all files with .txt extension
+------------------------------------------------------------
+ls -a : list including hidden files and directory
+------------------------------------------------------------
+ls -atl : time wise list of all files and directory including hidden files and directory    
+-------------------------------------------------------------------------------------------
+mv <source_dir> <dest_dir> : move folder to selected directory path
+-------------------------------------------------------------------------------------------
+
+
+========================================================
+	General
+========================================================
+Checking email error logs 
+
+vim /var/log/mail.err
+
+
+========================================================
+	Shell Scripting commands
+========================================================
+To find all available shells in your system type following command:
+    $ cat /etc/shells
+-------------------------------------------------------------------------------------------
+To find your current shell type following command
+    $ echo $SHELL 
+-------------------------------------------------------------------------------------------

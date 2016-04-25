@@ -1,0 +1,597 @@
+-------------------------------------------------
+    A) How to write shell script
+-------------------------------------------------
+1) create a file using any editor then save it in file
+2) Execute your script as
+syntax:
+bash your-script-name
+sh your-script-name
+./your-script-name
+
+Examples:
+$ bash bar
+$ sh bar
+$ ./bar
+
+e.g. 
+$ vi first
+#
+# My first shell script
+#
+clear
+echo "Knowledge is Power"
+
+$ ./first
+
+will print Knowledge is Power
+
+-------------------------------------------------
+    B) Variables in Shell
+-------------------------------------------------
+There are two types of variable:
+(1) System variables - Created and maintained by Linux itself. This type of variable defined in CAPITAL LETTERS.
+(2) User defined variables (UDV) - Created and maintained by user. This type of variable defined in lower letters.
+
+System Variable
+	
+Meaning
+BASH=/bin/bash                              Our shell name
+BASH_VERSION=1.14.7(1)                      Our shell version name
+COLUMNS=80                                  No. of columns for our screen
+HOME=/home/vivek                            Our home directory
+LINES=25                                    No. of columns for our screen
+LOGNAME=students                            students Our logging name
+OSTYPE=Linux                                Our Os type
+PATH=/usr/bin:/sbin:/bin:/usr/sbin          Our path settings
+PS1=[\u@\h \W]\$                            Our prompt settings
+PWD=/home/students/Common                   Our current working directory
+SHELL=/bin/bash                             Our shell name
+USERNAME=vivek                              User name who is currently login to this PC
+
+e.g.
+
+$ echo $USERNAME
+$ echo $HOME
+
+-------------------------------------------------
+        User defined variables
+-------------------------------------------------
+To define UDV use following syntax
+Syntax:
+variable name=value
+e.g.
+    n=10
+
+echo $n
+
+-------------------------------------------------
+            echo Command
+-------------------------------------------------
+Use echo command to display text or value of variable.
+
+echo [options] [string, variables...]
+Displays text or variables value on screen.
+Options
+-n Do not output the trailing new line.
+-e Enable interpretation of the following backslash escaped characters in the strings:
+\a alert (bell)
+\b backspace
+\c suppress trailing new line
+\n new line
+\r carriage return
+\t horizontal tab
+\\ backslash
+
+For e.g. $ echo -e "An apple a day keeps away \a\t\tdoctor\n"
+
+-------------------------------------------------
+            Shell Arithmetic    
+-------------------------------------------------
+Syntax:
+expr op1 math-operator op2
+
+Examples:
+$ expr 1 + 3
+$ expr 2 - 1
+$ expr 10 / 2
+$ expr 20 % 3
+$ expr 10 \* 3
+$ echo `expr 6 + 3`
+
+Note:
+expr 20 %3 - Remainder read as 20 mod 3 and remainder is 2.
+expr 10 \* 3 - Multiplication use \* and not * since its wild card.
+
+For the last statement not the following points
+
+(1) First, before expr keyword we used ` (back quote) sign not the (single quote i.e. ') sign. 
+    Back quote is generally found on the key under tilde (~) on PC keyboard OR to the above of TAB key.
+
+(2) Second, expr is also end with ` i.e. back quote.
+
+(3) Here expr 6 + 3 is evaluated to 9, then echo command prints 9 as sum
+
+(4) Here if you use double quote or single quote, it will NOT work
+For e.g.
+$ echo "expr 6 + 3" # It will print expr 6 + 3
+$ echo 'expr 6 + 3' # It will print expr 6 + 3
+
+-------------------------------------------------
+        More about Quotes
+-------------------------------------------------
+Quotes  Name             Meaning
+
+"	Double Quotes	"Double Quotes" - Anything enclose in double quotes removed meaning of that characters (except \ and $).
+
+'	Single quotes	'Single quotes' - Enclosed in single quotes remains unchanged.
+
+`	Back quote	
+
+`Back quote` - To execute command
+
+ Example:
+        $ echo "Today is date"
+        Can't print message with today's date.
+
+        $ echo "Today is `date`".
+        It will print today's date as, Today is Tue Jan ....,Can you see that the `date` statement uses back quote?
+
+-------------------------------------------------
+            Exit Status
+-------------------------------------------------
+By default in Linux if particular command/shell script is executed, it return two type of values which is used to see whether command or shell script executed is successful or not.
+
+(1) If return value is zero (0), command is successful.
+(2) If return value is nonzero, command is not successful or some sort of error executing command/shell script.
+
+e.g.
+$ rm unknow1file
+    It will show error as follows
+    rm: cannot remove `unkowm1file': No such file or directory
+        and after that if you give command
+
+$ echo $?
+    it will print nonzero value to indicate error. Now give command
+$ ls
+$ echo $?
+
+It will print 0 to indicate command is successful.
+-------------------------------------------------
+        read Statement
+-------------------------------------------------
+Use to get input (data from user) from keyboard and store (data) to variable.
+Syntax:
+read variable1, variable2,...variableN
+
+Following script first ask user, name and then waits to enter name from the user via keyboard. 
+Then user enters name from keyboard (after giving name you have to press ENTER key) and entered name 
+through keyboard is stored (assigned) to variable fname.
+
+echo "Your first name please:"
+read fname
+echo "Hello $fname, Lets be friend!"
+
+-------------------------------------------------
+Wild cards (Filename Shorthand or meta Characters)
+-------------------------------------------------
+Wild    card /Shorthand                                 Meaning     Examples
+*	Matches any string or group of characters.	$ ls *      will show all files
+                                                        $ ls a*     will show all files whose first name is starting with letter 'a'
+                                                        $ ls *.c    will show all files having extension .c
+                                                        $ ls ut*.c  will show all files having extension .c but file name must begin with 'ut'.
+?	Matches any single character.                   $ ls ?      will show all files whose names are 1 character long 
+                                                        $ ls fo?    will show all files whose names are 3 character long and file name begin with fo
+[...]	Matches any one of the enclosed characters	$ ls [abc]* will show all files beginning with letters a,b,c
+
+-------------------------------------------------
+        More command on one command line
+-------------------------------------------------
+ command1;command2
+To run two command with one command line use semicolon in between them.
+
+-------------------------------------------------
+        Redirection of Standard output/input
+-------------------------------------------------
+Mostly all command gives output on screen or take input from keyboard, 
+but in Linux (and in other OSs also) it's possible to send output to file or to read input from file.
+
+For e.g.
+$ ls command gives output to screen; to send output to file of ls command give command
+
+$ ls > filename
+It means put output of ls command to filename.
+
+There are three main redirection symbols >,>>,<
+
+(1) > Redirector Symbol
+Syntax:
+Linux-command > filename
+To output Linux-commands result (output of command or shell script) to file. Note that if file already exist, 
+it will be overwritten else new file is created. For e.g. To send output of ls command give.
+
+$ ls > myfiles
+Now if 'myfiles' file exist in your current directory it will be overwritten without any type of warning.
+
+(2) >> Redirector Symbol
+Syntax:
+Linux-command >> filename
+To output Linux-commands result (output of command or shell script) to END of file. Note that if file exist , 
+it will be opened and new information/data will be written to END of file, without losing previous information/data, And if file is not exist, then new file is created. For e.g. To send output of date command to already exist file give command
+$ date >> myfiles
+
+(3) < Redirector Symbol
+Syntax:
+Linux-command < filename
+To take input to Linux-command from file instead of key-board. For e.g. To take input for cat command give
+$ cat < myfiles
+
+-------------------------------------------------
+        Pipes
+-------------------------------------------------
+
+    A pipe is nothing but a temporary storage place where the output of one command is stored 
+    and then passed as the input for second command. Pipes are used to run more than two commands 
+    ( Multiple commands) from same command line.
+    
+    Syntax:
+    command1 | command2
+
+Command using Pipes         Meaning or Use of Pipes
+$ ls | more                 Output of ls command is given as input to more command So that output is printed one screen full 
+                            page at a time.
+$ who | sort                Output of who command is given as input to sort command So that it will print sorted list of users
+$ who | sort > user_list    Same as above except output of sort is send to (redirected) user_list file
+$ who | wc -l               Output of who command is given as input to wc command So that it will number of user who logon to 
+                            system
+$ ls -l | wc  -l            Output of ls command is given as input to wc command So that it will print number of files in current
+                            directory.
+$ who | grep raju           Output of who command is given as input to grep command So that it will print if particular user name 
+                            if he is logon or nothing is printed (To see particular user is logon or not)
+
+-------------------------------------------------
+    Filters
+-------------------------------------------------
+If a Linux command accepts its input from the standard input and produces its output on standard 
+output is know as a filter. A filter performs some kind of process on the input and gives output. 
+
+For e.g.. Suppose you have file called 'hotel.txt' with 100 lines data, 
+          And from 'hotel.txt' you would like to print contains from line number 20 to line number 30 
+          and store this result to file called 'hlist' then give command:
+
+$ tail +20 < hotel.txt | head -n30 >hlist
+
+Here head command is filter which takes its input from tail command (tail command start selecting from line number 20 of given file i.e. hotel.txt) and passes this lines as input to head, whose output is redirected to 'hlist' file.
+
+$ ls / -R | wc -l
+This command will take lot of time to search all files on your system. So you can run such command in Background or simultaneously by giving command like
+
+$ ls / -R | wc -l &
+The ampersand (&) at the end of command tells shells start process (ls / -R | wc -l) and 
+run it in background takes next command immediately.
+
+-------------------------------------------------
+        Linux Command Related with Process
+-------------------------------------------------
+Following tables most commonly used command(s) with process:
+
+
+For this purpose                                Use this Command                    Examples*
+To see currently running process                ps                                  $ ps
+
+To stop any process by PID i.e. 
+
+to kill process                                 kill    {PID}                       $ kill  1012
+
+To stop processes by name i.e. to kill process	killall   {Process-name}            $ killall httpd
+
+To get information about all running process	ps -ag                              $ ps -ag
+
+To stop all process except your shell           kill 0                              $ kill 0
+
+For background processing (With &, use to put   linux-command  &                    $ ls / -R | wc -l &
+particular command and program in background)	
+                    
+To display the owner of the processes along     ps aux                              $ ps aux
+with the processes  		
+
+To see if a particular process is running or    ps ax | grep  process-U-want-to see $ ps ax | grep httpd   
+not. For this purpose you have to use ps 
+command in combination with the grep command	 
+
+To see currently running processes and other    top                                 $top
+information like memory and CPU usage with real 
+time updates.	
+
+To display a tree of processes                  pstree                              $ pstree
+
+
+--------------------------------------------------------------------
+In Linux Shell Value                Meaning             Example
+--------------------------------------------------------------------
+Zero Value (0)                      Yes/True            0
+NON-ZERO Value                      No/False            -1, 32, 55 anything but not zero
+
+--------------------------------------------------------------------
+Value           Shown in bc as      Shown in Linux Shell as
+--------------------------------------------------------------------
+True/Yes	1                   0
+False/No	0                   Non - zero value
+
+--------------------------------------------------------------------
+        If condition
+--------------------------------------------------------------------
+ Syntax:
+
+	if condition
+	then
+		command1 if condition is true or if exit status
+		of condition is 0 (zero)
+		...
+		...
+	fi
+
+--------------------------------------------------------------------
+        test command
+--------------------------------------------------------------------
+test command or [ expr ] is used to see if an expression is true, and if it is true it return zero(0), otherwise returns nonzero for false.
+Syntax:
+test expression OR [ expression ]
+
+ For Mathematics, use following operator in Shell Script
+
+--------------------------------------------------------------------
+Math Oper   Meaning                     Normal Arithmetical/ Mathematical Statements	But in Shell
+in shell                                                        For test stmt with if command	For [ expr ] statement with if command
+--------------------------------------------------------------------
+ 	
+-eq         is equal to                 5 == 6                  if test 5 -eq 6                         if [ 5 -eq 6 ]
+-ne         is not equal to             5 != 6                  if test 5 -ne 6                         if [ 5 -ne 6 ]
+-lt         is less than                5 < 6                   if test 5 -lt 6                         if [ 5 -lt 6 ]
+-le         is less than or equal to	5 <= 6                  if test 5 -le 6                         if [ 5 -le 6 ]
+-gt         is greater than             5 > 6                   if test 5 -gt 6                         if [ 5 -gt 6 ]
+-ge         is greater than or equal to	5 >= 6                  if test 5 -ge 6                         if [ 5 -ge 6 ]
+
+
+        For string Comparisons use
+--------------------------------------------------------------------
+    Operator            Meaning
+--------------------------------------------------------------------
+string1 = string2	string1 is equal to string2
+string1 != string2	string1 is NOT equal to string2
+string1	string1 is      NOT NULL or not defined 
+-n string1              string1 is NOT NULL and does exist
+-z string1              string1 is NULL and does exist
+
+    Shell also test for file and directory types
+--------------------------------------------------------------------
+    Test	Meaning
+--------------------------------------------------------------------
+-s file   	Non empty file
+-f file   	Is File exist or normal file and not a directory 
+-d dir    	Is Directory exist and not a file
+-w file  	Is writeable file
+-r file   	Is read-only file
+-x file   	Is file is executable
+
+    Logical Operators
+
+Logical operators are used to combine two or more condition at a time
+--------------------------------------------------------------------
+Operator           	Meaning
+--------------------------------------------------------------------
+! expression                    Logical NOT
+expression1  -a  expression2	Logical AND
+expression1  -o  expression2	Logical OR
+
+--------------------------------------------------------------------
+    if...else...fi
+--------------------------------------------------------------------
+
+Syntax:
+
+           if condition
+           then
+                       condition is zero (true - 0)
+                       execute all commands up to else statement
+
+           else
+                       if condition is not true then
+                       execute all commands up to fi
+           fi
+
+e.g.
+
+osch=0
+echo "1. Unix (Sun OS)"
+echo "2. Linux (Red Hat)"
+echo -n "select your os choice [1 or 2]"
+read osch
+if [ $osch -eq 1 ]; then
+echo "You pick up unix (Sun Os)";
+else
+        echo $osch
+        if [ $osch -eq 2 ] ; then
+                echo "You pick up Linux (Red Hat)"
+        else
+                echo "What you don't link Unix/Linux OS.";
+        fi
+fi
+
+--------------------------------------------------------------------
+        For Loop
+--------------------------------------------------------------------
+
+Syntax:
+
+            for { variable name } in { list }
+            do
+                     execute one for each item in the list until the list is
+                     not finished (And repeat all statement between do and done)
+            done
+
+            e.g.
+            for i in 1 2 3 4 5
+            do
+                echo "Welcome $i times"
+            done
+
+Syntax:
+
+         for (( expr1; expr2; expr3 ))
+         do
+               .....
+			   ...
+               repeat all statements between do and 
+               done until expr2 is TRUE
+         Done
+
+        e.g.
+        for ((  i = 0 ;  i <= 5;  i++  ))
+        do
+            echo "Welcome $i times"
+        done
+--------------------------------------------------------------------
+    chessboard printing tutorial using for loop
+--------------------------------------------------------------------
+ for (( i = 1; i <= 9; i++ )) ### Outer for loop ###
+do
+   for (( j = 1 ; j <= 9; j++ )) ### Inner for loop ###
+   do
+        tot=`expr $i + $j`
+        tmp=`expr $tot % 2`
+        if [ $tmp -eq 0 ]; then
+            echo -e -n "\033[47m "
+        else
+            echo -e -n "\033[40m "
+        fi
+  done
+ echo -e -n "\033[40m" #### set back background colour to black
+ echo "" #### print the new line ###
+done
+
+--------------------------------------------------------------------
+            while loop      
+--------------------------------------------------------------------
+while [ condition ]
+           do
+                 command1
+                 command2
+                 command3
+                 ..
+                 ....
+            done
+e.g.
+n=10
+i=1
+while [ $i -le 10 ]
+do
+  echo "$n * $i = `expr $i \* $n`"
+  i=`expr $i + 1`
+done
+
+--------------------------------------------------------------------
+    case Statement
+--------------------------------------------------------------------
+           case  $variable-name  in
+                pattern1)   command
+                                ...
+                                ..
+                                command;;
+                pattern2)   command
+                                ...
+                                ..
+                                command;;
+                patternN)   command
+                                ...
+                                ..
+                                command;;
+                *)             command
+                                ...
+                                ..
+                                command;;
+           esac
+
+--------------------------------------------------------------------
+        /dev/null
+--------------------------------------------------------------------
+ This is special Linux file which is used to send any unwanted output from program/command.
+Syntax:
+command > /dev/null
+
+--------------------------------------------------------------------
+        Conditional execution i.e. && and ||
+--------------------------------------------------------------------
+The control operators are && (read as AND) and || (read as OR). 
+
+The syntax for AND list is as follows
+Syntax:
+command1 && command2
+command2 is executed if, and only if, command1 returns an exit status of zero.
+
+The syntax for OR list as follows
+Syntax:
+command1 || command2
+command2 is executed if and only if command1 returns a non-zero exit status.
+
+You can use both as follows
+Syntax:
+command1 && comamnd2 if exist status is zero || command3 if exit status is non-zero
+if command1 is executed successfully then shell will run command2 and if command1 is not successful then command3 is executed.
+e.g.
+ $ rm myf && echo "File is removed successfully" || echo "File is not removed" 
+
+--------------------------------------------------------------------
+        Functions
+--------------------------------------------------------------------
+Syntax:
+       function-name ( )
+       {
+            command1
+            command2
+            .....
+            ...
+            commandN
+            return
+       }
+
+--------------------------------------------------------------------
+        Dialog utility
+--------------------------------------------------------------------
+        dialog --title {title} --backtitle {backtitle} {Box options}
+        where Box options can be any one of following
+        --yesno      {text}  {height} {width}
+        --msgbox     {text}  {height} {width}
+        --infobox    {text}  {height} {width}
+        --inputbox   {text}  {height} {width} [{init}]
+        --textbox    {file}  {height} {width}
+        --menu       {text}  {height} {width} {menu} {height} {tag1} item1}...
+--------------------------------------------------------------------
+        Yes No box
+--------------------------------------------------------------------
+ dialog --title "Alert : Delete File" --backtitle "Linux Shell Script\
+Tutorial" --yesno "\nDo you want to delete '/usr/letters/jobapplication'\
+file" 7 60
+sel=$?
+case $sel in
+   0) echo "User select to delete file";;
+   1) echo "User select not to delete file";;
+   255) echo "Canceled by user by pressing [ESC] key";;
+esac
+
+--------------------------------------------------------------------
+        Input Box (inputbox) using dialog utility
+--------------------------------------------------------------------
+
+dialog --title "Inputbox - To take input from you" --backtitle "Linux Shell\
+Script Tutorial" --inputbox "Enter your name please" 8 60 2>/tmp/input.$$
+
+sel=$?
+
+na=`cat /tmp/input.$$`
+case $sel in
+  0) echo "Hello $na" ;;
+  1) echo "Cancel is Press" ;;
+  255) echo "[ESCAPE] key pressed" ;;
+esac
+
+rm -f /tmp/input.$$
