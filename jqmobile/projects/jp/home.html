@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>    
+</head>
+<body>
+    <div data-url="panel-fixed-page1" data-role="page" class="jqm-demos" id="panel-fixed-page1" data-title="Panel fixed positioning">
+    <div data-role="header" data-position="fixed">
+        <h3>|| जय माता दि ||</h3>        
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>        
+    </div><!-- /header -->
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+        <h1>Panel fixed positioning</h1>
+        <p>This is a typical page that has two buttons in the header bar that open panels. The left panel has the push display mode. The right panel opens as overlay. For both panels we set <code>data-position-fixed="true"</code>. We also set position fixed for the header and footer on this page.</p>
+        <p>The left panel contains a long menu to demonstrate that the framework will check the panel contents height and unfixes the panel so its content can be scrolled. In the right panel there is a short form that shows the fixed positioning.</p>
+        <div data-demo-html="#panel-fixed-page1"></div><!--/demo-html -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="../" data-rel="back" data-ajax="false" class="ui-btn ui-shadow ui-corner-all ui-mini ui-btn-inline ui-icon-carat-l ui-btn-icon-left ui-alt-icon ui-nodisc-icon">Back</a>        
+        <p>We made the page a bit longer because you only see the panel fixed positioning if you can scroll the page :-)</p>
+    </div><!-- /content -->
+    <div data-role="footer" data-position="fixed">
+        <h4>Fixed footer</h4>
+    </div><!-- /footer -->
+    <div data-role="panel" data-position-fixed="true" data-display="push" data-theme="b" id="nav-panel">
+        <ul data-role="listview">
+            <li><center>
+                <p class="round1" >
+                    <img src="img/logo.jpg" width="50" height="50"  />                    
+                </p>जयशंकर प्रतिष्ठान,सोलापूर.
+                </center>
+            </li>
+            <li><a href="#panel-fixed-page2">नवरात्र महात्म्य</a></li>
+            <li><a href="nav_durga.html">नवरात्रीची नवरुपे</a></li>
+            <li><a href="#panel-fixed-page2">मंडळाची माहिती</a></li>
+            <li><a href="img_gallary.html">छायाचित्रे</a></li>
+            <li><a href="sloks.html">श्लोक</a></li>
+            <li><a href="panchang.html">पंचाग</a></li>
+            <li><a href="aarathi_sangrah.html">आरती संग्रह</a></li>
+            <li><a href="find_gotra.html">गोत्र</a></li>
+            <li><a href="matched_gotra.html">गोत्र मिलन</a></li>
+            
+        </ul>
+    </div><!-- /panel -->
+</div>
+</body>
+</html>

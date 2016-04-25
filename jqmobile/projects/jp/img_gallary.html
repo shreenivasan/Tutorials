@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/photo-gallery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>     
+   
+      ul {         
+          padding:0 0 0 0;
+          margin:0 0 0 0;
+      }
+      ul li {     
+          list-style:none;
+          margin-bottom:25px;           
+      }
+      ul li img {
+          cursor: pointer;
+      }
+      .modal-body {
+          padding:5px !important;
+      }
+      .modal-content {
+          border-radius:0;
+      }
+      .modal-dialog img {
+          text-align:center;
+          margin:0 auto;
+      }
+    .controls{          
+        width:50px;
+        display:block;
+        font-size:11px;
+        padding-top:8px;
+        font-weight:bold;          
+    }
+    .next {
+        float:right;
+        text-align:right;
+    }
+      /*override modal for demo only*/
+      .modal-dialog {
+          max-width:500px;
+          padding-top: 90px;
+      }
+      @media screen and (min-width: 768px){
+          .modal-dialog {
+              width:500px;
+              padding-top: 90px;
+          }          
+      }
+      @media screen and (max-width:1500px){
+          #ads {
+              display:none;
+          }
+      }
+  </style>
+</head>
+<body>
+    <div data-url="panel-fixed-page1" data-role="page" class="jqm-demos" id="panel-fixed-page1" data-title="Panel fixed positioning">
+    <div data-role="header" data-position="fixed">
+        <h3>|| जय माता दि ||</h3>        
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>        
+    </div><!-- /header -->
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+        <div class="container">    
+        <div class="row" style="text-align:center; border-bottom:1px dashed #ccc;  padding:0 0 20px 0; margin-bottom:40px;">
+            <h3 style="font-family:arial; font-weight:bold; font-size:30px;">
+                Bootstrap Photo Gallery jQuery Plugin Example
+        </h3>        
+        </div>
+        <ul class="row">
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img class="img-responsive" src="images/img/pd.jpg">
+            </li>
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img class="img-responsive" src="images/img/pd.jpg">
+            </li>
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img class="img-responsive" src="images/img/pd.jpg">
+            </li>
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img class="img-responsive" src="images/img/pd.jpg">
+            </li>
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img class="img-responsive" src="images/img/pd.jpg">
+            </li>
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img class="img-responsive" src="images/img/pd.jpg">
+            </li>
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img class="img-responsive" src="images/img/pd.jpg">
+            </li>
+            <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                <img class="img-responsive" src="images/img/pd.jpg">
+            </li>
+          </ul>             
+    </div> <!-- /container -->
+    
+     
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">         
+          <div class="modal-body">                
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
+    </div><!-- /content -->
+    <div data-role="footer" data-position="fixed">
+        <h4>Fixed footer</h4>
+    </div><!-- /footer -->
+    <div data-role="panel" data-position-fixed="true" data-display="push" data-theme="b" id="nav-panel">
+        <ul data-role="listview">
+            <li><center>
+                <p class="round1" >
+                    <img src="img/logo.jpg" width="50" height="50"  />                    
+                </p>जयशंकर प्रतिष्ठान,सोलापूर.
+                </center>
+            </li>
+            <li><a href="#panel-fixed-page2">नवरात्र महात्म्य</a></li>
+            <li><a href="nav_durga.html">नवरात्रीची नवरुपे</a></li>
+            <li><a href="#panel-fixed-page2">मंडळाची माहिती</a></li>
+            <li><a href="img_gallary.html">छायाचित्रे</a></li>
+            <li><a href="sloks.html">श्लोक</a></li>
+            <li><a href="panchang.html">पंचाग</a></li>
+            <li><a href="aarathi_sangrah.html">आरती संग्रह</a></li>
+        </ul>
+    </div><!-- /panel -->    
+</div>
+</body>
+</html>

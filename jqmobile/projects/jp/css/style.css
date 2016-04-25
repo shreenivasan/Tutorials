@@ -1,0 +1,70 @@
+.round 
+{
+    border-radius: 50%;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+}
+.round img 
+{
+    display: block;
+    min-width: 30px;
+    min-height: 30px;
+}
+.round11 
+{
+    border-radius: 50%;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+}
+.round11 img 
+{
+    display: block;
+    min-width: 150px;
+    min-height: 150px;
+}
+slok
+{
+    font-size: 10px;                
+}
+.round1 
+{
+        border-radius: 50%;
+        overflow: hidden;
+        width: 90px;
+        height: 90px;
+}
+.round1 img 
+{
+    display: block;
+    min-width: 90px;
+    min-height: 90px;
+}
+img{
+    max-width: 17% !important;
+    width: 17% !important;
+    padding: 5px;
+}
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb{
+    min-height: 40px !important;
+}
+
+.ui-li-has-arrow .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-arrow{
+    padding-right: 10% !important;
+}
+
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb
+{
+    padding-left: 25% !important;
+}
+ .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb
+{
+    min-height: 68px !important;
+}
+
+
+            .ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb{
+                padding-left: 25% !important;
+            }
