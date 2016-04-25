@@ -1,0 +1,16 @@
+Datatypes supported by Redis:
+
+    A)  String: 
+                Similar to Strings in PHP.
+    B)  List: 
+                Similar to a single dimensional array in PHP. 
+                You can push, pop, shift and unshift, the elements that are placed in order or insertion FIFO (first in, first out).
+
+    C)  Hash:   Maps between string fields and string values. 
+                They are the perfect data type to represent objects 
+                (e.g.: A User with a number of fields like name, surname, and so forth).
+
+    D)  Set:    Similar to list, except that it has no order and each element may appear only once.
+
+    E)  Sorted Set: Similar to Redis Sets with a unique feature of values stored in set. The difference is that each member of a Sorted Set is associated with score, used to order the set from the smallest score to the largest.
+
