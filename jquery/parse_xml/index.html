@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery.min.js"></script>
+        <script src="bootstrap.min.js"></script>
+        <link rel="stylesheet" href="bootstrap.min.css" />
+    </head>
+    <body>
+        <div class='col-sm-12' id="myDiv" style="border:1px solid red;">TODO write content</div>
+    </body>
+    <script>
+        var url='http://sand-ip.com/admin_panel/api/get_slokas';
+        $.ajax({
+                url: url,
+                dataType:"xml",
+                async:true,
+                cache: false,
+                crossDomain: true,
+                success: function(response)
+                {
+                    var data=response;
+                    $(data).find('response').each(function()
+                    {
+                        $(this).find('data').each(function(index)
+                        {
+                            var str = "";
+                            var str2 = "";
+                            $(this).find('slok').each(function(index)
+                            {
+                                var title = $(this).find('title').text();
+                                var description = $(this).find('description').text();
+                                var attachment = $(this).find('attachment').text();
+                                str+="<div class='col-sm-3'>"+title+"</div>";
+                                str+="<div class='col-sm-3'>"+description+"</div>";
+                                str+="<div class='col-sm-6'><img src='http://sand-ip.com/admin_panel"+attachment+"' width='100px' height='100px' /></div>";                                
+                                $("#myDiv").html(str);
+                            });
+                        });
+                    });
+                    
+                    //alert(response)
+                }
+        })
+    </script>
+</html>
