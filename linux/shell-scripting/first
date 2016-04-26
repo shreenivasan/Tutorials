@@ -1,0 +1,50 @@
+#
+# My First shell script
+#
+#
+echo "Knoweldge is power"
+
+# user defined variable
+
+myname="shreenivas";
+my_id=1234;
+
+echo $myname;
+
+echo $my_id;
+
+# Arithmatic expressions
+# expr 1+3
+# expr 2-1
+# expr 10/2
+# expr 20%3
+# expr 10 \* 3 - Multiplication use \* and not * since its wild card.
+# expr 10\*3
+# echo `expr 6+3`
+ 
+echo `expr 1 + 2`
+echo `expr 2 - 1`
+echo `expr 10 % 3`
+
+echo "Today is `date`"
+expr 1 + 3
+echo $?
+echo $$
+
+echo "Your first name please "
+read fname
+echo "Your name is $fname"
+
+date;who 
+
+sum 11 20
+ echo "Total number of command line argument are $#"
+echo "$0 is script name"
+echo "$1 is first argument"
+echo "$2 is second argument"
+echo "All of them are :- $* or $@"
+
+#cat < /var/www/html/Tututs/index1.php
+
+
+ who | wc -l 
