@@ -1,0 +1,82 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+$(document).ready(function()
+{
+        var url  = 'gotra_surnames.xml';
+        var surname=['select'];
+        $.ajax
+        ({
+            type: "POST",
+            url: url,
+             async: false,
+            cache: false,
+            success: function(data)
+            {
+                surname=[];
+                $(data).find('root').each(function()
+                {
+                    $(this).find('surnames').each(function()
+                    {
+                        $(this).find('surname').each(function()
+                        {
+                            surname.push($(this).find("ename").text());                          
+                        });
+                    });
+
+                });
+
+            },
+            error: function(data)
+            {
+
+            }
+        });
+        
+        $("#txtSurname").autocomplete
+        ({                        
+            delay: 0,
+            minLength: 1, 
+            autoFocus:true,
+            source: surname                           
+        });
+    
+    $("#btnFindGotra").on('click',function()
+    {
+        var surname=$("#txtSurname").val();
+        if(surname.length>0)
+        {            	
+            $.ajax({
+                        type: "POST",
+                        url: url,
+                        cache: false,
+                        success: function(data)
+                        {
+                            gotrams=[];
+                            $(data).find('root').each(function()
+                            {
+                                $(this).find('surnames').each(function()
+                                {
+                                    $(this).find('surname').each(function()
+                                    {
+                                        if(surname==$(this).find("ename").text())
+                                        {
+                                            console.log($(this).find("ename").parent().parent().parent().find("ename:first").text())
+                                        }
+                                    });
+                                });
+
+                            });
+                            
+                        },
+                        error: function(data)
+                        {
+                                
+                        }
+                    });
+        }
+    });
+});
+</script> 
