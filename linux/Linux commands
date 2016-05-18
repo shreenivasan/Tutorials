@@ -80,3 +80,7 @@ To find all available shells in your system type following command:
 To find your current shell type following command
     $ echo $SHELL 
 -------------------------------------------------------------------------------------------
+Ubuntu
+
+Press Fn+windows btn for GUI Mode
+Press Ctrl+Atlr+F1 to F6 
