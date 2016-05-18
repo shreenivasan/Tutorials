@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet" />
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
+   <script type="text/javascript">
+      Ext.onReady(function() {
+         Ext.create('Ext.panel.Panel', {
+            renderTo : Ext.getBody(),
+            layout : 'column' ,
+              xtype: 'layout-column',
+            requires: ['Ext.layout.container.Column'],
+            width :" 100%",
+            height:"100%",
+            items: [{
+               title : 'First Component width 30%',
+               html : 'This is First Component',
+               columnWidth : 0.25
+            },{
+               title : 'Second Component width 40%',
+               html : '<p> This is Second Component </p> <p> Next line for second component </p>',
+               columnWidth : 0.25
+            },{
+               title : 'Third Component width 30%',
+               html : 'This is Third Component' ,
+               columnWidth : 0.25
+            },{
+               title : 'Fourth Component width 30%',
+               html : 'This is Fourth Component' ,
+               columnWidth : 0.25
+            }]
+         });
+      });
+   </script>
+</head>
+<body>
+</body>
+</html>
