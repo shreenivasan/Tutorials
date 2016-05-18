@@ -48,3 +48,16 @@ $last_names = array_column($a, 'last_name', 'id');
 $address = array_column($a, 'address', 'id');
 print_r($last_names);
 print_r($address);
+
+$a=array("A","Cat","Dog","A","Dog");
+print_r(array_count_values($a));
+
+// array_map function 
+function myfunction($v)
+{
+  return($v*$v);
+}
+
+// Array Map process each element of array with used specified function
+$a=array(1,2,3,4,5);
+print_r(array_map("myfunction",$a));
