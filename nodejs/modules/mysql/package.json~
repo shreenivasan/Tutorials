@@ -1,0 +1,8 @@
+{
+  "name": "PROJECT NAME",
+  "version": "0.0.1",
+  "author": "Shreenivas",
+  "dependencies": {
+    "mysql": "2.x.x"
+  }
+}
