@@ -40,6 +40,18 @@ Step 4) Type command
         or
         git push origin <name_of_branch>
         e.g. git push origin testing1
+
+------------------------------------------------------------
+
+Delete branch locally
+
+Step 1) shift another branch
+e.g. if u are branch say branch1 & you want to delete branch1 & first shift current branch to another branch say branch2
+
+    git checkout branch2
+
+    git branch -D branch1
+
 ------------------------------------------------------------
 
 
