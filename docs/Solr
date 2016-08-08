@@ -1,0 +1,14 @@
+Installation
+
+	Download and unpack the latest Solr release from the Apache download mirrors.
+
+Start Solr
+
+	$ bin/solr start            # this starts solr
+	$ bin/solr create -c demo   # this creates a document collection called "demo"
+
+Verify Solr Running or not?
+
+	To verify it’s up and running,you can point your browser at the admin page
+
+	http://localhost:8983/solr/
