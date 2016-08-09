@@ -1,0 +1,28 @@
+Mysql Views
+
+MySQL processes queries against the views in two ways
+
+1) MySQL creates a temporary table based on the view definition statement and executes the incoming query on this temporary table
+
+2) MySQL combines the incoming query with the query defined the view into one query and executes the combined query
+
+
+Advantages
+
+1) A database view allows you to simplify complex queries
+2) A database view helps limit data access to specific users.
+3) A database view provides extra security layer.
+
+Disadvantages
+
+1) Querying data from a database view can be slow
+2) Tables dependency: you create a view based on underlying tables of the a database. 
+   Whenever you change the structure of those tables that view associated with, you have to change the view as well.
+3) Cannot use subqueries in the FROM clause of the SELECT statement defined the view before MySQL 5.7.7
+
+
+MySQL view’s restrictions
+
+You cannot create an index on a view.
+Views and tables share the same namespace, therefore, a view and a table cannot have the same name.
+Views can be updatable i.e. you can use the INSERT or UPDATE statement to insert or update rows of the base table through the updatable view

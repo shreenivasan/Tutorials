@@ -1,0 +1,104 @@
+=======================================================================================
+A) In General Commands
+=======================================================================================
+
+1) EXISTS
+
+    Checks key exists or not
+
+   General Syntax : EXISTS <KEY>
+   e.g. EXISTS returns 1 if exists else 0
+
+---------------------------------------------------------------------------------------
+
+2) KEYS
+
+    Returns all keys matching pattern.
+   
+    e.g.  KEYS *
+          KEYS *a*
+          KEYS A????
+
+---------------------------------------------------------------------------------------
+
+3) DEL
+
+    Removes the specified keys. A key is ignored if it does not exist.
+
+    General Syntax : DEL <KEY1> <KEY2> <KEY3> ... <KEY-N>
+    e.g. DEL test_key
+
+---------------------------------------------------------------------------------------
+
+4) RENAME
+
+   Renames key to newkey
+
+   General Syntax : RENAME <OLD_KEY> <NEW_KEY>
+   e.g. RENAME test_key test_key_new
+
+---------------------------------------------------------------------------------------
+
+5) EXPIRE
+
+   Set a timeout on key.
+
+   General Syntax : EXPIRE <KEY> <NO_OF_SECONDS>
+   e.g. EXPIRE test_key_new 10
+
+   Now test_key_new will be expire after 10 seconds
+
+---------------------------------------------------------------------------------------
+
+6) EXPIREAT
+
+   Same use as expire just instead of no of seconds this will use timestamp
+
+   General Syntax :  EXPIREAT <KEY> <TIME_STAMP>
+   e.g. EXPIREAT test_key_new 1293840000
+ 
+---------------------------------------------------------------------------------------
+
+7) TTL
+
+   Returns the remaining time to live of a key
+
+   General Syntax : TTL <KEY>
+   e.g. TTL test_key_new
+
+---------------------------------------------------------------------------------------
+
+8) APPEND
+
+   Appends the value at the end of the string.
+   General Syntax :  APPEND <KEY> <VALUE> 
+   e.g.  APPEND test_key_new "Hello"   
+
+=======================================================================================
+
+    B) String commands
+
+=======================================================================================
+
+    1) SET
+
+        Sets value associated with key
+        
+       General Syntax : SET <KEY> <VALUE>
+       e.g. SET test_key test_value
+
+---------------------------------------------------------------------------------------
+
+    2) GET
+
+        Fetches a value using key
+
+        General Syntax : GET <KEY>
+        e.g. GET test_key 
+
+=======================================================================================
+
+    3) 
+
+
+=======================================================================================
