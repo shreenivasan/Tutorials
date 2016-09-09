@@ -1,14 +1,37 @@
 Installation
 
 	Download and unpack the latest Solr release from the Apache download mirrors.
-
+-------------------------------------------------------------------------------------------------------------------
 Start Solr
 
 	$ bin/solr start            # this starts solr
+        $ bin/solr start -p 8984    # To change the port solr listens        
 	$ bin/solr create -c demo   # this creates a document collection called "demo"
+-------------------------------------------------------------------------------------------------------------------
+Restart Solr
 
+        $ bin/solr restart [options]  # restarts solr server.
+-------------------------------------------------------------------------------------------------------------------
+Stop Solr
+
+    1) For foreground 
+        When running Solr in the foreground (using -f), then you can stop it using Ctrl-c
+
+    2) For background
+    
+        $ bin/solr stop -p 8983
+-------------------------------------------------------------------------------------------------------------------
 Verify Solr Running or not?
 
+
+    1) Using command line
+
+         $ bin/solr status
+
+    2) Using UI
+         
 	To verify it’s up and running,you can point your browser at the admin page
 
 	http://localhost:8983/solr/
+
+-------------------------------------------------------------------------------------------------------------------
