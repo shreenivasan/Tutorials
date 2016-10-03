@@ -1,0 +1,24 @@
+Interview question & answers
+
+A) How do you revert a commit that has already been pushed and made public?
+
+Answer :
+            git revert can be used to revert commits
+            Running the following command will revert the last two commits
+            git revert HEAD~2..HEAD
+            Alternatively, one can always checkout the state of a particular commit from the past, and commit it anew.
+
+===============================================================================================================================
+
+B) How do you find a list of files that has changed in a particular commit?
+
+Answer : 
+        git diff-tree -r {hash} will list all the files that were changed or added in that commit
+            or
+        git diff-tree --no-commit-id --name-only -r {hash}
+
+===============================================================================================================================
+
+    
+
+
