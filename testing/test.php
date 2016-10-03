@@ -1,6 +1,16 @@
 <?php
-//reverse only alphabhates in a given string
 ini_set("display_errors", "On");
+echo $_SERVER['HTTP_REFERER']; die;
+static $static=1;
+
+echo $static;
+
+
+$static++;
+die;
+
+//reverse only alphabhates in a given string
+
 $a='@a$f';
 $b=array();
 
