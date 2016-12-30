@@ -1,3 +1,18 @@
+What is Solr?
+
+Solr is able to achieve fast search responses because, instead of searching the text directly, it searches an index instead.
+
+This is like retrieving pages in a book related to a keyword by scanning the index at the back of a book, as opposed to searching 
+every word of every page of the book.
+
+In Solr, a Document is the unit of search and index.
+
+An index consists of one or more Documents, and a Document consists of one or more Fields.
+
+In database terminology, a Document corresponds to a table row, and a Field corresponds to a table column.
+
+
+-------------------------------------------------------------------------------------------------------------------
 Installation
 
 	Download and unpack the latest Solr release from the Apache download mirrors.
