@@ -1,3 +1,5 @@
+<table border='1' style='padding: 4px;'><thead><th colspan='4' style='background: #gray;'>Successful Transactions</th></thead><tbody><tr><td>1</td><td>0</td><td>delete</td><td>success</td></tr></tbody></table><table border='1' style='padding: 4px;'><thead><th colspan='4' style='background: #gray;'>Failed Transactions</th></thead><tbody><tr><td>1</td><td>3248</td><td>edit</td><td>failed</td></tr><tr><td>2</td><td>50003</td><td>insert</td><td>failed</td></tr></tbody></table>
+
 <?php
 echo json_encode(array('success'=>'File uploaded successfully, You will receive an email on your email id.')); die;
 
