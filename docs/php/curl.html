@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <h1>PHP : Curl</h1>
+        <p>
+            <a href="#def_curl" class="function_ref">Curl</a>,
+            <a href="#pass_json_curl" class="function_ref">Pass JSON Data in CURL</a>,
+            <a href="#pass_header_curl" class="function_ref">Pass header in CURL</a>,
+        </p>
+        
+        <ul>
+            <!-- New starts " -->
+            <li id="pass_json_curl"><b>How to pass JSON Data in CURL? </b></li>
+        <pre>
+        cURL stands for <b>"client Url"</b>,Curl is a library that lets you make HTTP requests in PHP.
+
+        cURL means client URL which allows you to connect with other URLs and use their responses in your code.
+
+        e.g.
+        //step1
+        $cSession = curl_init(); 
+
+        //step2
+        curl_setopt($cSession,CURLOPT_URL,"http://www.google.com/search?q=curl");
+        curl_setopt($cSession,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($cSession,CURLOPT_HEADER, false); 
+
+        //step3
+        $result=curl_exec($cSession);
+
+        //step4
+        curl_close($cSession);
+
+        //step5
+        echo $result;
+
+        <b class="function_ref">Description</b>
+
+        step1: Initialize a curl session use curl_init().
+
+        step2: Set option for CURLOPT_URL. This value is the URL which we are sending the request to. 
+               Append a search term "curl" using parameter "q=". Set option for CURLOPT_RETURNTRANSFER, 
+               true will tell curl to return the string instead of print it out. Set option for CURLOPT_HEADER, 
+               false will tell curl to ignore the header in the return value.
+
+        step3: Execute the curl session using curl_exec().
+
+        step4: Close the curl session we have created.
+
+        step5: Output the return string
+
+        </pre>
+            
+        <!-- New starts " -->    
+        <li id="def_curl"><b>What is <a href="#" class="function_ref">Curl</a> & how it works ? </b></li>
+        <pre>
+        $url='http://www.web-technology-experts-notes.in';
+        $jsonData='{"name":"Web Technology Experts","email":"contact@web-technology-experts-notes.in"}';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+        curl_close($ch);
+        </pre>    
+        
+        <!-- New starts " -->    
+        <li id="pass_header_curl"><b>How to pass data in header while using CURL? </b></li>
+        <pre>
+        $url='http://www.web-technology-experts-notes.in';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+          'headerKey: HeaderValue ',
+          'Content-Type: application/json',
+          "HTTP_X_FORWARDED_FOR: xxx.xxx.x.xx"
+        ));
+        echo curl_exec($ch);
+        curl_close($ch);
+        </pre>
+            
+        </ul>
+    </body>
+</html>

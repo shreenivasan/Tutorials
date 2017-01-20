@@ -1,0 +1,81 @@
+<?php print_r($po_details);
+$idt_array=explode("-",$po_details->inward_date); 
+$idt=$idt_array[2]."-".$idt_array[1]."-".$idt_array[0];
+
+$cdt_array=explode("-",$po_details->cur_date); 
+$cdt=$cdt_array[2]."-".$cdt_array[1]."-".$cdt_array[0];
+
+?>
+<div id="content-wrapper">
+    <div class="page-header">
+        <form method="POST"  id="frmListView" name="frmListView">
+            <h1 class="col-sm-12"><?=" $mode "?></h1>
+        </form>
+    </div>
+    <div class="row">
+        <hr class="visible-xs no-grid-gutter-h">
+    </div>
+    <div class="row">
+        <div class="panel-heading">
+            <span class="panel-title"><?=$mode." PO details here"?></span>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" >Seller Name</label>
+                <label class="col-sm-4 control-label" ><?=$po_details->name?></label>
+                
+                <label class="col-sm-2 control-label" >Inward Date</label>
+                <label class="col-sm-4 control-label" ><?=$idt?></label>                
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" >Invoice No.</label>
+                <label class="col-sm-4 control-label" ><?=$po_details->invoice_no?></label>
+                
+                <label class="col-sm-2 control-label" >Date</label>
+                <label class="col-sm-4 control-label" ><?=$cdt?></label>                
+            </div>
+        </div>
+        <div class="form-group table-info">                                                                                             
+            <table class="table table-bordered">
+                <thead>
+                    <th>Material Name</th>
+                    <th>Unit</th>
+                    <th>Price</th>
+                    <th>Qty</th>                                        
+                    <th>Vat Price</th>
+                </thead>
+                <tbody id="dataTable">
+                    <?php for($i=0;$i<count($pod_details);$i++){ ?>
+                    <tr id="tr-<?=$i+1?>">
+                        <td>
+                            <?=$pod_details[$i]->pname?>
+                        </td>
+                        <td><label id='unit-label-1'><?=$pod_details[$i]->unit?></label></td>
+                        <td><input type="text" id='price-1' name="price[]" min="1" placeholder="Price" class="form-control" value="<?=$pod_details[$i]->price?>" disabled="true"/></td>
+                        <td><input type="text" id='qty-1' name="qty[]" max="1000" min="1" placeholder="Qty" class="form-control" value="<?=$pod_details[$i]->qty?>" disabled="true" /></td>
+                        <td><input type="text" id='vat-price-1' name="vat_price[]" min="1" placeholder="VAT Price" class="form-control" value="<?=$pod_details[$i]->materials_vat_price?>" disabled="true" /></td>                                            
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-12">&nbsp;</div>
+            <div class="col-sm-12">
+                <button class="btn btn-cancel" type="button" onclick="javascript:window.location.href=<?php echo "'".site_url($currentModule)."/index"."'"; ?>">Go to List</button>
+            </div>
+        </div>
+    </div>    
+</div>
+        <script src="<?=base_url()?>assets/js/lib/jquery.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrap.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrapValidator.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/pixel-admin.min.js"></script>
+        <script src="<?=base_url()?>assets/js/custom/common.js"></script>
+        <script type="text/javascript">
+            init.push(function () {});
+            window.PixelAdmin.start(init);
+        </script>
+    </body>
+</html>
+

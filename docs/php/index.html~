@@ -1,0 +1,13 @@
+<html>
+<body>
+<h1>PHP Interview questions & Answers</h1>
+<ul>
+<li><a href="array.html" target="_blank">Array functions</a></li>
+<li><a href="datetime.html" target="_blank">Datetime functions</a></li>
+<li><a href="oops.html" target="_blank">Object oriented programming concepts</a></li>
+<li><a href="db_basic.html" target="_blank">Database connectivity</a></li>
+<li><a href="mysqli.html" target="_blank">Mysqli</a></li>
+<li><a href="pdo.html" target="_blank">PDO in mysql</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<?php
+    $id=  isset($product_details[0]->id)?$product_details[0]->id:"";
+    $name=  isset($product_details[0]->name)?$product_details[0]->name:"";
+    $seller_id=  isset($product_details[0]->seller_id)?$product_details[0]->seller_id:'';
+    $unit_id=  isset($product_details[0]->unit_id)?$product_details[0]->unit_id:'';
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/lib/select2.css'); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/lib/bootstrapValidator.css'); ?>" />
+            <div id="content-wrapper">
+                <div class="page-header">
+                    <form method="POST"  id="frmListView" name="frmListView">
+                        <h1 class="col-sm-12"><?=$mode." ".$currentModule?></h1>
+                    </form>
+                </div>
+                <div class="row">
+                    <hr class="visible-xs no-grid-gutter-h">
+                </div>
+
+                <div class="row">
+                    <?php   
+                        $action_url = site_url($currentModule.'/submit');
+                        $attributes=array('id'=>'defaultForm','method'=>'post');
+                        echo form_open($action_url,$attributes);
+                    ?>
+                        <input type="hidden" name="id" id="id" value="<?=isset($id)?$id:""?>">
+                        <input type="hidden" name="mode" id="mode" value="<?=isset($mode)?$mode:""?>">
+                        <div class="panel-heading"> <span class="panel-title">Add <?=ucfirst($currentModule)?> Details Here</span> </div>
+                        <div class="panel-body">
+                            <label class="col-sm-2">Name of Product:<span style="color: #900;" class="star">&#160;*</span></label>
+                            <div class="col-sm-2"><input type="text" id="product_name" name="product_name" class="form-control" value="<?=$name?>" /></div>
+
+                            <label class="col-sm-2">Seller Name:<span style="color: #900;" class="star">&#160;*</span></label>
+                            <div class="col-sm-2">
+                                <select id="seller_name" name="seller_name" class="form-control">
+                                    <option value="">Select Seller</option>
+                                    <?php
+                                    for($i=0;$i<count($seller_deatails);$i++){
+                                        $id= $seller_deatails[$i]->id;
+                                        $name= $seller_deatails[$i]->name;
+                                        $selected_txt="";
+                                        if($seller_id==$id){
+                                            $selected_txt="selected='selected'";
+                                        }
+                                        
+                                    ?>
+                                    <option <?=$selected_txt?> value="<?php echo $id; ?>"><?php echo $name; ?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                            
+                            <label class="col-sm-2">Unit:<span style="color: #900;" class="star">&#160;*</span></label>
+                            <div class="col-sm-2">
+                                <select id="unit_name" name="unit_name" class="form-control">
+                                    <option value="">Select Unit</option>
+                                    <?php
+                                    for($i=0;$i<count($unit_deatails);$i++){
+                                        $id=$unit_deatails[$i]->id;
+                                        $code=$unit_deatails[$i]->code;
+                                        $selected_txt="";
+                                        if($unit_id==$id){
+                                            $selected_txt="selected='selected'";
+                                        }
+                                    ?>
+                                    <option <?=$selected_txt?> value="<?php echo $id; ?>"><?php echo $code; ?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">
+                                <button id="btn-msr-sheet" type="submit" class="btn btn-primary">Submit</button>
+                                <button class="btn btn-cancel" type="button" onclick="javascript:window.location.href=<?php echo "'".site_url($currentModule)."/index"."'"; ?>">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+         </div>
+        </div>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="<?=base_url()?>assets/js/lib/jquery.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrap.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrapValidator.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/pixel-admin.min.js"></script>
+        <script src="<?=base_url()?>assets/js/custom/common.js"></script>
+        <script src="<?=base_url()?>assets/js/custom/product.js"></script>
+        <script type="text/javascript">
+            init.push(function () {});
+            window.PixelAdmin.start(init);
+        </script>
+    </body>
+</html>

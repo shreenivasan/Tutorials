@@ -1,0 +1,101 @@
+<?php
+if(count($client_details)>0){
+    $id=  isset($client_details->id)?$client_details->id:"";
+    $name=  isset($client_details->name)?$client_details->name:"";
+    $vat_no=  isset($client_details->vat_no)?$client_details->vat_no:"";
+    $address=  isset($client_details->address)?$client_details->address:"";
+    $mb=  isset($client_details->mobile)?$client_details->mobile:"";
+    $alt_mb=  isset($client_details->alternate_mobile)?$client_details->alternate_mobile:"";
+    $email=  isset($client_details->email_id)?$client_details->email_id:"";
+    $contact_person_name=  isset($client_details->contact_person_name)?$client_details->contact_person_name:"";
+    $contact_no=  isset($client_details->contact_person_mobile)?$client_details->contact_person_mobile:"";
+    }
+?>
+            <div id="content-wrapper">
+                <div class="page-header">                    
+                    <h1 class="col-sm-12"><?=" $mode "?></h1>
+                </div>
+                <div class="row">
+                    <hr class="visible-xs no-grid-gutter-h">
+                </div>
+
+                <div class="row">
+                    <?php   
+                        $action_url = site_url($currentModule.'/submit');
+                        $attributes=array('id'=>'defaultForm','method'=>'post');
+                        echo form_open($action_url,$attributes);
+                    ?>
+                        <div class="panel-heading"> <span class="panel-title"><?=ucfirst($currentModule)?> Details</span> </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="client_name">Client Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="client_name" name="client_name" class="form-control" value="<?=$name?>" readonly>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="address">Address</label>
+                                <div class="col-sm-9">
+                                    <textarea id="address" name="address" class="form-control" readonly><?=$address?></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="client_name">VAT No.</label>
+                                <div class="col-sm-9">
+                                        <input type="text" id="vat_no" name="vat_no" class="form-control" value="<?=$vat_no?>" readonly>
+                                </div>
+                            </div>     
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="mobile">Mobile No.</label>
+                                <div class="col-sm-9">
+                                        <input type="text" id="mobile" name="mobile" class="form-control" value="<?=$mb?>" readonly>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="alt_mobile">Alternate Mobile No.</label>
+                                <div class="col-sm-9">
+                                        <input type="text" id="alt_mobile" name="alt_mobile" class="form-control" value="<?=$alt_mb?>" readonly>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="email">Email Id</label>
+                                <div class="col-sm-9">
+                                        <input type="text" id="email" name="email" class="form-control" value="<?=$email?>" readonly>
+                                </div>
+                            </div>                            
+                            <div class="form-group">                                
+                                <label class="col-sm-3 control-label" for="contact_person_name">Contact Person Name</label>
+                                <div class="col-sm-9">
+                                        <input type="text" id="contact_person_name" name="contact_person_name" class="form-control" value="<?=$contact_person_name?>" readonly>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="contact_no">Contact No.</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="contact_no" name="contact_no" class="form-control" value="<?=$contact_no?>" readonly>
+                                    <input type="hidden" name="type" value="P" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-cancel" type="button" onclick="javascript:window.location.href=<?php echo "'".site_url($currentModule)."/index"."'"; ?>">Go to List</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+         </div>
+        </div>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="<?=base_url()?>assets/js/lib/jquery.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrap.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/pixel-admin.min.js"></script>
+        <script src="<?=base_url()?>assets/js/custom/common.js"></script>
+        <script type="text/javascript">
+            init.push(function () {});
+            window.PixelAdmin.start(init);
+        </script>
+    </body>
+</html>
+

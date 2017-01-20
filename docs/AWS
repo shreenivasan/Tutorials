@@ -1,0 +1,34 @@
+What Is Amazon S3?
+
+A) Amazon Simple Storage Service is storage for the Internet.
+
+B) Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data,
+at any time, from anywhere on the web. It gives any developer access to the same highly scalable, reliable, 
+fast, inexpensive data storage infrastructure
+===================================================================
+How to install s3
+
+sudo apt-get install s3cmd
+===================================================================
+put (write ) file on s3
+
+/usr/bin/s3cmd --no-preserve put -r --acl-public -c /var/.s3cfg -f --add-header='Cache-Control:max-age=15552000'  source_fileNameToWrite destination_file_name_s3_url
+
+e.g.
+
+/usr/bin/s3cmd --no-preserve put -r --acl-public -c /var/.s3cfg -f --add-header='Cache-Control:max-age=15552000' /var/www/html/trendsutra3/var/import/category/category.txt s3://pf-warpspeed/staticpages/fe/category.txt
+
+===================================================================
+
+get (read) file from s3
+
+    get s3_path_of_file
+
+e.g. /usr/bin/s3cmd get s3://pf-warpspeed/staticpages/fe/category.txt
+===================================================================
+
+show all files
+
+/usr/bin/s3cmd ls s3_dir_path
+
+/usr/bin/s3cmd ls s3://pf-warpspeed/staticpages/fe/

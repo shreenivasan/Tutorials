@@ -1,0 +1,30 @@
+<ul class="navigation">
+    <li>
+        <a href="<?php echo base_url('home'); ?>"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
+    </li>
+    <li class="mm-dropdown">
+        <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Master</span></a>
+        <ul>
+            <li>
+                <a tabindex="-1" href="<?=base_url('Product/index')?>"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Product Master</span></a>
+            </li>
+            <li>
+                <a tabindex="-1" href="<?=base_url('Client/index')?>"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Client Master</span></a>
+            </li>
+        </ul>
+    </li>
+    <li class="mm-dropdown">
+        <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Transactions</span></a>
+        <ul>
+            <li>
+                <a tabindex="-1" href="<?=base_url('Setprice/index')?>"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Client wise Prices</span></a>
+            </li>
+            <li>
+                <a tabindex="-1" href="<?=base_url('Purchasedetails/index')?>"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Purchase Entry</span></a>
+            </li>
+            <li>
+                <a tabindex="-1" href="<?=base_url('Salesdetails/index')?>"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Sales Entry</span></a>
+            </li>
+        </ul>
+    </li>
+</ul>

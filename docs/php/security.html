@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <h1>PHP security</h1>
+        
+        <p>
+            <a href="#csrf" class="function_ref">CSRF</a>,
+            <a href="#xss" class="function_ref">XSS</a>,
+            <a href="#sql_injection" class="function_ref">Sql Injection</a>,
+            <a href="#xss" class="function_ref">XSS</a>,
+        </p>
+        
+        <ul>
+            <!-- New starts " -->
+            <li id="csrf"><b>What is <a href="#" class="function_ref">CSRF</a> & how to prevent it in php? </b></li>
+            <pre>
+            CSRF stands for Cross-Site Request Forgery, which is a type of attack that occurs when a malicious web site, email, 
+            blog, instant message, or program causes a user's web browser to perform an unwanted action on a trusted site 
+            for which the user is currently authenticated.
+
+            CSRF attack can be prevented by using a token no which consist of large digit of random number & 
+            also put same no. into the session with that form id after form submission check whether session's no 
+            & input hidden field values are same or not otherwise it is attacked by CSRF.
+            </pre>
+            
+            <!-- New starts " -->
+            <li id="xss"><b>What is <a href="#" class="function_ref">XSS</a> & how to prevent it in php? </b></li>
+            <pre>
+            XSS stands for cross site scripting, refers to client-side code injection attack wherein an attacker can 
+            execute malicious scripts (also commonly referred to as a malicious payload) into a legitimate website or 
+            web application. 
+
+            The simplest and most effective way to prevent XSS attacks is the nuclear option: Ruthlessly escape any character that can affect the structure of your document.
+
+            by using htmlentities() function for users input data we can prevent xss in php.
+            </pre>
+            
+            <!-- New starts " -->
+            <li id="sql_injection"><b>What is <a href="#" class="function_ref">Sql Injection</a> </b></li>
+            <pre>
+            SQL injections are a method to alter a query in a SQL statement send to the database server.        
+            That modified query then might leak information like username/password combinations and can help
+            the intruder to further compromise the server.
+            
+            Sanitize the user data before Storing in database.While displaying the data in browser Convert all 
+            applicable characters to HTML entities using htmlentities functions.
+
+            To prevent SQL injections, one should always check & escape all user input, also by using mysql_real_escape_string()
+            function() we filter the user input.
+            </pre>
+        </ul>
+        
+        <table cellspacing="0" cellpadding="0" border="1" style="width:584px">
+                <tbody>
+                <tr>
+                <td style="width:195px">
+                <p>&nbsp;</p>
+                </td>
+                <td style="width:195px">
+                <p class="rtecenter"><strong>XSS</strong></p>
+                </td>
+                <td style="width:195px">
+                <p class="rtecenter"><strong>CSRF</strong></p>
+                </td>
+                </tr>
+                <tr>
+                <td style="width:195px">
+                <p>Full Form</p>
+                </td>
+                <td style="width:195px">
+                <p>Cross-Site Scripting</p>
+                </td>
+                <td style="width:195px">
+                <p>Cross-Site Request Forgery</p>
+                </td>
+                </tr>
+                <tr>
+                <td style="width:195px">
+                <p>Definition</p>
+                </td>
+                <td style="width:195px">
+                <p>In XSS, a hacker injects a malicious client side script in a website. This script is added to cause some form of vulnerability to a victim.</p>
+                </td>
+                <td style="width:195px">
+                <p>It takes advantage of the targeted website’s trust in a user. A malicious attack is designed in such a way that a user&nbsp;sends malicious requests to the target website&nbsp;<span style="background-color:transparent">without having knowledge of the attack.</span></p>
+                </td>
+                </tr>
+                <tr>
+                <td style="height:34px; width:195px">
+                <p>Dependency</p>
+                </td>
+                <td style="height:34px; width:195px">
+                <p>Injection of arbitrary data by data that is not validated</p>
+                </td>
+                <td style="height:34px; width:195px">
+                <p>On the functionality and features of the browser to retrieve and execute the attack bundle</p>
+                </td>
+                </tr>
+                <tr>
+                <td style="width:195px">
+                <p>Requirement of JavaScript</p>
+                </td>
+                <td style="width:195px">
+                <p>Yes</p>
+                </td>
+                <td style="width:195px">
+                <p>No</p>
+                </td>
+                </tr>
+                <tr>
+                <td style="width:195px">
+                <p>Condition</p>
+                </td>
+                <td style="width:195px">
+                <p>Acceptance of the malicious code by the sites</p>
+                </td>
+                <td style="width:195px">
+                <p>Malicious code is located on third party sites</p>
+                </td>
+                </tr>
+                <tr>
+                <td style="width:195px">
+                <p>Vulnerability</p>
+                </td>
+                <td style="width:195px">
+                <p>A site that is vulnerable to XSS attacks is also vulnerable to CSRF attacks</p>
+                </td>
+                <td style="width:195px">
+                <p>A site that is completely protected from XSS types of attacks is still most likely vulnerable to CSRF attacks.</p>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+    </body>
+</html>

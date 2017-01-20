@@ -1,0 +1,83 @@
+<?php
+$dc_no='';
+$cur_date='';
+?>
+<script> var product_details ='<?php echo json_encode($product_details); ?>'; </script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/lib/select2.css'); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/lib/bootstrapValidator.css'); ?>" />
+<div id="content-wrapper">
+    <div class="page-header">
+        <form method="POST"  id="frmListView" name="frmListView">
+            <h1 class="col-sm-12"><?=$mode." "." Sales details"?></h1>
+        </form>
+    </div>
+    <div class="row">
+        <hr class="visible-xs no-grid-gutter-h">
+    </div>
+    <?php   
+        $action_url = site_url($currentModule.'/submit');
+        $attributes=array('id'=>'defaultForm','method'=>'post');
+        echo form_open($action_url,$attributes);
+    ?>
+    <input type="hidden" name="id" id="id" value="<?=isset($id)?$id:""?>">
+    <input type="hidden" name="mode" id="mode" value="<?=isset($mode)?$mode:""?>">
+    <div class="row">
+        <div class="panel colourable">
+            <div class="panel-heading">
+                <span class="panel-title"><?=$mode." Sales details here"?></span>
+            </div>
+            <div class="panel-body">
+                <label class="col-sm-6 control-label" for="client_name">Seller Name</label>
+                    <div class=" col-sm-6 form-group">
+                        <select id='client_name' name="client_name" class=" form-control my_select">
+                            <option value=""></option>
+                            <?php                                     
+                            for($i=0;$i<count($client_details);$i++){                                        
+                                $selected='';
+                                if($client_details[$i]->id==$po_details->client_id){ $selected="selected='selected'"; }
+                            ?>
+                            <option <?=$selected?> value="<?=$client_details[$i]->id?>"><?=$client_details[$i]->name?></option>
+                            <?php }?>
+                        </select>
+                    </div>
+                    <div class="form-group" id="bs-datepicker-component">                        
+                        <label class="col-sm-3 control-label" for="dc_no">DC No.</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="dc_no" name="dc_no" placeholder="DC no" class="form-control" value="<?=$dc_no?>"/>
+                        </div>
+                        <label class="col-sm-3 control-label" for="cur_date">Date</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="cur_date" name="cur_date" class="form-control" value="<?=$cur_date?>"/>
+                        </div>
+                    </div>
+                    <div class="form-group table-info">                                
+                        <div class="col-sm-11"></div>
+                        <div class="col-sm-1"><button type="button" id="btnAddMore" class="btn btn-info add-row">+</button></div>
+                        <br><br>                                
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th>Material Name</th>
+                                        <th>Unit</th>                                        
+                                        <th>Qty</th> 
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </thead>
+                                </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script src="<?=base_url()?>assets/js/lib/jquery.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrap.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrapValidator.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/pixel-admin.min.js"></script>
+        <script src="<?=base_url()?>assets/js/custom/common.js"></script>
+        <script src="<?=base_url('assets/js/custom/'.$currentModule.'.js')?>"></script>
+        <script type="text/javascript">
+            init.push(function () {});
+            window.PixelAdmin.start(init);
+        </script>
+    </body>
+</html>
