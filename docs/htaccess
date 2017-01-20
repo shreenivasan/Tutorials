@@ -1,0 +1,136 @@
+a)  what is .htaccess file
+
+    .htaccess is a configuration file for use on web servers running the Apache Web Server software.
+
+    .htaccess files can be used to alter the configuration of the Apache Web Server.
+
+    To enable/disable additional functionality and features that the Web Server.
+
+    
+-------------------------------------------------------------------------------------------------------
+b) Use of .htaccess file
+
+    Redirection purpose
+        e.g.  Redirect /old_dir/ http://www.yourdomain.com/new_dir/index.html 
+
+    Password protection files
+        e.g. AuthName "Member's Area Name"
+             AuthUserFile /path/to/password/file/.htpasswd
+             AuthType Basic
+             require valid-user
+             ErrorDocument 401 /error_pages/401.html
+             AddHandler server-parsed .html 
+
+    Error Default page settings
+        e.g.  ErrorDocument 404 /error_pages/404.html 
+
+    Directory Listing On/Off
+        e.g.  IndexIgnore * 
+
+    Allow/Deny pages or site based on IP address
+        e.g. order allow,deny
+             deny from 255.0.0.0
+             deny from 123.45.6.
+             allow from all 
+
+    Setting server timezone
+        e.g.  SetEnv TZ America/Indianapolis 
+
+    Prevent access to php.ini
+        e.g. <FilesMatch "^php5?\.(ini|cgi)$">
+             Order Deny,Allow
+             Deny from All
+             Allow from env=REDIRECT_STATUS
+             </FilesMatch> 
+
+-------------------------------------------------------------------------------------------------------
+C) How to redirect http to https?
+
+    RewriteEngine on
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+-------------------------------------------------------------------------------------------------------
+D) How to redirect http:// to https://www?
+
+    RewriteEngine on
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+-------------------------------------------------------------------------------------------------------
+E) How to redirect non-www to www ?
+
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} !^www\.
+    RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+-------------------------------------------------------------------------------------------------------
+F) How to redirect all pages to newdomain?
+
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{HTTP_HOST} !^olddomain\.com$ [NC]
+    RewriteRule ^(.*)$ http://newdomain.com [R=301,L]
+-------------------------------------------------------------------------------------------------------
+G) What is meaning of R & L flag in htaccess?
+
+    htacces R flag causes a HTTP redirect to be issued to the browser and 301 means its permanent redirect.
+    htaccess L fag causes to stop processing the rule set, if the rule matches, no further rules will be processed.
+    Also we can set more than 2 flags in brackets []
+-------------------------------------------------------------------------------------------------------
+H) How to redirect homepage to another Website?
+
+    Redirect / http://www.web-technology-experts-notes.in/
+-------------------------------------------------------------------------------------------------------
+I) How to redirect to another directory within same domain?
+
+    Redirect /olddir /newdir
+-------------------------------------------------------------------------------------------------------
+J) How to set environment in .htaccess?
+
+    SetEnv APPLICATION_ENV development
+-------------------------------------------------------------------------------------------------------
+K) How to set the php config variables in .htaccess?
+
+    php_value upload_max_filesize 32M
+-------------------------------------------------------------------------------------------------------
+L) How to set display_error off in .htaccess?
+
+    php_flag display_errors off
+    php_flag display_startup_errors off
+
+-------------------------------------------------------------------------------------------------------
+M) How to block few IP address?
+
+    order allow,deny
+    deny from xxx.xxx.xxx.xxx #specify a specific address
+    allow from all
+-------------------------------------------------------------------------------------------------------
+O) How to redirect to error/404.html when 404 errors comes?
+
+    ErrorDocument 400 error/404.html
+-------------------------------------------------------------------------------------------------------
+P) How to set the caching for javascript/images/css?
+
+    ExpiresActive On
+    ExpiresByType application/javascript "now plus 3 day"
+    ExpiresByType application/x-javascript "now plus 3 day"
+    ExpiresByType image/jpg "now plus 1 week"
+    ExpiresByType image/jpeg "now plus 1 week"
+    ExpiresByType image/png "now plus 1 week"
+    ExpiresByType image/pjpeg "now plus 1 week"
+    ExpiresByType image/gif "now plus 1 week"
+    ExpiresByType text/css "now plus 3 day"
+
+-------------------------------------------------------------------------------------------------------
+Q) What is meaning of 301, 302, 400, 401, 403, 404 and 500 error codes?
+
+    301 - Permanent movement
+    302 - Temporary movement
+    400 - Bad request
+    401 - Authorization Required
+    403 - Forbidden
+    404 - Page Not Found
+    500 - Internal Server Error
+-------------------------------------------------------------------------------------------------------
+R) Do i need to restart the apache after chnages in .htaccess?
+    
+   No
+-------------------------------------------------------------------------------------------------------

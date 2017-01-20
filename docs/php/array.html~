@@ -1,0 +1,68 @@
+<html>
+<body>
+<h1>PHP Array functions</h1>
+<ul>
+<!-- New function starts " -->
+<li><b>What is use of array_walk() function </b></li>
+<li>Using function this we can traverse through each element of an array using user defined array</li>
+<!-- New function starts " -->
+<br>
+<li><b>What is use of array_walk_recursive() function </b></li>
+<li>Using function this we can traverse through each element of an array using user defined array</li>
+<pre>
+ 	Syntax : array_walk_recursive(array,myfunction,parameter...); 
+ e.g.
+	function myfunction($value,$key)
+	{
+		echo "The key $key has the value $value<br>";
+	}
+	
+	$a1=array("a"=>"red","b"=>"green");
+	$a2=array($a1,"1"=>"blue","2"=>"yellow");
+	array_walk_recursive($a2,"myfunction");
+
+        The key a has the value red
+	The key b has the value green
+	The key 1 has the value blue
+	The key 2 has the value yellow
+</pre>
+<br>
+<!-- New function starts " -->
+<li><b>What is use of array_map() function </b></li>
+<li>The array_map() function sends each value of an array to a user-made function, and returns an array with new values, given by the user-made function.</li>
+<pre> 
+	Syntax :  array_map(myfunction,array1,array2,array3...);
+	e.g. 
+	function myfunction($v)
+	{
+	  	return($v*$v);
+	}
+
+	$a=array(1,2,3,4,5);
+	print_r(array_map("myfunction",$a));
+
+	O/P:  Array ( [0] => 1 [1] => 4 [2] => 9 [3] => 16 [4] => 25 ) 
+</pre>
+<!-- New function starts " -->
+<br>
+<li><b>What is use of array_filter() function </b></li>
+<li>Filter array values using user defined functions </li>
+<br>
+<pre> 
+	Syntax :   array_filter(array,callbackfunction);
+	e.g. 
+	function test_odd($var)
+	{
+		return($var & 1);
+	}
+
+	$a1=array("a","b",2,3,4);
+	print_r(array_filter($a1,"test_odd"));
+
+	O/P:   Array ( [3] => 3 )  
+</pre>
+
+
+</ul>
+</body>
+</html>

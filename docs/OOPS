@@ -1,0 +1,27 @@
+OOP is programming methodology in which we concentrate data rather procedure.
+
+OOPs uses following concepts class,object,inheritance,encapsulation,abrastraction,polymorphism.
+
+Class : it is blue print or template for creating object which contains attributes & member functions.
+
+Object : It is an instance of class.
+
+Encapsulation : Wrapping up a data & its member function in to a single entity is called encapsulation
+                e.g. object is the example of encapsulation in which we wrap its attributes & functions into single entity
+
+Polymorphism : Poly means many morphism means forms. i.e. single entity can behave in different ways.
+               e.g. polymorphism can be acheived using function overloading in single function with same name can be defined 
+		    differ in their number of parameters or data type of the parameters.
+
+Abstraction : Hiding unnecessary details to reduce complexity. Abstraction can be acheived using Abstract class & interface.
+	  
+	     Abstract class : It is base class which contains both method which defines body as well as abstract methods
+			      We can not create instance of Abstract class.
+			      Class can be defined abstract using keyword "abstract" preciding "class" keyword.
+	     Interface : It is template which contains only abstract 				 methods.
+			Interface does not contains methods for which body is defined.
+			Interface must be implemented by class in order to use its functions.
+
+Final class and a final method
+
+Final class means that this class cannot be extended and a final method cannot be overrided.    			

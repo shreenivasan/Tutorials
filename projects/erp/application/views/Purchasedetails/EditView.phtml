@@ -1,0 +1,167 @@
+<?php
+    $po_details = isset($po_details)?$po_details:array();
+    
+    $inward_date= isset($po_details->inward_date) && $po_details->inward_date!=""?$po_details->inward_date:'';
+    
+    
+    
+    if($inward_date!="")
+    {
+        $inward_date= explode("-", $inward_date);
+        $inward_date=$inward_date[2]."-".$inward_date[1]."-".$inward_date[0];
+    }
+    
+    $invoice_no = isset($po_details->invoice_no)?$po_details->invoice_no:'';
+    $cur_date = isset($po_details->cur_date)?$po_details->cur_date:"";
+    
+    if($cur_date!="")
+    {        
+        $cur_date = explode("-",$cur_date);
+        $cur_date = $cur_date[2]."-".$cur_date[1]."-".$cur_date[0];
+    }
+    
+?>
+<script> var product_details ='<?php echo json_encode($product_details); ?>'; </script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/lib/select2.css'); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/lib/bootstrapValidator.css'); ?>" />
+            <div id="content-wrapper">
+                <div class="page-header">
+                    <form method="POST"  id="frmListView" name="frmListView">
+                        <h1 class="col-sm-12"><?=$mode." "." Purchase order details"?></h1>
+                    </form>
+                </div>
+                <div class="row">
+                    <hr class="visible-xs no-grid-gutter-h">
+                </div>
+                <?php   
+                    $action_url = site_url($currentModule.'/submit');
+                    $attributes=array('id'=>'defaultForm','method'=>'post');
+                    echo form_open($action_url,$attributes);
+                ?>
+                <input type="hidden" name="id" id="id" value="<?=isset($id)?$id:""?>">
+                <input type="hidden" name="mode" id="mode" value="<?=isset($mode)?$mode:""?>">
+                <div class="row">
+                    <div class="panel colourable">
+                        <div class="panel-heading">
+                            <span class="panel-title"><?=$mode." PO details here"?></span>
+                        </div>
+                        <div class="panel-body">
+                            <label class="col-sm-6 control-label" for="seller_name">Seller Name</label>
+                            <div class=" col-sm-6 form-group">
+                                <select id='seller_name' name="seller_name" class=" form-control my_select">
+                                    <option value=""></option>
+                                    <?php                                     
+                                    for($i=0;$i<count($seller_details);$i++){                                        
+                                        $selected='';
+                                        if($seller_details[$i]->id==$po_details->client_id){ $selected="selected='selected'"; }
+                                    ?>
+                                    <option <?=$selected?> value="<?=$seller_details[$i]->id?>"><?=$seller_details[$i]->name?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                            <div class="form-group" id="bs-datepicker-component">
+                                <label class="col-sm-2 control-label" for="inward_date">Inward Date</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="inward_date" name="inward_date" class="form-control" value="<?=$inward_date?>" />
+                                </div>
+                                <label class="col-sm-2 control-label" for="invoice_no">Invoice No.</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="invoice_no" name="invoice_no" placeholder="Invoice no" class="form-control" value="<?=$invoice_no?>"/>
+                                </div>
+                                <label class="col-sm-2 control-label" for="cur_date">Date</label>
+                                <div class="col-sm-2">
+                                    <input type="text" id="cur_date" name="cur_date" class="form-control" value="<?=$cur_date?>"/>
+                                </div>
+                            </div>                            
+                            <div class="form-group table-info">                                
+                                <div class="col-sm-11"></div>
+                                <div class="col-sm-1"><button type="button" id="btnAddMore" class="btn btn-info add-row">+</button></div>
+                                <br><br>                                
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th>Material Name</th>
+                                        <th>Unit</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>                                        
+                                        <th>Vat Price</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <?php if($mode=="Add") { ?>
+                                    <tbody id="dataTable">
+                                        <tr id="tr-1">
+                                            <td>
+                                                <select id='product-1' name="product[]" class=" form-control my_select">
+                                                    <option value=""></option>
+                                                    <?php for($i=0;$i<count($product_details);$i++){
+                                                    ?>
+                                                    <option value="<?=$product_details[$i]->id?>"><?=$product_details[$i]->name?></option>
+                                                    <?php }?>
+                                                </select>
+                                            </td>
+                                            <td><label id='unit-label-1'></label></td>
+                                            <td><input type="number" id='price-1' name="price[]" min="1" placeholder="Price" class="form-control" value="" /></td>
+                                            <td><input type="number" id='qty-1' name="qty[]" max="1000" min="1" placeholder="Qty" class="form-control" value="" /></td>
+                                            <td><input type="number" id='vat-price-1' name="vat_price[]" min="1" placeholder="VAT Price" class="form-control" value="" /></td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                    <?php }else{ ?>
+                                    <tbody id="dataTable">
+                                        <?php for($j=0;$j<count($pod_details);$j++){
+                                            
+                                            $product_id=  isset($pod_details[$j]->product_id)?$pod_details[$j]->product_id:"";                                            
+                                            $price=  isset($pod_details[$j]->price)?$pod_details[$j]->price:"";
+                                            $qty=  isset($pod_details[$j]->qty)?$pod_details[$j]->qty:"";
+                                            $materials_vat_price=  isset($pod_details[$j]->materials_vat_price)?$pod_details[$j]->materials_vat_price:"";
+                                            ?>
+                                        <tr id="tr-<?=($j+1)?>">
+                                            <td>
+                                                <select id='product-<?=($j+1)?>' name="product[]" class=" form-control my_select">
+                                                    <option value=""></option>
+                                                    <?php for($i=0;$i<count($product_details);$i++){
+                                                        $selected='';
+                                                        if($product_id==$product_details[$i]->id){ $selected="selected='selected'"; }
+                                                        
+                                                    ?>
+                                                    <option <?=$selected?> value="<?=$product_details[$i]->id?>"><?=$product_details[$i]->name?></option>
+                                                    <?php }?>
+                                                </select>
+                                            </td>
+                                            <td><label id='unit-label-<?=($j+1)?>'><?=$pod_details[$j]->unit?></label></td>
+                                            <td><input type="number" id='price-<?=($j+1)?>' name="price[]" min="1" placeholder="Price" class="form-control" value="<?=$price?>" /></td>
+                                            <td><input type="number" id='qty-<?=($j+1)?>' name="qty[]" max="1000" min="1" placeholder="Qty" class="form-control" value="<?=$qty?>" /></td>
+                                            <td><input type="number" id='vat-price-<?=($j+1)?>' name="vat_price[]" min="1" placeholder="VAT Price" class="form-control" value="<?=$materials_vat_price?>" /></td>
+                                            <td><button class='btn btn-default remove-row' id='remove-row-<?=($j+1)?>' type='button' title='Delete'>-</button></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                    <?php } ?>
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">&nbsp;</div>
+                                <div class="col-sm-12">
+                                    <button id="btn-msr-sheet" type="submit" class="btn btn-primary">Submit</button>
+                                    <button class="btn btn-cancel" type="button" onclick="javascript:window.location.href=<?php echo "'".site_url($currentModule)."/index"."'"; ?>">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </div>
+         </div>
+        </div>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        <script src="<?=base_url()?>assets/js/lib/jquery.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrap.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrapValidator.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/pixel-admin.min.js"></script>
+        <script src="<?=base_url()?>assets/js/custom/common.js"></script>
+        <script src="<?=base_url('assets/js/custom/'.$currentModule.'.js')?>"></script>
+        <script type="text/javascript">
+            init.push(function () {});
+            window.PixelAdmin.start(init);
+        </script>
+    </body>
+</html>

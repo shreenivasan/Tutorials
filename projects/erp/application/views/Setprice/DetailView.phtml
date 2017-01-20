@@ -1,0 +1,98 @@
+<?php
+    $id="";
+    $client_id="";
+    $product_id="";
+    $price="";
+    if(count($price_details)>0)
+    {
+        $id=  isset($price_details->id)?$price_details->id:"";
+        $product_id=  isset($price_details->product_id)?$price_details->product_id:"";
+        $client_id=  isset($price_details->client_id)?$price_details->client_id:"";
+        $price=  isset($price_details->price)?$price_details->price:"";
+        $date=  isset($price_details->year)?$price_details->year:"";
+        echo $date."<<<";
+    }
+    
+?>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/lib/select2.css'); ?>" />
+            <div id="content-wrapper">
+                <div class="page-header">
+                    <h1 class="col-sm-12"><?="Edit Price"?></h1>
+                </div>
+                <div class="row">
+                    <hr class="visible-xs no-grid-gutter-h">
+                </div>
+                <div class="panel colourable">
+                    <div class="panel-heading">
+                        <span class="panel-title"><?=$mode." Price from here"?></span>
+                    </div>
+                    <form id="defaultForm">
+                        <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="client_id">Client Name</label>
+                            <div class="col-sm-9">
+                                <select id="client_id" name="client_id" disabled="true">
+                                    <option value="">Select Client Name</option>
+                                    <?php for($i=0;$i<count($client_details);$i++){
+                                        $selected=$client_details[$i]->id==$client_id?"selected='selected'":"";
+                                    ?>
+                                    <option <?=$selected?> value="<?=$client_details[$i]->id?>"><?=$client_details[$i]->name?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="product_id">Product Name</label>
+                            <div class="col-sm-9">
+                                <select id="product_id" name="product_id" disabled="true">
+                                    <option value="">Select Product Name</option>
+                                    <?php for($i=0;$i<count($product_details);$i++){
+                                        $selected=$product_details[$i]->id==$product_id?"selected='selected'":"";
+                                    ?>
+                                    <option <?=$selected?> value="<?=$product_details[$i]->id?>"><?=$product_details[$i]->name?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="price">Price</label>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Price" class="form-control" id="price" name="price" value="<?=$price?>" disabled="true" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="year">For Year</label>
+                            <div class="col-sm-9">
+                                <select id="year" name="year" disabled="true">
+                                    <option value="">Select Year Name</option>
+                                    <?php for($i=2016;$i<=2050;$i++){
+                                        $selected=$i==$date?"selected='selected'":"";
+                                    ?>    
+                                    <option <?=$selected?> value="<?=$i?>"><?=$i?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button class="btn btn-cancel" type="button" onclick="javascript:window.location.href=<?php echo "'".site_url($currentModule)."/index"."'"; ?>">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+         </div>
+        </div>
+        <script src="<?=base_url()?>assets/js/lib/jquery.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrap.min.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/bootstrapValidator.js"></script>
+        <script src="<?=base_url()?>assets/js/lib/pixel-admin.min.js"></script>
+        <script src="<?=base_url()?>assets/js/custom/common.js"></script>
+        <script src="<?=base_url('assets/js/custom/'.$currentModule.'.js')?>"></script>
+        <script type="text/javascript">
+            init.push(function () {});
+            window.PixelAdmin.start(init);
+        </script>
+    </body>
+</html>

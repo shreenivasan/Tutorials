@@ -1,0 +1,99 @@
+<?php $currentModule= ucfirst($currentModule);
+      $edit_url= base_url($currentModule.DS.'edit'.DS);
+      $del_url= base_url($currentModule.DS.'delete'.DS); 
+      $view_url= base_url($currentModule.DS.'view'.DS); 
+?>
+<div id="content-wrapper">
+    <?php if(!empty($msg)){ ?>
+    <div class="alert alert-danger alert-dark">
+        <button data-dismiss="alert" class="close" type="button">×</button>
+        <strong><i class="fa fa-bell"></i></strong> <?=$msg?>
+    </div>
+    <?php } ?>
+    <div class="page-header">
+        <form method="POST"  id="frmListView" name="frmListView">
+            <h1 class="col-sm-2"><?="PO List"?></h1>
+            <div class="col-sm-5">&nbsp;</div>
+            <a  class="col-sm-2 btn btn-primary btn-labeled" href="#" onclick="javascript:addMaster(<?php echo "'".site_url($currentModule)."'"; ?>,<?php echo "'".site_url($currentModule)."/add"."'"; ?>);">
+                <span class="btn-label icon fa fa-plus"></span><?="Add PO"?></a>
+                <div class="col-sm-1">&nbsp;</div>
+            <div class="input-group input-group-sm col-sm-2" >
+
+                    <input class="form-control"  id="txtSearch" name="txtSearch" value="<?php if(isset($_POST['txtSearch'])) { echo $_POST['txtSearch'] ;}  else { echo ""; } ?>" type="text" placeholder="Search...">
+                    <input type="hidden" name="hdnSearch" id="hdnSearch" value="">
+                    <input type="hidden" name="hdnExcel" id="hdnExcel" value="">
+                    <span class="input-group-btn">
+                        <input type="button" class="btn btn-info btn-flat" name="btnSearch" onclick="javascript:searchMaster(<?php echo "'".site_url($currentModule)."'"; ?>,<?php echo "'".site_url($currentModule).""."'"; ?>,this.value);" id="btnSearch" value="Search" />
+                    </span>
+
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <hr class="visible-xs no-grid-gutter-h">
+    </div>
+    <div class="row">
+        <div class="col-sm-12">        
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-light">
+                                <div class="table-header">
+                                        <div class="table-caption">
+                                                <?php echo ucfirst($currentModule)." List";?>
+                                        </div>
+                                </div>
+                                <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <?php if($orderBy==1){?>
+                                                    <a href="<?=site_url($currentModule)?>/index/1/<?=($ascDesc=='d')?'a':'d'?>/<?=($searchval)?>/0/">Invoice Date <img src="<?=site_url()?>assets/images/<?=($ascDesc=='d')?"arrow_dropdown.gif":"arrow_dropup.gif"?>" alt="Sort" title="Sort"/></a>
+                                                    <?php } else {?>
+                                                    <a href="<?=site_url($currentModule)?>/index/1/a/<?=($searchval)?>/0/">Invoice Date</a>
+                                                    <?php } ?>
+                                                </th>
+                                                <th>Invoice No.</th>
+                                                <th>Date of PO</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <?php 
+                                        $i=1;
+                                        if(!empty($results) && is_array($results)){ foreach($results as $data){ ?>
+                                        <tr>
+                                            <td><?=$data->inward_date?></a></td>
+                                            <td><?=$data->invoice_no?></td>
+                                            <td><?=$data->cur_date?></td>
+                                            <td>
+                                                <a href="<?=$edit_url.$data->po_id?>"><i class="fa fa-edit" title="Edit"></i></a>
+                                                 <a href="<?=$del_url.$data->po_id?>"><i class="fa fa-trash-o" title="Delete"></i></a>
+                                                  <a href="<?=$view_url.$data->po_id?>"><i class="fa fa fa-eye" title="View"></i></a>
+                                                 
+                                            </td>
+                                        </tr>
+                                        <?php } }else{ ?>
+                                        <tr><td colspan="3">No records found!</td></tr>
+                                        <?php } ?>                                        
+                                </table>
+                                <div class="table-footer">
+                                    <?php if(!empty($results) && is_array($results)){?>
+                                    <div class="DT-label">
+                                        <div class="dataTables_info" id="jq-datatables-example_info" role="alert" aria-live="polite" aria-relevant="all"><?php echo $links['records']; ?></div>                                                
+                                    </div>
+                                    <div class="DT-pagination">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="jq-datatables-example_paginate">
+                                            <?php echo $links['navigation']; ?>
+                                        </div>                                        
+                                    </div>
+                                    <?php } ?>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	</div>
+<?php require_once APPPATH.'includes/footer.phtml'; ?>

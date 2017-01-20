@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <h1>PHP Array functions</h1>
+        
+        <p>
+            <a href="#array_walk" class="function_ref">array_walk()</a>,
+            <a href="#array_walk_recursive" class="function_ref">array_walk_recursive()</a>,
+            <a href="#array_map" class="function_ref">array_map()</a>,
+            <a href="#array_filter" class="function_ref">array_filter()</a>,
+            <a href="#array_sum" class="function_ref">array_sum()</a>,
+        </p>
+        
+        <ul>
+            <!-- New function starts " -->
+            <li id="array_walk"><b>What is use of <a href="#" class="function_ref"> array_walk()</a> function </b></li>
+            <li>Using function this we can traverse through each element of an array using user defined array</li>
+
+            <!-- New function starts " -->
+            </br>            
+            <li id="array_walk_recursive"><b>What is use of <a href="#" class="function_ref">array_walk_recursive()</a> function </b></li>
+            <li>Using function this we can traverse through each element of an array using user defined array</li>
+            <pre>
+                    Syntax : array_walk_recursive(array,myfunction,parameter...); 
+                    e.g.
+                    function myfunction($value,$key)
+                    {
+                            echo "The key $key has the value $value";
+                    }
+
+                    $a1=array("a"=>"red","b"=>"green");
+                    $a2=array($a1,"1"=>"blue","2"=>"yellow");
+                    array_walk_recursive($a2,"myfunction");
+
+                    The key a has the value red
+                    The key b has the value green
+                    The key 1 has the value blue
+                    The key 2 has the value yellow
+            </pre>
+            
+            <!-- New function starts " -->
+            <li id="array_map"><b>What is use of <a href="#" class="function_ref">array_map()</a> function </b></li>
+            <li>The array_map() function sends each value of an array to a user-made function, and returns an array with new values, given by the user-made function.</li>
+            <pre> 
+                    Syntax :  array_map(myfunction,array1,array2,array3...);
+                    e.g. 
+                    function myfunction($v)
+                    {
+                            return($v*$v);
+                    }
+
+                    $a=array(1,2,3,4,5);
+                    print_r(array_map("myfunction",$a));
+
+                    O/P:  Array ( [0] => 1 [1] => 4 [2] => 9 [3] => 16 [4] => 25 ) 
+            </pre>
+            
+            <!-- New function starts " -->
+            <li id="array_filter"><b>What is use of <a href="#" class="function_ref">array_filter()</a> function </b></li>
+            <li>Filter array values using user defined functions </li>
+            <pre> 
+                    Syntax :   array_filter(array,callbackfunction);
+                    e.g. 
+                    function test_odd($var)
+                    {
+                            return($var & 1);
+                    }
+
+                    $a1=array("a","b",2,3,4);
+                    print_r(array_filter($a1,"test_odd"));
+
+                    O/P:   Array ( [3] => 3 )  
+            </pre>
+            
+            <!-- New function starts " -->
+            <li id="array_sum"><b>What is use of <a href="#" class="function_ref">array_sum()</a> function </b></li>
+            <li>Return the sum of all the values in the array (5+15+25):</li>
+            <pre> 
+                    Syntax :  array_sum(array);
+                    e.g. 
+                    $a=array(5,15,25);
+                    echo array_sum($a);
+
+                    O/P: 45
+            </pre>
+        </ul>
+    </body>
+</html>
