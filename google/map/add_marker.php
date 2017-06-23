@@ -16,7 +16,7 @@ body { height: 100%; margin: 0; padding: 0 }
  var lats=[];
  var longs=[];
  var flightPlanCoordinates_str ="";
- var myLatlng = new google.maps.LatLng(19.965019,73.668254);
+ var myLatlng = new google.maps.LatLng(19.128204,72.928065);
   var myOptions = {
                 zoom:10,
                 center: myLatlng,
@@ -25,7 +25,7 @@ body { height: 100%; margin: 0; padding: 0 }
             
   //var map = new google.maps.Map(document.getElementById('gmap'),mapOptions);
         function initialize() {
-            var myLatlng = new google.maps.LatLng(19.965019,73.668254);
+            var myLatlng = new google.maps.LatLng(19.128204,72.928065);
             var myOptions = {
                 zoom:10,
                 center: myLatlng,

@@ -1,8 +1,4 @@
-# Create a vector.
-apple <- c('red','green',"yellow")
-print(apple)
+myString <- "Hello, World!"
 
-# Get the class of the vector.
-# print(class(apple))
-
+print ( myString)
 
