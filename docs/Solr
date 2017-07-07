@@ -15,17 +15,24 @@ In database terminology, a Document corresponds to a table row, and a Field corr
 -------------------------------------------------------------------------------------------------------------------
 Installation
 
-	Download and unpack the latest Solr release from the Apache download mirrors.
+	Download & extract solr from url at any where in system
+
+ 	http://lucene.apache.org/solr/
+
+Go to extracted dir location
+
 -------------------------------------------------------------------------------------------------------------------
 Start Solr
 
 	$ bin/solr start            # this starts solr
+	$ bin/solr version	    # To check version of solr installed	
         $ bin/solr start -p 8984    # To change the port solr listens        
 	$ bin/solr create -c demo   # this creates a document collection called "demo"
 -------------------------------------------------------------------------------------------------------------------
 Restart Solr
 
         $ bin/solr restart [options]  # restarts solr server.
+
 -------------------------------------------------------------------------------------------------------------------
 Stop Solr
 
@@ -50,3 +57,127 @@ Verify Solr Running or not?
 	http://localhost:8983/solr/
 
 -------------------------------------------------------------------------------------------------------------------
+
+ Create Core
+
+	bin/solr create_core -c <name>
+ e.g.   bin/solr create_core -c studio_events
+
+-------------------------------------------------------------------------------------------------------------------
+ Delete core
+
+	bin/solr delete -c <core_name>
+ e.g.   bin/solr create_core -c studio_events
+
+Note: You must restart solr in order reflect it using following command
+
+	bin/solr restart
+-------------------------------------------------------------------------------------------------------------------
+ Add documents using post
+
+      java -Dtype=<document_type> -Durl=<document_url> -jar <path_of_file post.jar> <source_file_from_where_it_will_dumped>
+
+	e.g.  java -Dtype=application/json -Durl=http://localhost:8983/solr/studio_events/update -jar example/exampledocs/post.jar
+		example/exampledocs/books.json
+
+-------------------------------------------------------------------------------------------------------------------
+	Field 					Description
+
+Request-handler	(qt)	Specifies the query handler for the request. If a query handler is not specified, Solr
+			processes the response with the standard query handler.
+
+	q 		The query event. See Searching for an explanation of this parameter.
+
+	fq 		The filter queries. See Common Query Parameters for more information on this parameter.
+
+	sort 		Sorts the response to a query in either ascending or descending order based on the
+			response's score or another specified characteristic.
+
+	start, rows 	start is the offset into the query result starting at which documents should be returned.
+			The default value is 0, meaning that the query should return results starting with the first
+			document that matches. This field accepts the same syntax as the start query parameter,
+			which is described in Searching . rows is the number of rows to return.
+
+	fl 		Defines the fields to return for each document. You can explicitly list the stored fields, 
+			functions , and doc transformers you want to have returned by separating them with either a
+			comma or a space.
+
+	wt 		Specifies the Response Writer to be used to format the query response. Defaults to XML if
+			not specified.
+
+	indent 		Click this button to request that the Response Writer use indentation to make the
+			responses more readable.
+
+-------------------------------------------------------------------------------------------------------------------
+
+ Solr's Schema File
+
+	Solr stores details about the field types and fields it is expected to understand in a schema file.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Get EVENT id's where studio_id = 5
+
+	http://localhost:8983/solr/studio_events/select?q=studio_id:5&fl=id
+
+-------------------------------------------------------------------------------------------------------------------
+
+Get EVENT id's where city_id in ( 10,13)
+
+	http://localhost:8983/solr/studio_events/select?q=*:*&fq=city_id:+(10%2013)&fl=id
+
+-------------------------------------------------------------------------------------------------------------------
+
+Get EVENT id's where city_id in ( 10,13)
+
+	http://localhost:8983/solr/studio_events/select?q=*:*&fq=city_id:+(10%2013)&fl=id
+
+-------------------------------------------------------------------------------------------------------------------
+
+Get EVENT id's with limit 1,9
+
+	http://localhost:8983/solr/studio_events/select?q=*:*&start=1&rows=9
+
+-------------------------------------------------------------------------------------------------------------------
+GET event ids from today to infinity	
+
+	http://127.0.0.1:8983/solr/studio_events/select?q=*%3A*&wt=json&indent=true&fl=id,start_time,end_time&fq=end_time:[NOW%20TO%20*]
+
+-------------------------------------------------------------------------------------------------------------------
+GET event ids where start_time between d1 to d2
+
+htttp://localhost:<port>/solr/core_name/select?q=*:*&fq=date_to_search:[d1 to d2]
+
+d1 = YYYY-MM-DDTHH:II:SSZ
+d2 = YYYY-MM-DDTHH:II:SSZ
+
+e.g.
+http://localhost:8983/solr/studio_events/select?q=*:*&fq=start_time:[2017-07-01T00:00:00Z%20TO%202017-07-30T00:00:00Z]&fl=id,start_time&wt=json&indent=true
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
