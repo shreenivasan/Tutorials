@@ -1,0 +1,171 @@
+Curl Interview questions
+
+A) What is curl?
+
+    cURL stands for the command line URL.
+
+    CURL stands for (Client for URL Resource Library or CURL Resource Library).
+
+    It is a command line tool for sending and receiving file using URL.
+
+----------------------------------------------------------------------------------------------------------------------
+
+B) What are the different methods used in curl?
+
+    cur_init() - Use to initialize a curl session
+
+    curl_setopt() - Sets options 
+
+        e.g.    curl_setopt($ch,CURLOPT_URL,$url);      # sets url                 	
+                curl_setopt($ch,CURLOPT_HEADER, false); # To include the header in the output.
+                curl_exec()                             # function is used to execute the session
+                curl_close()                            # Close a cURL session
+
+----------------------------------------------------------------------------------------------------------------------
+                
+C)  PHP CURL GET Example
+
+    <?php
+        
+        function curlGet($url)
+        {	//Initialize a cURL session
+            $ch = curl_init();  
+
+            //Set an option for a cURL transfer
+            curl_setopt($ch,CURLOPT_URL,$url);
+
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+
+            //To include the header in the output.
+            curl_setopt($ch,CURLOPT_HEADER, false); 
+
+            //Perform a cURL session
+            $output=curl_exec($ch);
+
+
+            //Close a cURL session
+            curl_close($ch);
+
+            return $output;
+        }
+ 
+        echo curlGet("http://advancephp.com");
+
+    ?>    
+
+----------------------------------------------------------------------------------------------------------------------
+
+D)  PHP CURL POST Example
+
+    <?php
+        function curlPost($url,$queryStr)
+        {
+            $postData = '';
+           //create name value pairs seperated by &;
+
+           foreach($queryStr as $k => $v) 
+           { 
+              $postData .= $k . '='.$v.'&'; 
+           }
+           rtrim($postData, '&');
+
+            //Initialize a cURL session
+            $ch = curl_init();  
+
+            //Set an option for a cURL transfer
+            curl_setopt($ch,CURLOPT_URL,$url);
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+            //To include the header in the output.
+            curl_setopt($ch,CURLOPT_HEADER, false);
+
+
+            //request a HTTP POST	
+            curl_setopt($ch, CURLOPT_POST, count($postData));
+
+            //specify data to POST to server
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);    
+
+            $output=curl_exec($ch);
+
+            curl_close($ch);
+            return $output;
+        }
+        $queryStr = array(
+           "firstName" => "Tanseer",
+           "lastName" => "Ahmed",
+           "Designation" => "Software Developer"
+        );
+
+        echo curlPost("http://localhost/rest/post.php",$queryStr);
+    ?>
+
+----------------------------------------------------------------------------------------------------------------------                 
+
+E) CURL COMMAND-LINE EXAMPLE
+
+    Curl Example with "GET" Method (By Default GET)
+
+        curl http://php-tutorial-php.blogspot.in/p/sitemap.html
+
+----------------------------------------------------------------------------------------------------------------------
+
+    Curl Example with "POST" Method
+
+        curl --request POST http://php-tutorial-php.blogspot.in/p/sitemap.html
+
+----------------------------------------------------------------------------------------------------------------------
+
+    Curl Example with "PUT" Method
+
+        curl --request PUT http://php-tutorial-php.blogspot.in/p/sitemap.html
+
+----------------------------------------------------------------------------------------------------------------------
+
+    Curl Example with "DELETE" Method
+
+        curl --request DELETE http://php-tutorial-php.blogspot.in/p/sitemap.html
+----------------------------------------------------------------------------------------------------------------------
+
+    Curl Example with "POST" Method and pass data (Data: username, password & logintype)
+    
+        curl --request POST http://php-tutorial-php.blogspot.in/p/sitemap.html --data 'username=user&password=****&logintype=normal' 
+
+----------------------------------------------------------------------------------------------------------------------
+
+    Curl Example with "POST" Method and pass data(data in text file)
+
+        curl --request POST http://php-tutorial-php.blogspot.in/p/sitemap.html --data @datafile.txt
+
+----------------------------------------------------------------------------------------------------------------------
+        
+    Curl Example with "POST" Method, pass data and pass header
+
+        curl --request POST http://php-tutorial-php.blogspot.in/p/sitemap.html --data @datafile.txt --header 'sessionid:9874563211235884' 
+
+----------------------------------------------------------------------------------------------------------------------
+
+    Curl Example with "POST" Method, pass data and pass header (Get Header in response) --include
+
+        curl --request POST http://php-tutorial-php.blogspot.in/p/sitemap.html --data @datafile.txt --header 'sessionid:9874563211235884' --include
+
+----------------------------------------------------------------------------------------------------------------------
+
+    CURL LIBCURL EXAMPLE
+
+        Mostly to get data from an REST API, we use following method in php
+
+        echo file_get_contents('http://php-tutorial-php.blogspot.in/p/sitemap.html');
+
+        But if, "allow_url_fopen" is disable in php.ini file due to security reason then above will not work. You need to use below code
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://www.google.co.in");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        $output = curl_exec($ch);
+        curl_close($ch);
+        echo $output;die;
+
+
