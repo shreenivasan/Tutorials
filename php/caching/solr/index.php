@@ -1,10 +1,41 @@
 <?php
 ini_set("display_errors", "on");
-include_once 'solr_lib.php';
-$hostname='127.0.0.1';
-$core_name='fe_faqs';
-$port_no='8983';
-$solr=new SolrIndexer($hostname,$port_no,$core_name,'fe_faqs');
-echo '<pre>';
-print_r($solr); die;
+include_once './includes/config.php';
+include_once './libs/solrIndexer.php';
+
+$solr=new SolrIndexer();
+
+//$solr->deleteDocument(array(2,16));
+
+$solr->addDocument($doc = array("test"));
+
+
+
+function pr($data)
+{
+    //echo "<br> FILE NAME ".__FILE__." , Line no ".__LINE__."<br>";
+    if(is_array($data))
+    {
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+    }
+    else if(is_string($data))
+    {
+       echo "<pre>";
+       echo $data;
+       echo "</pre>";
+    }
+    else if(is_array($data) && is_string(json_encode($data)))
+    {
+       echo "<pre>";
+       print_r(json_decode($data,true));
+       echo "</pre>";
+    }elseif(is_object($data)){
+        echo "<pre>";
+        var_dump($data);
+        echo "</pre>";
+    }
+}
+
 

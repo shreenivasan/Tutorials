@@ -372,7 +372,6 @@ class Apache_Solr_Service
 
 		if ($solrResponse->getHttpStatus() != 200)
 		{
-			show_error('SOLR ERROR','<b> Code :</b>'.$solrResponse->error->code.' , <br /><b>Message:</b>  '.$solrResponse->error->msg.'<br /><b>Query : </b>'.$url);
 			//throw new Apache_Solr_HttpTransportException($solrResponse);
 			return false;
 		}
@@ -497,8 +496,7 @@ class Apache_Solr_Service
 		if ($this->_httpTransport === false)
 		{
 			//require_once(dirname(__FILE__) . '/HttpTransport/FileGetContents.php');
-			require_once(dirname(__FILE__) . '/HttpTransport/Curl.php');
-
+			require_once(dirname(__FILE__) . '/HttpTransport/Curl.php');                        
 			//$this->_httpTransport = new Apache_Solr_HttpTransport_FileGetContents();
 			$this->_httpTransport = new Apache_Solr_HttpTransport_Curl();
 		}
