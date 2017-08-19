@@ -1,0 +1,588 @@
+1) Download & Install elastic search
+
+2) Go downloaded path & extract it rename to elasticsearch
+
+3) Go to elasticsearch directory
+
+4) To start elastic search 
+
+    bin/elasticsearch
+
+5) Check elastic is running using
+
+    http://localhost:9200 in address bar of browser
+
+6) Mapping elastic vs RDBMS
+
+
+    Elastic     RDBMS
+
+    Index       DB
+
+    Mapping     Table
+
+    Field       Column
+
+    Json Obj    Tuple
+
+7) Create Index 
+
+    Go to postman select method as POST & URL AS http://localhost:9200/blog/post/1
+
+    & in request body pass raw data as json content which we neeed to add  (e.g. in this case 
+    { 
+        "id":"1",
+        "user": "shreenivas", 
+        "postDate": "2017-08-18", 
+        "body": "Search is hard. Search should be easy." ,
+        "title": "On search 1"
+    })
+
+similarly you can create another record as 
+
+    http://localhost:9200/blog/post/2
+
+    { 
+        "id":"2",
+        "user": "dilbert", 
+        "postDate": "2017-08-18", 
+        "body": "Search is not hard. Search is too easy." ,
+        "title": "On search 2"
+    }
+    
+8) You can updade record using
+
+    method : POST/POST
+
+    http://localhost:9200/blog/post/2
+
+    { 
+        "id":"2",
+        "user": "dilbert", 
+        "postDate": "2017-08-18", 
+        "body": "Search is not hard. Search is too easy." ,
+        "title": "On search 2"
+    }
+
+9) Verify mapping is created or not
+
+    curl -XGET 'http://localhost:9200/blog/post/1?pretty=true'
+    curl -XGET 'http://localhost:9200/blog/post/2?pretty=true'
+    curl -XGET 'http://localhost:9200/blog/post/3?pretty=true'
+
+
+10) Search Index
+
+    Elasticsearch provides a full Query DSL based on JSON to define queries.
+
+    Leaf query clauses
+
+        Leaf query clauses look for a particular value in a particular field, such as the match, term or range queries.
+        
+        These queries can be used by themselves.
+
+    Compound query clauses
+
+        Compound query clauses wrap other leaf or compound queries and are used to combine multiple queries in a logical fashion (such as the bool or dis_max query), 
+        or to alter their behaviour (such as the constant_score query).
+
+    The behaviour of a query clause depends on whether it is used in query context or in filter context:
+
+    Query context
+
+        A query clause used in query context answers the question "How well does this document match this query clause?"
+
+        The query clause also calculates a _score representing how well the document matches
+
+    Filter context
+
+        Filter context
+
+            In filter context, a query clause answers the question “Does this document match this query clause?” The answer is a simple Yes or No — no scores are calculated. Filter context is mostly used for filtering structured data, e.g.
+
+            Does this timestamp fall into the range 2015 to 2016?
+
+            Is the status field set to "published"?
+
+
+            Below is an example of query clauses being used in query and filter context in the search API. This query will match documents where all of the following conditions are met:
+
+            The title field contains the word search.
+            The content field contains the word elasticsearch.
+            The status field contains the exact word published.
+            The publish_date field contains a date from 1 Jan 2015 onwards.
+            GET /_search
+            {
+              "query": { 
+                "bool": { 
+                  "must": [
+                    { "match": { "title":   "Search"        }}, 
+                    { "match": { "content": "Elasticsearch" }}  
+                  ],
+                  "filter": [ 
+                    { "term":  { "status": "published" }}, 
+                    { "range": { "publish_date": { "gte": "2015-01-01" }}} 
+                  ]
+                }
+              }
+            }
+
+            The query parameter indicates query context.  
+
+            The bool and two match clauses are used in query context, which means that they are used to score how well each document matches.
+
+            The filter parameter indicates filter context.
+
+            The term and range clauses are used in filter context. 
+            They will filter out documents which do not match, but they will not affect the score for matching documents.     
+
+#)  match_all
+
+    The most simple query, which matches all documents, giving them all a _score of 1.0.
+
+    GET /_search
+    {
+        "query": {
+            "match_all": {}
+        }
+    }
+
+#)  match_none
+
+    This is the inverse of the match_all query, which matches no documents.
+
+    GET /_search
+    {
+        "query": {
+            "match_none": {}
+        }
+    }
+
+    Examples
+
+#) match
+
+    match queries accept text/numerics/dates, analyzes them, and constructs a query.
+
+        GET /_search
+        {
+            "query": {
+                "match" : {
+                    "message" : "this is a test"
+                }
+            }
+        }
+
+        Note, message is the name of a field, you can substitute the name of any field (including _all) instead.
+
+#)  match_pharse
+
+    The match_phrase query analyzes the text and creates a phrase query out of the analyzed text.
+
+    GET /_search
+    {
+        "query": {
+            "match_phrase" : {
+                "message" : "this is a test"
+            }
+        }
+    }
+
+#)  match_phrase_prefix
+
+    The match_phrase_prefix is the same as match_phrase, except that it allows for prefix matches on the last term in the text.
+
+    GET /_search
+    {
+        "query": {
+            "match_phrase_prefix" : {
+                "message" : "quick brown f"
+            }
+        }
+    }
+
+#) multi_match
+
+    The multi_match query builds on the match query to allow multi-field queries:
+
+    GET /_search
+    {
+      "query": {
+        "multi_match" : {
+          "query":    "this is a test", 
+          "fields": [ "subject", "message" ] 
+        }
+      }
+    }
+
+    Query the title, first_name and last_name fields.
+
+    GET /_search
+    {
+      "query": {
+        "multi_match" : {
+          "query":    "Will Smith",
+          "fields": [ "title", "*_name" ] 
+        }
+      }
+    }
+
+    The subject field is three times as important as the message field.
+
+    GET /_search
+    {
+      "query": {
+        "multi_match" : {
+          "query" : "this is a test",
+          "fields" : [ "subject^3", "message" ] 
+        }
+      }
+    }
+
+============================================================================================================
+
+    Term queries
+
+        While the full text queries will analyze the query string before executing, 
+        the term-level queries operate on the exact terms that are stored in the inverted index.
+
+        These queries are usually used for structured data like numbers, dates, and enums, rather than full text fields. 
+
+        #) term query
+    
+            Find documents which contain the exact term specified in the field specified.
+
+            The term query finds documents that contain the exact term specified in the inverted index.
+
+            POST _search
+            {
+              "query": {
+                "term" : { "user" : "Kimchy" } 
+              }
+            }
+
+
+        #) terms query
+
+            Find documents which contain any( like in clause in SQL) of the exact terms specified in the field specified.
+
+            GET /_search
+            {
+                "query": {
+                    "constant_score" : {
+                        "filter" : {
+                            "terms" : { "user" : ["kimchy", "elasticsearch"]}
+                        }
+                    }
+                }
+            }
+
+        #) range query
+            
+            Find documents where the field specified contains values (dates, numbers, or strings) in the range specified.
+
+            GET _search
+            {
+                "query": {
+                    "range" : {
+                        "age" : {
+                            "gte" : 10,
+                            "lte" : 20,
+                            "boost" : 2.0
+                        }
+                    }
+                }
+            }
+
+            The range query accepts the following parameters:
+
+            gte                     Greater-than or equal to
+
+            gt                      Greater-than
+
+            lte                     Less-than or equal to
+
+            lt                      Less-than
+
+            boost                   Sets the boost value of the query, defaults to 1.0
+
+            GET _search
+            {
+                "query": {
+                    "range" : {
+                        "timestamp" : {
+                            "gte": "2015-01-01 00:00:00", 
+                            "lte": "now", 
+                            "time_zone": "+01:00"
+                        }
+                    }
+                }
+            }
+
+        #) exists query
+
+            Find documents where the field specified contains any non-null value.    
+
+            Returns documents that have at least one non-null value in the original field:
+
+            GET /_search
+            {
+                "query": {
+                    "exists" : { "field" : "user" }
+                }
+            }
+
+            { "user": "jane" }              # find rows where user column contains value as "jane" exists
+            { "user": "" }                  # find rows where user column contains value as "" exists
+            { "user": ["jane"] }            
+            { "user": ["jane", null ] }     # At least one non-null value is required.
+
+        #) prefix query
+
+            Find documents where the field specified contains terms which begin with the exact prefix specified.    
+
+            GET /_search
+            { "query": {
+                "prefix" : { "user" : "ki" }
+              }
+            }
+
+        #) wildcard query
+
+            Find documents where the field specified contains terms which match the pattern specified, 
+
+            where the pattern supports single character wildcards (?) and multi-character wildcards (*)    
+
+            GET /_search
+            {
+                "query": {
+                    "wildcard" : { "user" : "ki*y" }
+                }
+            }
+
+        #) type query
+        
+            Find documents of the specified type.
+            
+            Filters documents matching the provided document / mapping type.
+
+            GET /_search
+            {
+                "query": {
+                    "type" : {
+                        "value" : "my_type"
+                    }
+                }
+            }
+
+        #) ids query
+
+            Find documents with the specified type and IDs.
+            
+            GET /_search
+            {
+                "query": {
+                    "ids" : {
+                        "type" : "my_type",
+                        "values" : ["1", "4", "100"]
+                    }
+                }
+            }
+
+============================================================================================================
+
+    Constant Score Query
+
+        #)  constant_score query
+
+            A query which wraps another query, but executes it in filter context.
+            All matching documents are given the same “constant” _score.
+
+            GET /_search
+            {
+                "query": {
+                    "constant_score" : {
+                        "filter" : {
+                            "term" : { "user" : "kimchy"}
+                        },
+                        "boost" : 1.2
+                    }
+                }
+            }
+
+ 
+        #) bool query
+
+            The default query for combining multiple leaf or compound query clauses, as must, should, must_not, or filter clauses.    
+
+            POST _search
+            {
+              "query": {
+                "bool" : {
+                  "must" : {
+                    "term" : { "user" : "kimchy" }
+                  },
+                  "filter": {
+                    "term" : { "tag" : "tech" }
+                  },
+                  "must_not" : {
+                    "range" : {
+                      "age" : { "gte" : 10, "lte" : 20 }
+                    }
+                  },
+                  "should" : [
+                    { "term" : { "tag" : "wow" } },
+                    { "term" : { "tag" : "elasticsearch" } }
+                  ],
+                  "minimum_should_match" : 1,
+                  "boost" : 1.0
+                }
+              }
+            }
+
+            GET _search
+            {
+              "query": {
+                "bool": {
+                  "filter": {
+                    "term": {
+                      "status": "active"
+                    }
+                  }
+                }
+              }
+            }
+
+            GET _search
+            {
+              "query": {
+                "bool": {
+                  "must": {
+                    "match_all": {}
+                  },
+                  "filter": {
+                    "term": {
+                      "status": "active"
+                    }
+                  }
+                }
+              }
+            }
+
+
+
+============================================================================================================
+
+    Fetch All records 
+
+    GET http://localhost:9200/<index>/<mapping>/_search?pretty=true&q=*:*&size=BIGNUMBER
+
+    e.g. 
+
+    GET http://localhost:9200/blog/post/_search?pretty=true&q=*:*
+
+
+        OR http://localhost:9200/blog/post/_search
+
+        Body raw data as
+
+        {
+            "query":{
+                "match_all":{}
+            }
+        }
+    
+    All posts by certain user
+
+        GET http://localhost:9200/blog/post/_search?q=user:shreenivas&pretty=true
+
+    All posts which don't contain the term search:
+
+        GET http://localhost:9200/blog/post/_search?q=-title:search&pretty=true
+
+    Retrieve the title of all posts which contain search and not distributed
+
+        GET http://localhost:9200/blog/post/_search?q=+title:search%20-title:distributed&pretty=true&fields=title
+    
+    A range search on postDate:
+
+        GET http://localhost:9200/blog/_search?pretty=true
+        
+        Body raw data
+
+            { 
+                "query" : { 
+                    "range" : { 
+                        "postDate" : { "from" : "2011-12-10", "to" : "2011-12-12" } 
+                    } 
+                } 
+            }
+
+    match query
+
+
+        POST http://localhost:9200/blog/post/_search
+            {
+                "query":{
+                   "bool":{
+                       "must":{
+                           "term":{
+                               "postDate":"2017-08-19"
+                       }
+                   }
+                }
+            }
+            }
+       
+    Multiple filters
+
+    POST http://localhost:9200/order/item/_search
+
+    {
+        "query":{
+            "bool":{
+                "filter":[
+                    {
+                        "has_child": {
+                            "type": "item",
+                            "inner_hits": {
+                                "size": 500
+                            },
+                            "query": {
+                                "match_all": {}
+                            }
+                        }
+                    },
+                    {
+                        "term": {
+                            "increment_id": "200004668"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+    
+
+
