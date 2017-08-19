@@ -1,0 +1,74 @@
+1) Install composer
+
+2) check composer installed or not using following command
+
+    composer
+
+3)  Create a project 
+
+    composer create-project laravel/laravel <project_name>
+
+4)  php artisan serve
+    php artisan down
+
+5) Give permission to storage,boostrap/cache directories
+
+6) Locale, time zone changes in config/app.php
+
+7) Environment configuration changes in .env file
+
+8) DB config file
+
+    config/database.php
+
+9) Routing Parameters
+
+    9.1) Required Parameters
+
+        Route::get('ID/{id}',function($id){
+            echo 'ID: '.$id;
+        });
+
+
+    9.2) Optional Parameters
+
+        Route::get('/user/{name?}',function($name = 'Virat'){
+           echo "Name: ".$name;
+        });
+
+10) Middleware
+
+        Middleware acts as a middle man between request and response.
+
+        10.1) Global Middleware
+        
+                Global Middleware will run on every HTTP request of the application
+
+        10.2) Route Middleware
+        
+                Route Middleware will be assigned to a specific route.
+
+
+
+
+
+
+
+
+==========================================================================================
+
+URLs :
+
+    CRUD application
+
+    http://georgehk.blogspot.in/2015/04/crud-operations-in-laravel-5-with-mysql.html
+
+        
+    
+    
+
+    
+
+
+    
+
