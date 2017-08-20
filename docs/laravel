@@ -10,6 +10,8 @@
 
 4)  php artisan serve
     php artisan down
+    Check laravel version
+        php artisan --version
 
 5) Give permission to storage,boostrap/cache directories
 
@@ -36,6 +38,51 @@
            echo "Name: ".$name;
         });
 
+   Named routes
+
+	Named routes allow the convenient for generation of URLs or redirects for specific routes. 
+	You may specify a name for a route by chaining the name method onto the route definition:
+
+		Route::get('user/profile', function () {
+	    		//
+		})->name('profile');
+
+	You may also specify route names for controller actions:
+
+		Route::get('user/profile', 'UserController@showProfile')->name('profile');
+
+	Generating URLs To Named Routes
+
+		Once you have assigned a name to a given route, you may use the route's name when generating URLs or redirects via the global route function:
+
+		// Generating URLs...
+		$url = route('profile');
+
+		// Generating Redirects...
+		return redirect()->route('profile');
+
+		If the named route defines parameters, you may pass the parameters as the second argument to the  route function. 
+		The given parameters will automatically be inserted into the URL in their correct positions:
+
+			Route::get('user/{id}/profile', function ($id) {
+			    //
+			})->name('profile');
+
+			$url = route('profile', ['id' => 1]);
+-----------------------------------------------------------------------------------------------------------------------------
+
+	Accessing The Current Route
+
+		You may use the current, currentRouteName, and currentRouteAction methods on the Route facade to access information about the 
+		route handling the incoming request:
+
+			$route = Route::current();
+		
+			$name = Route::currentRouteName();
+
+			$action = Route::currentRouteAction();
+
+-----------------------------------------------------------------------------------------------------------------------------
 10) Middleware
 
         Middleware acts as a middle man between request and response.
@@ -48,12 +95,19 @@
         
                 Route Middleware will be assigned to a specific route.
 
+IMP :
 
+	CSRF token can be defined as follows
 
+		    {{ csrf_field() }}
 
+	e.g.
+		<form method="POST" action="/profile">
+		    {{ csrf_field() }}
+		    ...
+		</form>
 
-
-
+ 
 
 ==========================================================================================
 
