@@ -1,0 +1,19 @@
+					client through browser
+           					|
+					laravel/public/index.php
+	   					|
+					Retrive instance of bootstrap/app.php
+	   					|
+					------------------------------------------
+					|					  |
+     				  HTTP Kernel   			   Console Kernel
+					|
+	Runs array of bootstrappers from HTTP kernel class
+					|
+				Execute middleware
+					|
+				Process request
+	
+	
+
+
