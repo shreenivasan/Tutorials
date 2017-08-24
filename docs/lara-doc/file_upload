@@ -1,0 +1,53 @@
+Retrieving Uploaded Files
+
+	$file = $request->file('photo');
+
+	$file = $request->photo;
+
+	You may determine if a file is present on the request using the hasFile method:
+
+		if ($request->hasFile('photo')) {
+		    //
+		}
+
+Validating Successful Uploads
+
+	In addition to checking if the file is present, you may verify that there were no problems uploading the file via the isValid method:
+
+		if ($request->file('photo')->isValid()) {
+		    //
+		}
+
+File Paths & Extensions
+
+	The UploadedFile class also contains methods for accessing the file's fully-qualified path and its extension.
+	The extension method will attempt to guess the file's extension based on its contents.
+	This extension may be different from the extension that was supplied by the client:
+
+		$path = $request->photo->path();
+
+		$extension = $request->photo->extension();
+
+Storing Uploaded Files
+
+	The  UploadedFile class has a store method which will move an uploaded file to one of your disks,
+	which may be a location on your local filesystem or even a cloud storage location like Amazon S3.
+
+	The store method accepts the path where the file should be stored relative to the filesystem's configured root directory.
+	This path should not contain a file name, since a unique ID will automatically be generated to serve as the file name.
+
+	The store method also accepts an optional second argument for the name of the disk that should be used to store the file.
+	The method will return the path of the file relative to the disk's root:
+
+		$path = $request->photo->store('images');
+
+		$path = $request->photo->store('images', 's3');
+
+
+	If you do not want a file name to be automatically generated, you may use the storeAs method, which accepts the path, file name, and 
+	disk name as its arguments:
+
+		$path = $request->photo->storeAs('images', 'filename.jpg');
+
+		$path = $request->photo->storeAs('images', 'filename.jpg', 's3');
+

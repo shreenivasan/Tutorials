@@ -1,0 +1,47 @@
+Open form
+	{{ Form::open() }}
+
+Fileuploading
+	{{ Form::open(array('files' => true)) }}
+
+CSRF token
+	{{ Form::token() }}
+
+Label
+	{{ Form::label('name', 'Your Name', array('class' => 'mylabel')) }}
+Textbox
+	{{ Form::text('first_name', 'Chuck', array('class' => 'field')) }}
+
+Password
+	{{ Form::password('secret', array('class' => 'field')) }}
+
+Hidden
+	{{ Form::hidden('invisible', 'secret', array('id' => 'invisible_id')) }}
+
+Email 
+	{{ Form::email('email_address', 'noreply@gmail.com', ['class' => 'field']) }}
+
+Url
+	{{ Form::url('webpage', 'http://a.com', ['class' => 'field']) }}
+
+File
+	{{ Form::file('thefile', ['class' => 'field']) }}
+
+Textarea
+	{{ Form::textarea('notes', null, ['size' => '30x5']) }}
+
+Select
+	{{ Form::select('number', [1, 2, 3], null, ['class' => 'field']) }}
+
+Check box
+	{{ Form::checkbox('agree', 1, null, ['class' => 'field']) }}
+
+Radio
+	{{ Form::radio('sex', 'male') }}<br>
+	{{ Form::radio('sex', 'female', true) }}
+
+
+
+Close form
+{{ Form::open() }}
+
