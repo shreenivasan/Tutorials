@@ -1,0 +1,498 @@
+Check python installed or not
+
+    python
+
+    O/P : If installed o/p will be like this 
+            Python 2.4.3 (#1, Nov 11 2010, 13:34:43)
+            [GCC 4.1.2 20080704 (Red Hat 4.1.2-48)] on linux2
+            Type "help", "copyright", "credits" or "license" for more information.
+            >>>
+-----------------------------------------------------------------------------------------------------------------------------------
+ 
+    Execute file <file_name>.py using python command
+
+    python test.py
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Key words in python
+
+        and         exec        not
+        assert      finally     or
+        break       for         pass
+        class       from        print
+        continue    global      raise
+        def         if          return
+        del         import      try
+        elif        in          while
+        else        is          with
+        except      lambda      yield
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Lines and Indentation
+
+        Python provides no braces to indicate blocks of code for class and function definitions or flow control. 
+    
+        Blocks of code are denoted by line indentation
+
+        correct syntax: 
+
+            if True:
+                print "True"
+            else:
+                print "False"
+                
+        incorrect syntax:         
+        
+            if True:
+                print "Answer"
+                print "True"
+            else:
+                print "Answer"
+               print "False"
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Waiting for the User
+
+    raw_input("\n\nPress the enter key to exit.");
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Multiple Assignment
+    
+        a,b,c = 1,2,"john"
+
+    two integer objects with values 1 and 2 are assigned to variables a and b respectively, 
+    and one string object with the value "john" is assigned to the variable c
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Standard Data Types
+
+        Numbers
+
+        String
+
+        List
+
+        Tuple
+
+        Dictionary
+
+-----------------------------------------------------------------------------------------------------------------------------------
+    
+    Delete object
+
+    del var1[,var2[,var3[....,varN]]]]
+
+    e.g. del var1,var2
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Python supports four different numerical types −
+
+        int (signed integers)
+
+        long (long integers, they can also be represented in octal and hexadecimal)
+
+        float (floating point real values)
+
+        complex (complex numbers)
+
+
+        int         long                    float	complex
+        10          51924361L               0.0         3.14j
+        100         -0x19323L               15.20	45.j
+        -786        0122L                   -21.9	9.322e-36j
+        080         0xDEFABCECBDAECBFBAEl   32.3+e18	.876j
+        -0490       535633629843L           -90.	-.6545+0J
+        -0x260      -052318172735L          -32.54e100	3e+26J
+         0x69        -4721885298529L         70.2-E12	4.53e-7j
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    #!/usr/bin/python
+
+    str = 'Hello World!'
+
+    print str          # Prints complete string
+    print str[0]       # Prints first character of the string
+    print str[2:5]     # Prints characters starting from 3rd to 5th
+    print str[2:]      # Prints string starting from 3rd character
+    print str * 2      # Prints string two times
+    print str + "TEST" # Prints concatenated string
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Python Lists
+
+    list = [ 'abcd', 786 , 2.23, 'john', 70.2 ]
+    tinylist = [123, 'john']
+
+    print list          # Prints complete list
+    print list[0]       # Prints first element of the list
+    print list[1:3]     # Prints elements starting from 2nd till 3rd 
+    print list[2:]      # Prints elements starting from 3rd element
+    print tinylist * 2  # Prints list two times
+    print list + tinylist # Prints concatenated lists
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Python Tuples
+
+    Differences between lists and tuples are: Lists are enclosed in brackets ( [ ] ) and their elements and size can be changed, 
+
+    while tuples are enclosed in parentheses ( ( ) ) and cannot be updated. 
+
+    Tuples can be thought of as read-only lists.
+
+    tuple = ( 'abcd', 786 , 2.23, 'john', 70.2  )
+    tinytuple = (123, 'john')
+
+    print tuple           # Prints complete list
+    print tuple[0]        # Prints first element of the list
+    print tuple[1:3]      # Prints elements starting from 2nd till 3rd 
+    print tuple[2:]       # Prints elements starting from 3rd element
+    print tinytuple * 2   # Prints list two times
+    print tuple + tinytuple # Prints concatenated lists
+
+-----------------------------------------------------------------------------------------------------------------------------------
+    
+Python Dictionary
+
+    Python's dictionaries are kind of hash table type. 
+
+    They work like associative arrays or hashes found in php and consist of key-value pairs.
+    
+    Dictionaries are enclosed by curly braces.
+    
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Python Bitwise Operators
+
+    a = 0011 1100
+
+    b = 0000 1101
+
+    -----------------
+
+    a&b = 0000 1100
+
+    a|b = 0011 1101
+
+    a^b (XOR) = 0011 0001
+
+    ~a  = 1100 0011    
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Python Membership Operators
+
+    Operator    	Description                         Example
+    in          Evaluates to true if it finds a             x in y, here in results in a 1 if x is a member of sequence y.
+                variable in the specified sequence 
+                and false otherwise. 	
+
+    not in 	Evaluates to true if it does not finds      x not in y, here not in results in a 1 if x is not a member of sequence y.
+                a variable in the specified sequence and 
+                false otherwise. 	
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Python Operators Precedence
+
+    Operator                    Description
+        
+        **                      Exponentiation (raise to the power)
+        
+     ~ + -                      Complement, unary plus and minus (method names for the last two are +@ and -@)
+
+   * / % //                     Multiply, divide, modulo and floor division
+
+        + -                     Addition and subtraction
+
+
+    >> <<                       Right and left bitwise shift
+
+        &                       Bitwise 'AND'	
+
+        ^ |                     Bitwise exclusive `OR' and regular `OR'
+
+
+    <= < > >=                   Comparison operators
+
+    <> == !=                    Equality operators
+
+    = %= /= //= -= += *= **= 	Assignment operators
+
+    is is not                   Identity operators
+
+    in not in                   Membership operators
+
+    not or and                  Logical operators
+-----------------------------------------------------------------------------------------------------------------------------------
+    
+    Using else Statement with Loops
+
+    Python supports to have an else statement associated with a loop statement.
+
+    If the else statement is used with a for loop, the else statement is executed when the loop has exhausted iterating the list.
+
+    If the else statement is used with a while loop, the else statement is executed when the condition becomes false.
+
+    count = 0
+    while count < 5:
+        print count, " is  less than 5"
+        count = count + 1
+    else:
+        print count, " is not less than 5"
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Python pass Statement
+
+    It is used when a statement is required syntactically but you do not want any command or code to execute.
+
+    The pass statement is a null operation; nothing happens when it executes. 
+
+    The pass is also useful in places where your code will eventually go, but has not been written yet 
+
+    (e.g., in stubs for example):
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Triple Quotes
+
+    para_str = """this is a long string that is made up of
+                several lines and non-printable characters such as
+                TAB ( \t ) and they will show up that way when displayed.
+                NEWLINEs within the string, whether explicitly given like
+                this within the brackets [ \n ], or just a NEWLINE within
+                the variable assignment will also show up.
+                """
+                print para_str
+-----------------------------------------------------------------------------------------------------------------------------------
+    Basic List Operations
+
+    Lists respond to the + and * operators much like strings; 
+
+    They mean concatenation and repetition here too, except that the result is a new list, not a string.
+
+    
+    Python Expression       Results                             Description
+    len([1, 2, 3])              3                               Length
+
+    [1, 2, 3] + [4, 5, 6]	[1, 2, 3, 4, 5, 6]              Concatenation
+
+    ['Hi!'] * 4                 ['Hi!', 'Hi!', 'Hi!', 'Hi!']	Repetition
+
+    3 in [1, 2, 3]              True                            Membership
+
+    for x in [1, 2, 3]: print x,	1 2 3                   Iteration
+-----------------------------------------------------------------------------------------------------------------------------------
+
+    Built-in List Functions & Methods
+
+    SN              Function                Description
+
+    1               cmp(list1, list2)       Compares elements of both lists.
+
+    2               len(list)               Gives the total length of the list.
+
+    3               max(list)               Returns item from the list with max value.
+
+    4               min(list)               Returns item from the list with min value.
+
+    5               list(seq)               Converts a tuple into list.
+
+
+    SN              Methods with                Description
+
+    1               list.append(obj)            Appends object obj to list
+
+    2               list.count(obj)             Returns count of how many times obj occurs in list
+
+    3               list.extend(seq)            Appends the contents of seq to list
+
+    4               list.index(obj)             Returns the lowest index in list that obj appears
+
+    5               list.insert(index, obj)     Inserts object obj into list at offset index
+
+    6               list.pop(obj=list[-1])      Removes and returns last object or obj from list
+
+    7               list.remove(obj)            Removes object obj from list
+
+    8               list.reverse()              Reverses objects of list in place
+
+    9               list.sort([func])           Sorts objects of list, use compare func if given
+-----------------------------------------------------------------------------------------------------------------------------------
+    
+    Built-in Dictionary Functions & Methods −
+
+    Python includes the following dictionary functions −
+
+        SN   Function with Description
+
+        1    cmp(dict1, dict2)              Compares elements of both dict.
+
+        2    len(dict)                      Gives the total length of the dictionary.
+                                            This would be equal to the number of items in the dictionary.
+
+        3   str(dict)                       Produces a printable string representation of a dictionary
+
+        4   type(variable)                  Returns the type of the passed variable. If passed variable is dictionary, 
+                                            then it would return a dictionary type.
+
+    Python includes following dictionary methods −
+
+
+        SN          Methods with                    Description
+
+        1	dict.clear()                        Removes all elements of dictionary dict
+
+        2	dict.copy()                         Returns a shallow copy of dictionary dict
+
+        3	dict.fromkeys()                     Create a new dictionary with keys from seq and values set to value.
+
+        4	dict.get(key, default=None)         For key key, returns value or default if key not in dictionary
+
+        5	dict.has_key(key)                   Returns true if key in dictionary dict, false otherwise
+
+        6	dict.items()                        Returns a list of dict's (key, value) tuple pairs
+
+        7	dict.keys()                         Returns list of dictionary dict's keys
+
+        8	dict.setdefault(key, default=None)  Similar to get(), but will set dict[key]=default if key is not already in dict
+
+        9	dict.update(dict2)                  Adds dictionary dict2's key-values pairs to dict
+
+        10	dict.values()                       Returns list of dictionary dict's values
+
+-----------------------------------------------------------------------------------------------------------------------------------
+    Functions
+
+    All parameters (arguments) in the Python language are passed by reference.
+
+    General Syntax
+
+    def functionname( parameters ):
+       "function_docstring"
+       function_suite
+       return [expression]
+
+    e.g. 
+    def printme( str ):
+        "This prints a passed string into this function"
+        print str
+        return
+
+    printme('shreenivas');
+
+
+    Function Arguments    
+
+        1) Required arguments
+        
+            Required arguments are the arguments passed to a function in correct positional order.
+
+        2) Keyword arguments
+
+            Keyword arguments are related to the function calls.
+            
+            When you use keyword arguments in a function call, the caller identifies the arguments by the parameter name.
+
+            e.g. 1) 
+            
+            def printme( str ):
+               "This prints a passed string into this function"
+               print str
+               return;    
+
+            printme( str = "My string");
+
+            e.g. 2)
+
+            def printinfo( name, age ):
+               "This prints a passed info into this function"
+               print "Name: ", name
+               print "Age ", age
+               return;
+            
+            printinfo( age=50, name="miki" )   
+    
+
+        3) Default arguments
+
+            A default argument is an argument that assumes a default value if a value is not provided in the function call for that argument.
+
+            def printinfo( name, age = 35 ):
+               "This prints a passed info into this function"
+               print "Name: ", name
+               print "Age ", age
+               return;
+
+            printinfo( age=50, name="miki" )
+            printinfo( name="miki" )   
+               
+        4) Variable-length arguments
+
+            You may need to process a function for more arguments than you specified while defining the function. 
+
+            These arguments are called variable-length arguments and are not named in the function definition, 
+            unlike required and default arguments.
+
+            Syntax for a function with non-keyword variable arguments is this −
+
+            def functionname([formal_args,] *var_args_tuple ):
+               "function_docstring"
+               function_suite
+               return [expression]
+        
+            An asterisk (*) is placed before the variable name that holds the values of all nonkeyword variable arguments. 
+
+            This tuple remains empty if no additional arguments are specified during the function call.
+
+            def printinfo( arg1, *vartuple ):
+               "This prints a variable passed arguments"
+               print "Output is: "
+               print arg1
+               for var in vartuple:
+                  print var
+               return;
+
+            printinfo( 10 )
+            printinfo( 70, 60, 50 )
+
+        Anonymous Functions
+
+            These functions are called anonymous because they are not declared in the standard manner by using the def keyword. 
+
+            You can use the lambda keyword to create small anonymous functions.
+
+            Lambda forms can take any number of arguments but return just one value in the form of an expression. 
+            They cannot contain commands or multiple expressions.
+
+            An anonymous function cannot be a direct call to print because lambda requires an expression
+
+            Lambda functions have their own local namespace and cannot access variables other than those in their parameter list and those in the global namespace.
+
+            Although it appears that lambda's are a one-line version of a function, they are not equivalent to inline statements in C or C++, whose purpose is by passing function stack allocation during invocation for performance reasons.
+
+            General syntax
+            
+                lambda [arg1 [,arg2,.....argn]]:expression
+
+                sum = lambda arg1, arg2: arg1 + arg2;
+
+                # Now you can call sum as a function
+                print "Value of total : ", sum( 10, 20 )
+                print "Value of total : ", sum( 20, 20 )
+
+                
+       
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
