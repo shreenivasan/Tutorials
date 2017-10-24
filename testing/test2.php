@@ -1,9 +1,14 @@
 <?php
-include('class1.php');
-include('class2.php');
-$objA1 = new \A1\A();
-echo $objA1->test();
+session_set_cookie_params(0);
+session_start();
+if(isset($_COOKIE['mycookie'])){
+    echo $_COOKIE['mycookie']."<<<<<<<<<";
+}
+else{
+    echo "cookie not exists";
+}
+setcookie("mycookie","mycookie",0);
+//setcookie("mycookie",NULL);
 
-$objA2 = new A2\A();
-echo $objA2->test();
+//session_destory();
 ?>
