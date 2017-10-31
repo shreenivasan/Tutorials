@@ -9,7 +9,9 @@
     composer create-project laravel/laravel <project_name>
 
 4)  php artisan serve
+
     php artisan down
+
     Check laravel version
         php artisan --version
 
