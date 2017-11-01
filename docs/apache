@@ -1,0 +1,97 @@
+
+	What is Apache?
+
+		It is the most widely used Web Server application in the world with more than 50% share in the commercial web server 			market.
+
+	What is Virtual Host?
+
+		An Apache web server can host multiple websites on the SAME server.
+
+		You do not need separate server machine and apache software for each website.
+
+		This can achieved using the concept of Virtual Host or VHost.
+
+		Types of Apache Virtualhost
+
+		    A) Name-based Virtual host
+    
+			 Name based virtual hosting is used to host multiple virtual sites on a single IP address.  
+		
+			 In order to configure name based virtual hosting, 
+			 you have to set the IP address on which you are going to receive the Apache requests for all the desired 				 websites.  
+
+			You can do this by NameVirutalHost directive within the apache configuration i.e. httpd.conf/apache2.conf file.
+
+
+			NameVirtualHost *:80
+
+			<VirtualHost 192.168.0.108:80>
+
+				ServerAdmin webmaster@example1.com
+
+				DocumentRoot /var/www/html/example1.com      
+
+				ServerName www.example1.com
+
+			</VirtualHost>
+
+			<VirtualHost 192.168.0.108:80>
+
+				ServerAdmin admin@example2.com
+
+				DocumentRoot /var/www/html/example2.com
+
+				ServerName www.example2.com
+
+			</VirtualHost>
+		
+		    B) Address-based or IP based virtual host and.
+
+				In order to setup IP based virtual hosting, you need more than one IP address configured on your 					server.So, the number of vhost apache will depend onnumber of IP address configured on your server.  	
+				If your server has 10 IP addresses, you can create 10 IP based virtual hosts.
+
+How to Secure Apache Web Server
+
+	1) Hiding Apache version and OS information:
+
+		vim /etc/httpd/conf/httpd.conf
+
+		ServerSignature Off
+		ServerTokens Prod
+
+	2) Disable Directory Listing
+		 This feature could be turn off for a specific directory through “options directive” available in the Apache 			 configuration file.
+
+		<Directory /var/www/html>
+		    Options -Indexes
+		</Directory>
+
+	3) Restricting Access to files outside the web root directory
+	
+		<Directory/>
+			Options None
+			AllowOverride None
+			Order deny,allow
+			Deny from all
+		</Directory>
+
+	4) Limiting request size
+		
+		 Apache does not have any restriction on the total size of the http request that could lead to a DoS attack.
+	
+		You can limit the request size of an Apache directive “LimitRequestBody” with the directory tag.
+
+		The value could be set anything from 0 to 2 GB (i.e. 2147483647 bytes) as per your requirement.
+
+		<Directory "/var/www/html/uploads">
+	   		LimitRequestBody 512000
+		</Directory>
+
+Commands or Syntax
+
+	Check config syntax
+		You can check your web configuration files
+
+			httpd -t
+	
+

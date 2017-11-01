@@ -1,0 +1,68 @@
+What are register_globals in PHP?
+
+    register_globals is an internal PHP setting which registers the $_REQUEST array's elements as variables.
+    
+    If you submit a value in a form, via POST or GET, the value of that input will automatically be accessible via variable 
+    in the PHP script, named after the name of the input field.
+
+    In other words, if you submitted a form containing a username text field, the expression ($username === $_POST['username']) 
+    at the very beginning of the script would return true.
+
+    Setting register_globals in php.ini
+        register_globals = off or on
+
+    Changing register_globals using .htaccess
+        php_flag register_globals
+
+    Let's demonstrate with an example misuse of register_globals:
+
+    Example #1 Example misuse with register_globals = on
+        <?php
+            // define $authorized = true only if user is authenticated
+            if (authenticated_user()) {
+                $authorized = true;
+            }
+
+            // Because we didn't first initialize $authorized as false, this might be
+            // defined through register_globals, like from GET auth.php?authorized=1
+            // So, anyone can be seen as authenticated!
+            if ($authorized) {
+                include "/highly/sensitive/data.php";
+            }
+        ?>
+
+----------------------------------------------------------------------------------------------------------------
+
+String functions 
+
+    1)  strlen() - To get String lenth
+
+    2)  explode(glue,String) - explodes string into a array separated by glue
+    
+    3)  str_split(string,length) - splits string into array 
+
+    4)  strrev() - returns reversed a string.
+
+    5)  strpos(string,find,start) -  Finds the position of the first occurrence of a string inside another string
+
+        e.g. echo strpos("I love php, I love php too!","php");
+             O/P : 7 
+
+    6)   strstr(string,search,before_search) - searches for the first occurrence of a string inside another string.
+
+        e.g. echo strstr("Hello world!","world");
+             O/P -  world!    
+
+    7)  substr(string,start,length)  - Returns substring
+           
+        e.g. substr("Hello world",6);     
+             O/P : world
+
+    8)  substr_count(string,substring,start,length)  counts the number of times a substring occurs in a string.
+
+        e.g.  echo substr_count("Hello world. The world is nice","world");
+              O/P : 2
+
+    9) trim(string,<character_list>),rtrim()          
+         
+    
