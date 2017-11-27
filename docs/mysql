@@ -26,3 +26,39 @@ MySQL view’s restrictions
 You cannot create an index on a view.
 Views and tables share the same namespace, therefore, a view and a table cannot have the same name.
 Views can be updatable i.e. you can use the INSERT or UPDATE statement to insert or update rows of the base table through the updatable view
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Mysql Indexes
+
+    Indexes in MySQL are physical objects that are used to enforce uniqueness in a table
+
+    Indexes help in speeding up query processing.
+
+    Like tables, indexes also consist of rows and columns but it stores the data in a 
+    logically sorted manner to improve search performance.
+
+    Like a telephone directory where they are usually sorted last_name, first_name and potentially other criteria (e.g. zip code)
+
+    Different types of Indexes in MySQL
+
+        A) Clustered indexes
+
+            Indexes can also be used to optimize sort operations (order by) and physically arrange related data closely together.
+            This is process is called clustering of data.
+
+            Accessing a row through the clustered index is fast because the row data is on the same page where the index 
+            search leads. 
+
+            If a table is large, the clustered index architecture often saves a disk I/O operation, 
+            when compared to storage organizations that stores row data using a different page from the index record.
+
+        B) Non clustered indexes
+
+        C) Primary Key
+
+        D) Normal Index
+        
+        E) Full Text Index
+
+        

@@ -35,3 +35,8 @@ Route::post ( 'books/search', function () {
     }
         return view ( 'books.index' )->withMessage ( 'No Details found. Try to search again !' );
 } );
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
