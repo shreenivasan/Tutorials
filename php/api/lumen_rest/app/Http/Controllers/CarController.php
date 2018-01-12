@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Car;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Redis;
  
 class CarController extends Controller{
 
@@ -35,6 +36,10 @@ class CarController extends Controller{
 	}
 
 	public function index(){
+        $ObjRedis = new Redis();
+        echo typeOf($ObjRedis);
+        var_dump($ObjRedis);
+        echo $ObjRedis->connect();
     	$cars  = Car::all();
  
     	return response()->json($cars);

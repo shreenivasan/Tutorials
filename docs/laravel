@@ -119,6 +119,16 @@ URLs :
 
     http://georgehk.blogspot.in/2015/04/crud-operations-in-laravel-5-with-mysql.html
 
+==========================================================================================
+
+    Voyager installation & configuration
+
+        1) composer require tcg/voyager
+        2) set db details in .env file & config/database.php
+        3) php artisan voyager:install
+        
+            Create user
+        4) php artisan voyager:admin admin@admin.com --create
         
     
     
