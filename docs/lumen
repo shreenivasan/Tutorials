@@ -1,0 +1,63 @@
+1) composer create-project laravel/lumen <project_name>
+
+2) .env file set db details
+
+3) bootstrap/app.php
+    uncomment following lines
+
+    $app->withFacades();
+  
+    $app->withEloquent();
+
+4) DB CRUD
+
+        php artisan make:migration create_books_table –create=books
+
+        change schema in migration file from database/migration/<schema_file.php>
+
+        php artisan migrate
+
+        Create Model in app directory
+
+            e.g.
+                namespace App;  
+                use Illuminate\Database\Eloquent\Model;
+                class Book extends Model{
+                    protected $fillable = ['title', 'author', 'isbn'];
+                }
+
+        Create controller in app/Http/Controllers directory
+
+        mention routing details routes/web.php
+
+            e.g.
+                $router->group(['prefix' => 'api/v1','namespace' => '\App\Http\Controllers'], function($router)
+                {
+                    $router->post('car','CarController@createCar');
+                    $router->put('car/{id}','CarController@updateCar');
+                    $router->delete('car/{id}','CarController@deleteCar');
+                    $router->get('car','CarController@index');
+                });
+
+        start server using
+        
+            php artisan server 
+
+                if it is not working use below command
+        
+            php -S localhost:8000 -t public/
+
+        Execute commands through postman
+
+        GET http://localhost:8000/api/v1/car
+        
+        POST http://localhost:8000/api/v1/car
+            Params {"make":"testMake","model":"testModel","year":"2017"}
+        
+        PUT http://localhost:8000/api/v1/car/1
+            Params {"make":"testMake","model":"testModel","year":"2017"}
+
+        DELETE http://localhost:8000/api/v1/car/1    
+        
+
+        
