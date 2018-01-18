@@ -1,0 +1,88 @@
+
+    PHP has more than 9 magic methods
+
+    They starts with two underscores
+
+    1) __construct
+    2) __destruct
+    3) __get
+    4) __set
+    5) __call
+    6) __sleep
+    7) __wakeup
+    8) __clone
+    9) __toString
+
+
+    3) __get
+
+        class Penguin extends Animal {
+
+            public function __construct($id) {
+                $this->getPenguinFromDb($id);
+            }
+
+            public function getPenguinFromDb($id) {
+                // elegant and robust database code goes here
+            }
+        }
+
+        Now if our penguin has the properties "name" and "age" after it is loaded, we'd be able to do:
+
+        $tux = new Penguin(3);
+        echo $tux->name . " is " . $tux->age . " years old\n";
+
+        However imagine something changed about the backend database or information provider, so instead of "name", the property was called "username". And imagine this is a complex application which refers to the "name" property in too many places for us to change. We can use the __get method to pretend that the "name" property still exists:
+
+        class Penguin extends Animal {
+
+            public function __construct($id) {
+                $this->getPenguinFromDb($id);
+            }
+
+            public function getPenguinFromDb($id) {
+                // elegant and robust database code goes here
+            }
+
+            public function __get($field) {
+                if($field == 'name') {
+                    return $this->username;
+                }
+            }
+        }
+
+
+    4)  __set()
+
+        all the calls to $this->name to return $this->username but what about when we want to set that value, perhaps we have an account screen where users can change their name? Help is at hand in the form of the __set method, and easiest to illustrate with an example.
+
+        class Penguin extends Animal {
+
+          public function __construct($id) {
+            $this->getPenguinFromDb($id);
+          }
+
+          public function getPenguinFromDb($id) {
+            // elegant and robust database code goes here
+          }
+
+          public function __get($field) {
+            if($field == 'name') {
+              return $this->username;
+            }
+          }
+
+          public function __set($field, $value) {
+            if($field == 'name') {
+              $this->username = $value;
+            }
+          }
+        }
+
+    In this way we can falsify properties of objects, for any one of a number of uses.
+    As I said, not a way to build a whole system, but a very useful trick to know.    
+
+
+        
+
+
