@@ -56,9 +56,6 @@ class SolrIndexer
   			$response=$this->_solr->addDocument($document);
 			if($response->responseHeader->status==0)
 			{
-				//$commit=$this->_solr->commit();							//commit to see the deletes and the document
-				//$optimize=$this->_solr->optimize();							//merges multiple segments into one
-				//if($commit->responseHeader->status==0)
 				if(true){
 					$end = round(microtime(true), 4);
 					$total = round($end - $start, 4);
