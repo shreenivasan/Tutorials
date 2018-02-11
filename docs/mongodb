@@ -1,3 +1,15 @@
+What is mongodb?
+
+    MongoDB is an open-source document database
+    
+    Leading NoSQL database.
+
+    MongoDB is written in C++
+
+    port no used by mongo is 27017 
+
+    
+
 Install MongoDB on Ubuntu 16.04
 
     Step 1 - Importing the Public Key
@@ -303,6 +315,17 @@ PHP - Mongodb configure
         db.mycol.find({$or: [{key1: value1}, {key2:value2}]}).pretty();
 
         e.g. db.mycol.find({$or:[{"by":"tutorials point"},{"title": "MongoDB Overview"}]}).pretty()
+
+    ------------------------------------------------------------------------------------------------------------------------------------------    
+
+    AND in MongoDB    
+
+        db.mycol.find({
+                        $and: [
+                                {key1: value1}, {key2:value2}
+                              ]
+                      }
+                    ).pretty()
 
     ------------------------------------------------------------------------------------------------------------------------------------------
     

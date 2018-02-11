@@ -1,12 +1,22 @@
 What is REST
     
     REST stands for Representational State Transfer
+    Is an architectural style for network communication between applications, which relies on a stateless protocol 
 
 Why REST?
 
     REST uses standard HTTP
     REST permits many different data formats whereas SOAP only permits XML.
     REST reads can be cached, SOAP based reads cannot be cached.
+
+HTTP Verbs Represent Actions
+
+    In RESTful APIs, we use the HTTP verbs as actions, and the endpoints are the resources acted upon. We’ll be using the HTTP verbs for their semantic meaning:
+
+    GET:        Retrieve resources
+    POST:       Create resources
+    PUT:        Update resources
+    DELETE:     Delete resources
 
 
 Why SOAP?
