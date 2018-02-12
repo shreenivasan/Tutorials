@@ -40,3 +40,11 @@ Route::post ( 'books/search', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::get('mongo', function(Request $request) {
+    $collection = Mongo::get()->mycollection->mycollection;
+    return $collection->find()->toArray();
+});
+
+
+Route::resource('faqs','FaqController');
