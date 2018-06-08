@@ -113,6 +113,19 @@ IMP :
 
 ==========================================================================================
 
+    Determining The Current Environment
+    
+        The current application environment is determined via the APP_ENV variable from your .env file. 
+        $environment = App::environment();
+
+        i.e. local , staging , production
+
+==========================================================================================
+
+    Accessing Configuration Values
+
+        $value = config('app.timezone');
+
 URLs :
 
     CRUD application

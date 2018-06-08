@@ -1,0 +1,15 @@
+
+Create project : 
+        composer create-project laravel/laravel <project_name>
+
+Run application :
+        php artisan serve
+
+Up Application :
+        php artisan Up
+
+Down Application :
+        php artisan down --message="Upgrading Database" --retry=60
+
+Check laravel version
+        php artisan --version

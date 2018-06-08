@@ -1,0 +1,5 @@
+How to get version of an installed npm package
+
+	npm -v <package-name>
+
+	e.g. npm -v express
