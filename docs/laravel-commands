@@ -13,3 +13,91 @@ Down Application :
 
 Check laravel version
         php artisan --version
+
+
+
+
+====================================================================
+    // Without Query String...
+        $url = $request->url();
+
+    // With Query String...
+        $url = $request->fullUrl();
+
+------------------------------------------------------------------
+
+    Retrieving The Request Method
+
+        if ($request->isMethod('post')) {
+        }
+
+------------------------------------------------------------------
+
+    Retrieving All Input Data
+
+        $input = $request->all();
+
+------------------------------------------------------------------
+
+    Retrieving An Input Value
+        
+        $name = $request->input('name');
+
+        $name = $request->input('name', 'Sally'); // 2nd Param is default value
+
+------------------------------------------------------------------
+
+    Retrieving Input From The Query String
+    
+        $name = $request->query('name');
+
+        $name = $request->query('name', 'Helen');
+
+        $query = $request->query();
+
+------------------------------------------------------------------
+
+    Retrieving A Portion Of The Input Data
+
+        $input = $request->only(['username', 'password']);
+
+        $input = $request->only('username', 'password');
+
+        $input = $request->except(['credit_card']);
+
+        $input = $request->except('credit_card');
+
+------------------------------------------------------------------
+
+    Determining If An Input Value Is Present
+
+        if ($request->has('name')) {
+        }
+
+        if ($request->has(['name', 'email'])) {
+            //
+        }
+
+------------------------------------------------------------------
+
+    If you would like to determine if a value is present on the request and is not empty, you may use the filled method
+
+        if ($request->filled('name')) {
+            //
+        }
+
+------------------------------------------------------------------
+
+    Retrieving Cookies From Requests
+
+        $value = $request->cookie('name');
+            
+        $value = Cookie::get('name');
+
+------------------------------------------------------------------
+
+    Attaching Cookies To Responses
+
+        return response('Hello World')->cookie(
+            'name', 'value', $minutes, $path, $domain, $secure, $httpOnly
+        );
