@@ -21,7 +21,7 @@ function initialize() {
   var mapOptions = {
     zoom: 3,
     center: new google.maps.LatLng(0, -180),
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: 'satellite',
   };
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),

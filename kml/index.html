@@ -6,25 +6,16 @@
     <title>KML Click Capture Sample</title>
     <style>
       html, body {
-        height: 370px;
+        height: 100%;
         padding: 0;
         margin: 0;
         }
       #map {
-       height: 360px;
-       width: 300px;
+       height: 100%;
+       width: 100%;
        overflow: hidden;
        float: left;
        border: thin solid #333;
-       }
-      #capture {
-       height: 360px;
-       width: 480px;
-       overflow: hidden;
-       float: left;
-       background-color: #ECECFB;
-       border: thin solid #333;
-       border-left: none;
        }
     </style>
   </head>
@@ -39,7 +30,7 @@
         map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(-19.257753, 146.823688),
           zoom: 2,
-          mapTypeId: 'terrain'
+          mapTypeId: 'satellite'
         });
 
         var kmlLayer = new google.maps.KmlLayer(src, {
@@ -48,9 +39,9 @@
           map: map
         });
         kmlLayer.addListener('click', function(event) {
-          var content = event.featureData.infoWindowHtml;
-          var testimonial = document.getElementById('capture');
-          testimonial.innerHTML = content;
+//          var content = event.featureData.infoWindowHtml;
+//          var testimonial = document.getElementById('capture');
+//          testimonial.innerHTML = content;
         });
       }
     </script>
