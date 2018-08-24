@@ -12,7 +12,7 @@ ini_set("display_errors", "on");
         $email_body='s';
         require("class.phpmailer.php");
         $mailer = new PHPMailer();
-        $mailer->SetLanguage("en", 'includes/phpMailer/language/');
+        $mailer->SetLanguage("en", 'language/');
         
         $mailer->IsSMTP();
         $mailer->Host = 'ssl://smtp.gmail.com:587';

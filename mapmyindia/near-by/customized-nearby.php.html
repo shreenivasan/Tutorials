@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>MapmyIndia Maps API: Near By Example</title>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+            <meta http-equiv="Content-Type"content="text/html; charset=utf-8"/>
+            <script type="text/javascript" src="js/jquery.min.js"></script>
+            <script src="https://apis.mapmyindia.com/advancedmaps/v1/i7xeo4fgj5krcr53aowtx4xcooi5mqeg/map_load?v=0.1"></script>
+            <link href="css/custom.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="top-div">
+            <span class="top-div-span1">MapmyIndia Maps API:</span> 
+            <span class="top-div-span2" >Nearby Example</span>
+        </div>
+        <div id="menu">
+            <div class="menu-sub"> 
+                <div class="div-label">Enter Latitude</div>
+                <input type="text"  class="input-cls" value="19.064520"  id="lat" placeholder="latitude" autocomplete="off" autofocus="" onkeydown="if (event.which == 13 || event.keyCode == 13)
+                            $('#search').trigger('click');"/><br/>
+
+                <div class="div-label">Enter Longitude</div>
+                <input type="text" class="input-cls" id="lan" placeholder="longitude" autocomplete="off" autofocus="" value="73.000970"/>
+
+                <div class="div-label">Enter Keyword</div>
+                <input type="text" class="input-cls" id="keyword" placeholder="keyword" autocomplete="off" autofocus="" value="mall;petrol;atm" onkeydown="if (event.which == 13 || event.keyCode == 13)
+                            $('#search').trigger('click');
+                       "/>
+                <br/><br/>
+                &nbsp;&nbsp;
+                <button id="search" onclick="get_near_by_result(document.getElementById('lat').value, document.getElementById('lan').value, 'searchbykeyword')">Search By Keyword</button>
+            </div>
+            <div id="result"></div>
+            <div id="poidetail" ></div>
+        </div>
+        <div id="map-container"></div>
+
+        <script type="text/javascript" src="js/custom.js"></script>
+    </body>
+</html>
