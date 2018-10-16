@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <style>
+        .specialDate a{
+            background-color: red !important;
+            color: #0f0 !important;
+        }
+        .calendar-container{
+            display:inline-block
+        }
+        .ui-datepicker-next,.ui-datepicker-prev{display:none;}
+    </style>    
+</head>
+<body>
+    <ul >
+        <li class="calendar-container"><div id="datepicker1"></div></li>
+        <li class="calendar-container"><div id="datepicker2" ></div></li>
+        <li class="calendar-container"><div id="datepicker3" ></div></li>
+    </ul>
+    <script>
+        $(document).ready(function(){
+            $( function() {
+
+                var defaultDate = new Date();
+                
+                var defaultDate1 = new Date(defaultDate.getFullYear(), defaultDate.getMonth(), 1, 0, 0,0);
+                var defaultDate2 = new Date(defaultDate.getFullYear(), (defaultDate.getMonth() + 1), 1, 0, 0,0);
+                var defaultDate3 = new Date(defaultDate.getFullYear(), (defaultDate.getMonth() + 2), 1, 0, 0,0);                
+                // An array of dates
+                var eventDates1 = {};
+                eventDates1[ new Date( '10/21/2018' )] = new Date( '10/21/2018' );
+                eventDates1[ new Date( '10/18/2018' )] = new Date( '10/18/2018' );
+                eventDates1[ new Date( '10/19/2018' )] = new Date( '10/19/2018' );
+                eventDates1[ new Date( '10/20/2018' )] = new Date( '10/20/2018' );
+                
+                console.log(eventDates1);
+                
+                var eventDates2 = {};
+                eventDates2[ new Date( '11/11/2018' )] = new Date( '11/11/2018' );
+                eventDates2[ new Date( '11/12/2018' )] = new Date( '11/12/2018' );
+                eventDates2[ new Date( '11/13/2018' )] = new Date( '11/13/2018' );
+                eventDates2[ new Date( '11/14/2018' )] = new Date( '11/14/2018' );
+                
+                var eventDates3 = {};
+                eventDates3[ new Date( '12/21/2018' )] = new Date( '12/21/2018' );
+                eventDates3[ new Date( '12/22/2018' )] = new Date( '12/22/2018' );
+                eventDates3[ new Date( '12/23/2018' )] = new Date( '12/23/2018' );
+                eventDates3[ new Date( '12/24/2018' )] = new Date( '12/24/2018' );
+
+                // datepicker
+                $('#datepicker1').datepicker({
+                    defaultDate: defaultDate1,
+                    minDate:1,
+                    beforeShowDay: function( date ) {
+                        var highlight = eventDates1[date];
+                        if( highlight ) {
+                             return [true, "specialDate", 'Tooltip text'];
+                        } else {
+                             return [true, '', ''];
+                        }
+                    }
+                });
+                
+                $('#datepicker2').datepicker({
+                    defaultDate: defaultDate2,
+                    beforeShowDay: function( date ) {
+                        var highlight = eventDates2[date];
+                        if( highlight ) {
+                             return [true, "specialDate", 'Tooltip text'];
+                        } else {
+                             return [true, '', ''];
+                        }
+                    }
+                });
+                
+                $('#datepicker3').datepicker({
+                    defaultDate: defaultDate3,
+                    beforeShowDay: function( date ) {
+                        var highlight = eventDates3[date];
+                        if( highlight ) {
+                             return [true, "specialDate", 'Tooltip text'];
+                        } else {
+                             return [true, '', ''];
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
