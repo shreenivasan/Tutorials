@@ -101,3 +101,6 @@ Check laravel version
         return response('Hello World')->cookie(
             'name', 'value', $minutes, $path, $domain, $secure, $httpOnly
         );
+------------------------------------------------------------------
+
+https://appdividend.com/2018/01/04/laravel-one-to-many-relationship-tutorial/
