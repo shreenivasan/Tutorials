@@ -1,0 +1,4 @@
+Check which OS installed ?
+$ cat /etc/os-release
+
+
