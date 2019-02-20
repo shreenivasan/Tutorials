@@ -1,7 +1,7 @@
 <?php
 ini_set("display_errors", 1);
 
-$csv_file = "north.csv";
+$csv_file = "new_data.csv";
 
 $handle= fopen($csv_file,"r");
         $data= array();
@@ -30,7 +30,7 @@ $handle= fopen($csv_file,"r");
 $servername = "localhost";
 $username = "db";
 $password = "";
-$dbname = "test";
+$dbname = "all_inventory";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -39,12 +39,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "INSERT INTO easyday_stores (code,name,city,latitude,longitude)
+$table_name = 'products';
+$col_names = "".implode(",", $data["header"])."";
+
+#echo $col_names; die;
+
+$sql = "INSERT INTO $table_name ($col_names)
 VALUES ";
 $sql_temp = "";
 foreach($data['data'] as $csv){
     $sql_temp.="<br>";
-    $sql_temp.="('".$csv['code']."','".$csv['name']."','".$csv['city']."','".$csv['latitude']."','".$csv['longitude']."'),";
+    
+    $mrp = $csv['mrp']!='#N/A'  ? (int)$csv['mrp'] : 0;
+    
+    $sql_temp.="('".trim($csv['category'])."','".trim($csv['style'])."','".trim($csv['ean_code'])."','".trim($csv['description'])."','".trim($csv['mc_code'])."','".trim($csv['color'])."','".trim($csv['size'])."','".($mrp)."','".trim($csv['artical_no'])."'),";
 }
 
 $sql_temp = rtrim($sql_temp, ",");

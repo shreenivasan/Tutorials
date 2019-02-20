@@ -1,61 +1,66 @@
 <?php
-echo json_encode(array('success'=>'File uploaded successfully, You will receive an email on your email id.')); die;
 
-date_default_timezone_set('Asia/Calcutta');
-$cur_date = date('Y-m-d H-i-s');
+$fileName = "/var/www/html/app.log";
+
+$i = 1;
+$data = [];
+
+if ($file = fopen($fileName, "r")) {
+    while(!feof($file)) {
+        $line = fgets($file);       
         
-$date_part = explode(" ",$cur_date );
-$day_part = explode("-", $date_part[0]);
-$time_part = explode("-", $date_part[1]);
-
-$y= $day_part[0];
-$m= $day_part[1];
-$d= $day_part[2];
-
-$h = $time_part[0];
-$mi = $time_part[1];
-$s = $time_part[2];
-
-$where1=" WHERE tsfoi.status='confirmed' AND ";
+        $last_occur_tmp = strpos($line,"'",40);
+        $api = substr($line, 41,$last_occur_tmp- 41);
         
-        if($h < 7)
-        {
-            $fromDate= $y."-".$m."-".($d-1)." 15:30:01";
-            $fromDate=date('Y-m-d H:i:s',strtotime('-330 minutes', strtotime($fromDate)));
-            $toDate= $y."-".$m."-".($d)." 07:00:00";
-            $toDate=date('Y-m-d H:i:s',strtotime('-330 minutes', strtotime($toDate)));
-            $where1.=" sfosh.created_at between '".$fromDate."' AND '".$toDate."'";
-        }
-        elseif($h >=7 && $h<12)
-        {
-            $fromDate= $y."-".$m."-".($d)." 07:00:01";
-            $fromDate=date('Y-m-d H:i:s',strtotime('-330 minutes', strtotime($fromDate)));
-            $toDate= $y."-".$m."-".($d)." 12:00:00";
-            $toDate=date('Y-m-d H:i:s',strtotime('-330 minutes', strtotime($toDate)));
-            $where1.=" sfosh.created_at between '".$fromDate."' AND '".$toDate."'";
-        }
-        else if($h>=12 && $h<15)
-        {
-            $fromDate= $y."-".$m."-".($d)." 12:00:01";
-            $fromDate=date('Y-m-d H:i:s',strtotime('-330 minutes', strtotime($fromDate)));
-            $toDate= $y."-".$m."-".($d)." 15:00:00";
-            $toDate=date('Y-m-d H:i:s',strtotime('-330 minutes', strtotime($toDate)));
-            $where1.=" sfosh.created_at between '".$fromDate."' AND '".$toDate."'";
-        }
-        else if($h>=15)
-        {
-            $fromDate= $y."-".$m."-".($d)." 15:30:01";
-            $fromDate=date('Y-m-d H:i:s',strtotime('-330 minutes', strtotime($fromDate)));
-            $toDate= $y."-".$m."-".($d+1)." 07:00:00";
-            $toDate=date('Y-m-d H:i:s',strtotime('-330 minutes', strtotime($toDate)));
-            $where1.=" sfosh.created_at between '".$fromDate."' AND '".$toDate."'";
-        }
-
- $query2=" SELECT SUM(sfoi.qty_invoiced) qty, sfoi.sku ";
-            $query2.=" FROM sales_flat_order_status_history sfosh ";
-            $query2.=" INNER JOIN sales_flat_order sfo on sfosh.parent_id=sfo.entity_id and sfosh.entity_name='invoice'";
-            $query2.=" INNER JOIN sales_flat_order_item sfoi ON sfo.entity_id = sfoi.order_id ";
-            $query2.=" INNER JOIN ts_sales_flat_order_item tsfoi ON tsfoi.item_id = sfoi.item_id ";
-            $query2.=$where1." GROUP BY sfoi.sku";
+        if( $api == 'add_property'){
+            #$data[] = $line;
             
-            echo $query2; die;
+            $date = substr($line, 1,19);
+            $json_pos = strpos($line, ",",$last_occur_tmp+2);
+            $json_post_last = strripos($line, ']}');           
+            $str_len = ($json_pos+3); 
+            $json =  substr($line, $str_len, (($json_post_last+2)-$str_len) );
+            
+            #echo $json; die;
+            
+            $json = json_decode($json, true);
+            if( ! empty( $json ) && !empty($json['Output']['response_code']) && $json['Output']['response_code'] == '200' ){
+                $data[] = ["added_on"=>$date,"property_code"=> $json['Output']['data']['property_code'], "platform"=>$json['header']['HTTP_USER_AGENT'][0] ]; 
+            }
+            //echo "<pre>\n\n";
+            
+        }
+        
+    }
+    fclose($file);
+}
+
+$servername = "localhost";
+$username = "db";
+$password = "";
+$dbname = "easyday_realestate";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+foreach( $data as $row ){
+    $sql = "UPDATE property_details SET platform_str = '".$row['platform']."',created_on = '".$row['added_on']."'  WHERE property_code = '".$row['property_code']."'";
+    
+    echo $sql."\n";
+    
+}
+
+die;
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+
+$conn->close();
+?>
