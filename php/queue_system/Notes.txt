@@ -1,0 +1,13 @@
+Installing rabbitmq
+
+	sudo apt-get update
+
+	sudo apt-get install rabbitmq-server
+
+Start server
+	service rabbitmq-server start
+
+List queues
+
+	sudo rabbitmqctl list_queues
+

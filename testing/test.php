@@ -1,4 +1,10 @@
 <?php
+$to = '9665419470';
+$message = 'No data found from manthan at '.date('Y-m-d');
+  
+echo "http://push3.maccesssmspush.com/servlet/com.aclwireless.pushconnectivity.listeners.TextListener?pass=fvralt&alert=1&appid=fvralt&selfid=true&dlrreq=true&subappid=fvralt&from=EASYDY&to=".urlencode($to)."&text=".urlencode($message)."&userId=fvralt&Key=Value&contenttype=1";
+die;
+
 
 $fileName = "/var/www/html/app.log";
 

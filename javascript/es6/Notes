@@ -1,0 +1,32 @@
+"use strict"
+
+Rest Parameters
+
+    rest params values passed must all be of the same type
+    
+    General Syntax
+
+    function func_name(...params){
+        
+    }
+
+    e.g.
+
+    function fun1(...params) { 
+       console.log(params.length); 
+    }  
+    fun1();  
+    fun1(5); 
+    fun1(5, 6, 7);
+
+Anonymous Function
+
+    General Syntax
+
+    var function_name = funct
+
+Lambda Functions or Arrow functions
+
+    var function_name = (arg1, arg2 , ... ) => { statements; }
+
+    e.g. var f = (x) => { console.log(x*x); }

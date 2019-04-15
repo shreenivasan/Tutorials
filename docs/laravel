@@ -142,12 +142,224 @@ URLs :
         
             Create user
         4) php artisan voyager:admin admin@admin.com --create
+
+===========================================================================================        
+    
+    Route Caching
+
+    php artisan route:cache
+
+    php artisan route:clear
+
+===========================================================================================
+
+    Create Resource
+
+    php artisan make:controller PhotoController --resource
+
+===========================================================================================
+
+    Retrieving All Input Data
+
+        $input = $request->all();
+
+    Retrieving An Input Value
+
+        $name = $request->input('name');
+
+        $name = $request->input('name', '<default_value>');
+
+        $name = $request->input('products.0.name');
+
+        $names = $request->input('products.*.name');
+
+        $input = $request->input();
+
+    Retrieving Input From The Query String
+
+        $name = $request->query('name');
+
+        $name = $request->query('name', '<default_value>');
+
+        $query = $request->query();
+
+
+    Retrieving JSON Input Values
+
+        $name = $request->input('user.name');
+
+    Retrieving A Portion Of The Input Data
+
+        $input = $request->only(['username', 'password']);
+
+        $input = $request->only('username', 'password');
+
+        $input = $request->except(['credit_card']);
+
+        $input = $request->except('credit_card');
+
+    Determining If An Input Value Is Present
+
+        if ($request->has('name')) {
+            //
+        }
+
+        if ($request->has(['name', 'email'])) {
+            //
+        }
+    
+    // isset & !empty()
+
+        if ($request->filled('name')) {
+            //
+        }
+
+    Flashing Input To The Session
+
+        $request->flash();
+
+        $request->flashOnly(['username', 'email']);
+
+        $request->flashExcept('password');
+        
+    Retrieving Old Input
+
+        $username = $request->old('username');
+
+        <input type="text" name="username" value="{{ old('username') }}">
+
+    Retrieving Cookies From Requests
+
+        $value = $request->cookie('name');
+        $value = Cookie::get('name');
+
+    Retrieving Uploaded Files
+
+        $file = $request->file('photo');
+
+        $file = $request->photo;
+        
+        if ($request->hasFile('photo')) {
+            //
+        }
+
+        if ($request->file('photo')->isValid()) {
+            //
+        }
+    
+        $path = $request->photo->path();
+
+        $extension = $request->photo->extension();
+        
+        $path = $request->photo->store('images');
+
+        $path = $request->photo->store('images', 's3');
+
+        $path = $request->photo->storeAs('images', 'filename.jpg');
+
+        $path = $request->photo->storeAs('images', 'filename.jpg', 's3');
+
+
+    ===========================================================================================
+
+
+    Response
+
+        Route::get('/', function () {
+            return 'Hello World';
+        });
+
+        Route::get('/', function () {
+            return [1, 2, 3];
+        });
+        
+    Response Objects
+
+        Route::get('home', function () {
+            return response('Hello World', 200)
+                   ->header('Content-Type', 'text/plain');
+        });
+
+    Attaching Headers To Responses
+
+        return response($content)
+            ->header('Content-Type', $type)
+            ->header('X-Header-One', 'Header Value')
+            ->header('X-Header-Two', 'Header Value');
+
+        return response($content)
+            ->withHeaders([
+                'Content-Type' => $type,
+                'X-Header-One' => 'Header Value',
+                'X-Header-Two' => 'Header Value',
+            ]);
+    
+    Attaching Cookies To Responses
+
+        return response($content)
+                ->header('Content-Type', $type)
+                ->cookie($name, $value, $minutes, $path, $domain, $secure, $httpOnly)
+
+    Redirects
+
+        Route::get('dashboard', function () {
+            return redirect('home/dashboard');
+        });
+
+    Redirecting To Named Routes
+
+        return redirect()->route('login');
+
+        return redirect()->route('profile', ['id' => 1]);
+
+    JSON Responses
+
+        return response()->json([
+                                    'name' => 'Abigail',
+                                    'state' => 'CA'
+                                ]);
+
+    File Downloads
+
+        return response()->download($pathToFile);
+
+        return response()->download($pathToFile, $name, $headers);
+
+        return response()->download($pathToFile)->deleteFileAfterSend();
+
+============================================================================================
+
+    URL Generation
+
+        Generating Basic URLs
+
+            $post = App\Post::find(1);
+            echo url("/posts/{$post->id}");
+
+            // http://example.com/posts/1
+
+        Accessing The Current URL
+
+            // Get the current URL without the query string...
+            echo url()->current();
+
+            // Get the current URL including the query string...
+            echo url()->full();
+
+            // Get the full URL for the previous request...
+            echo url()->previous();
+
+
+
+            echo route('post.show', ['post' => 1]);
+            // http://example.com/post/1
+
+
+
+
+    
         
     
-    
-
-    
 
 
-    
 

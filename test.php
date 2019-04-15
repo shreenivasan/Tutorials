@@ -2,6 +2,19 @@
 
 ini_set("display_errors",1);
 
+$file_data = file_get_contents("./emp.ppt");
+
+$file_data = preg_replace("/[^a-zA-Z0-9dd ]/", "", $file_data);
+
+#echo stripos($file_data, "calibri "); die;
+#echo strpos($file_data, 'Odb6D'); die;
+
+echo $emp_code = (int)substr($file_data,(stripos($file_data, "emp code ")+9), 10);  
+echo "<br>";
+echo $dname = substr($file_data, (strripos($file_data, "DNAME ")+5) ,(strrpos($file_data, "calibri ") - (strripos($file_data, "DNAME ")+5)));
+
+
+die;
 $old_version = 'composer.json';
 $new_version = 'composer.lock';
 

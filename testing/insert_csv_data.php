@@ -1,7 +1,7 @@
 <?php
 ini_set("display_errors", 1);
 
-$csv_file = "new_data.csv";
+$csv_file = "bf.csv";
 
 $handle= fopen($csv_file,"r");
         $data= array();
@@ -40,7 +40,10 @@ if ($conn->connect_error) {
 } 
 
 $table_name = 'products';
-$col_names = "".implode(",", $data["header"])."";
+#$col_names = "".implode(",", $data["header"])."";
+
+$header_cols = ['category','style','ean_code','description','mc_code','color','size','mrp','artical_no'];
+$col_names = "".implode(",", $header_cols )."";
 
 #echo $col_names; die;
 
