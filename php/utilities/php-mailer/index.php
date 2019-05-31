@@ -18,7 +18,7 @@ ini_set("display_errors", "on");
         $mailer->Host = 'ssl://smtp.gmail.com:587';
         $mailer->SMTPAuth = TRUE;
         $mailer->Username = 'dummyd947@gmail.com'; // Change this to your gmail adress
-        $mailer->Password = 'dummyd947@gmail'; // Change this to your gmail password
+        $mailer->Password = ''; // Change this to your gmail password
         $mailer->From = 'Dummy ';
         $mailer->FromName = 'Sandip foundation'; // This is the from name in the email, you can put anything you like here
         $mailer->Body = $email_body;
