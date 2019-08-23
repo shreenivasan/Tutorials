@@ -1,0 +1,195 @@
+npm install -g @angular/cli
+ng -v
+
+ng new <project_name>
+
+cd <project_name>
+
+ng serve
+
+ng serve --poll=2000
+
+ng g c <component> [ng generate componet <component_name>]
+
+===============================================
+
+Entry point - src/main.ts
+
+Root Module - src/app/app.module.ts
+
+Root Component - src/app/app.component.ts
+
+Component = Template (html content) + class (type script) + meta data (decorator)
+
+
+Component declarator consists of following things 
+
+1) selector
+2) templateUrl/template [incase of seperate file using templateUrl if you want to specify html inline then using `(within back tick) specify your html ]
+3) styleUrls/style - css file paths in array or in case of inline css specify with ` ( within backtick)
+
+
+3 Ways to specifiy selector in component
+
+1) using custom tag
+	in component.ts file specifiy selector as "selector":"<tag_name>"
+
+   e.g. <tag_name></tag_name>
+
+2) Using class
+
+    in component.ts file specifiy selector as "selector":".class_name"
+
+& within html using this class
+
+e.g. <div class="class_name"></div>
+
+3) Using Attribute name
+
+In component.ts file specifiy selector as "selector":"[attr_name]"
+
+& within html file using attribute as follows
+
+e.g. <div attr_name></div>
+
+----------------------------------------------------------------------------------------
+
+Interpolation in angular
+
+Replacing a value at run time is called interpolation we can achinve this by using {{attr_name}}
+& specify it value in class attr
+
+e.g. public name = 'shree'
+& in html file {{name}}
+
+Note : in template file you can not assign a data to variable
+
+also can not access global object such as window
+
+in order to use this objects you need to create a classs varible & use it in template file
+
+----------------------------------------------------------------------------------------
+
+Property Binding
+
+Atrributes & properties are not same
+
+Attributes - HTML attributes
+
+Properties - DOM 
+
+Attributes initialize DOM properties & then they are done. Attribute values cannot change once they are 
+initialized
+
+Property values however can change
+
+Properties can bind to html using two ways
+
+1) Using interpolation
+e.g. 
+<input type="text" [id]="myId" value="shree" />
+
+
+Note : Using interpolation you can only bind properties of type string only
+
+2) Using square brackets or bind-<attribute-name>
+
+<input type="text" value="shree-enable-disable" [disabled]="isDisabled" />
+<input type="text" value="shree-enable-disable" bind-disabled="isDisabled" />
+
+----------------------------------------------------------------------------------------
+
+Class Binding
+
+class binding means assigning multiple classes to html element conditionally this can be achived
+using ngClass directive
+
+----------------------------------------------------------------------------------------
+
+Style binding
+
+style binding can be achived using [class.<style>] = "<value>" & [ngStyle]
+
+e.g. <p [class.color] = " hasError ? 'red' : 'green' ">Style binding 1</p>
+
+e.g. <p [ngStyle]="titleStyles">Style binding 2</p>
+
+----------------------------------------------------------------------------------------
+
+Template reference varible
+
+The template reference variable means you can create a varible in template file & it can be 
+refered in class file by using # symbol 
+
+e.g. 
+
+In html file or template
+
+<input type="text" #myId />
+<button (click)="logMessage(myId.value)"></button>
+
+Refer this myId varible in .ts file
+
+logMessage( value ){
+	console.log(value)
+}
+
+----------------------------------------------------------------------------------------
+
+Two way binding
+
+Two binding mean passing template varible value to class & vice a versa.
+
+Two Way binding can achieved using ngModel directive within [()]
+
+e.g. 
+
+In Html file
+
+<p>Interpolation example</p>
+<input type="text" [(ngModel)]="two_way_binding">
+{{two_way_binding}}
+
+In app.module.ts file you need to add following lines
+
+import { FormsModule } from '@angular/forms';
+
+
+& within imports array add new element as formsModule
+
+
+
+
+
+
+
+
+
+
+
+<p>Interpolation example</p>
+<input type="text" [(ngModel)]="two_way_binding">
+{{two_way_binding}}
+
+----------------------------------------------------------------------------------------
+
+Routing
+
+Steps
+
+1) open index.html & within <head> tag add <base href="/">
+
+2) Within app.module.ts --> import { NgModule } from '@angular/core';
+   within [imports] array add AppRoutingModule
+
+
+
+
+Note : route components should registered in order that manner as most ascending to least ascending.
+
+e.g. first [login,register, ..., 404, 500]
+
+===============================================
+Install Studio Code
+
+https://code.visualstudio.com/Download

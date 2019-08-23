@@ -2,69 +2,50 @@
 
 ini_set("display_errors",1);
 
-$file_data = file_get_contents("./emp.ppt");
+$path = "./";
+$data=[];
 
-$file_data = preg_replace("/[^a-zA-Z0-9dd ]/", "", $file_data);
+$i=0;
+if ($handle = opendir($path)) {
+    while (false !== ($file = readdir($handle))) {
+        if ( ('.' === $file || '..' === $file) ){ continue; }
+        elseif(is_file($file) && pathinfo($file, PATHINFO_EXTENSION)=='ppt'){
+        	$file_data = file_get_contents($file);
+
+			$file_data = preg_replace("/[^a-zA-Z0-9 ]/", "", $file_data);
 
 #echo stripos($file_data, "calibri "); die;
 #echo strpos($file_data, 'Odb6D'); die;
+$start = (strpos($file_data,'Title 1dT')+9);
+$end = strpos($file_data, 'CGgn');
+$dname = substr($file_data, $start, ($end - $start) );
+$emp_name = substr($dname, 0,strpos($dname, '   '));
+$designation = substr($dname,(strpos($dname, '   ')+3 ));
 
-echo $emp_code = (int)substr($file_data,(stripos($file_data, "emp code ")+9), 10);  
-echo "<br>";
-echo $dname = substr($file_data, (strripos($file_data, "DNAME ")+5) ,(strrpos($file_data, "calibri ") - (strripos($file_data, "DNAME ")+5)));
+		$emp_code = (int)substr($file_data,(stripos($file_data, "emp code ")+9), 10);
+		$data[$i]['emp_code'] = $emp_code;
+		$data[$i]['emp_name'] = $emp_name;
+		$data[$i]['designation'] = $designation;
+		$i++;
+        }
+        // do something with the file
+    }
+    closedir($handle);
+}
 
-
-die;
-$old_version = 'composer.json';
-$new_version = 'composer.lock';
-
-xdiff_file_diff($old_version, $new_version, 'my_script.diff', 2);
-
-////$a = [ [1,2,11] , [4,5,6] , [8,9,10]];
-//$a = [ [1,2, 4, 4] , 
-//       [1,4, 5, 6] , 
-//       [8,9,10,11],
-//       [1,3,10,11]
-//    ];
-//$n = 4;//nxn matrix
-//$d = $s = 0; //initialize both diagonal sum to 0
-//
-//for ($i = 0; $i < $n; $i++) {
-//        $d += $a[$i][$i];
-//        $s += $a[$i][$n - $i - 1]; 
-//    }
-//
-//var_dump($d);//primary diagonal total
-//var_dump($s);//secondary diagonal total
-//
-//echo '---------------------------------------------------';
-//echo '<br><br>';
-//$a = [1,2,2,4,5,6,5,4];
-////Output => 01011000
-//$str = '';
-//
-//foreach ($a as $k=> $v){
-//    
-//    if(in_array($v ,array_slice($a , ($k+1), count($a)-1 ) )){
-//        $str .='1';
-//    }else{
-//        $str .='0';
-//    }
-//}
-//
-//echo $str;
-
-#echo '---------------------------------------------------';
-
-//$filePath1 = 'composer.json';
-//$filePath2 = 'composer.lock';
-//$filePath3 = 'composer.json';
-////echo $toolPath . ' '.$filePath1.' '.$filePath2; die;
-//shell_exec( 'meld' . ' '.$filePath1.' '.$filePath2.' '.$filePath3 );
-
-//=================================
-ini_set("display_errors",true);
-$im = imagecreatetruecolor(55, 30);
-$white = imagecolorallocate($im, 255, 255, 255);
+echo "<pre>";
+print_r($data);
 
 
+$file_name = 'data.csv';
+        
+        $fp = fopen($file_name,'w')  or die("Unable to open file!");
+        
+        $csv_headers = ['Emp Code',"Emp Name","Designation"]; 
+
+        fputcsv($fp, $csv_headers);
+        foreach ($data as $rows) {				
+                fputcsv($fp, $rows);
+        }
+        fclose($fp);
+        return $file_name;

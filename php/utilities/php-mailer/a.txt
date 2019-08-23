@@ -1,0 +1,258 @@
+object(PHPMailer)#2 (41) {
+  ["Priority"]=>
+  int(3)
+  ["CharSet"]=>
+  string(10) "iso-8859-1"
+  ["ContentType"]=>
+  string(9) "text/html"
+  ["Encoding"]=>
+  string(4) "8bit"
+  ["ErrorInfo"]=>
+  string(0) ""
+  ["From"]=>
+  string(14) "root@localhost"
+  ["FromName"]=>
+  string(9) "Root User"
+  ["Sender"]=>
+  string(0) ""
+  ["Subject"]=>
+  string(1) "S"
+  ["Body"]=>
+  string(1) "B"
+  ["AltBody"]=>
+  string(0) ""
+  ["WordWrap"]=>
+  int(0)
+  ["Mailer"]=>
+  string(4) "smtp"
+  ["Sendmail"]=>
+  string(18) "/usr/sbin/sendmail"
+  ["PluginDir"]=>
+  string(0) ""
+  ["Version"]=>
+  string(4) "1.73"
+  ["ConfirmReadingTo"]=>
+  string(0) ""
+  ["Hostname"]=>
+  string(0) ""
+  ["Host"]=>
+  string(11) "10.0.28.133"
+  ["Port"]=>
+  int(25)
+  ["Helo"]=>
+  string(0) ""
+  ["SMTPAuth"]=>
+  bool(false)
+  ["Username"]=>
+  string(26) "familyfirst@futuregroup.in"
+  ["Password"]=>
+  string(14) "darkknight$231"
+  ["Timeout"]=>
+  int(10)
+  ["SMTPDebug"]=>
+  int(3)
+  ["SMTPKeepAlive"]=>
+  bool(false)
+  ["smtp"]=>
+  NULL
+  ["to"]=>
+  array(1) {
+    [0]=>
+    array(2) {
+      [0]=>
+      string(35) "shreenivas.madagundi@futuregroup.in"
+      [1]=>
+      string(0) ""
+    }
+  }
+  ["cc"]=>
+  array(0) {
+  }
+  ["bcc"]=>
+  array(1) {
+    [0]=>
+    array(2) {
+      [0]=>
+      string(29) "unnikrishnan.s@futuregroup.in"
+      [1]=>
+      string(0) ""
+    }
+  }
+  ["ReplyTo"]=>
+  array(0) {
+  }
+  ["attachment"]=>
+  array(0) {
+  }
+  ["CustomHeader"]=>
+  array(0) {
+  }
+  ["message_type"]=>
+  string(0) ""
+  ["boundary"]=>
+  array(0) {
+  }
+  ["language"]=>
+  array(0) {
+  }
+  ["error_count"]=>
+  int(0)
+  ["LE"]=>
+  string(1) "
+"
+  ["SMTPOptions"]=>
+  array(1) {
+    ["ssl"]=>
+    array(3) {
+      ["verify_peer"]=>
+      bool(false)
+      ["verify_peer_name"]=>
+      bool(false)
+      ["allow_self_signed"]=>
+      bool(true)
+    }
+  }
+  ["SMTPSecure"]=>
+  bool(false)
+}
+SMTP -> ERROR: EHLO not accepted from server: 
+SMTP -> ERROR: HELO not accepted from server: 
+SMTP -> NOTICE:
+EOF caught while checking if connectedobject(PHPMailer)#2 (41) {
+  ["Priority"]=>
+  int(3)
+  ["CharSet"]=>
+  string(10) "iso-8859-1"
+  ["ContentType"]=>
+  string(9) "text/html"
+  ["Encoding"]=>
+  string(4) "8bit"
+  ["ErrorInfo"]=>
+  string(57) "Language string failed to load: from_failedroot@localhost"
+  ["From"]=>
+  string(14) "root@localhost"
+  ["FromName"]=>
+  string(9) "Root User"
+  ["Sender"]=>
+  string(0) ""
+  ["Subject"]=>
+  string(1) "S"
+  ["Body"]=>
+  string(1) "B"
+  ["AltBody"]=>
+  string(0) ""
+  ["WordWrap"]=>
+  int(0)
+  ["Mailer"]=>
+  string(4) "smtp"
+  ["Sendmail"]=>
+  string(18) "/usr/sbin/sendmail"
+  ["PluginDir"]=>
+  string(0) ""
+  ["Version"]=>
+  string(4) "1.73"
+  ["ConfirmReadingTo"]=>
+  string(0) ""
+  ["Hostname"]=>
+  string(0) ""
+  ["Host"]=>
+  string(11) "10.0.28.133"
+  ["Port"]=>
+  int(25)
+  ["Helo"]=>
+  string(0) ""
+  ["SMTPAuth"]=>
+  bool(false)
+  ["Username"]=>
+  string(26) "familyfirst@futuregroup.in"
+  ["Password"]=>
+  string(14) "darkknight$231"
+  ["Timeout"]=>
+  int(10)
+  ["SMTPDebug"]=>
+  int(1)
+  ["SMTPKeepAlive"]=>
+  bool(false)
+  ["smtp"]=>
+  object(SMTP)#3 (6) {
+    ["SMTP_PORT"]=>
+    int(25)
+    ["CRLF"]=>
+    string(2) "
+"
+    ["do_debug"]=>
+    int(1)
+    ["smtp_conn"]=>
+    int(0)
+    ["error"]=>
+    array(1) {
+      ["error"]=>
+      string(38) "Called Reset() without being connected"
+    }
+    ["helo_rply"]=>
+    NULL
+  }
+  ["to"]=>
+  array(1) {
+    [0]=>
+    array(2) {
+      [0]=>
+      string(35) "shreenivas.madagundi@futuregroup.in"
+      [1]=>
+      string(0) ""
+    }
+  }
+  ["cc"]=>
+  array(0) {
+  }
+  ["bcc"]=>
+  array(1) {
+    [0]=>
+    array(2) {
+      [0]=>
+      string(29) "unnikrishnan.s@futuregroup.in"
+      [1]=>
+      string(0) ""
+    }
+  }
+  ["ReplyTo"]=>
+  array(0) {
+  }
+  ["attachment"]=>
+  array(0) {
+  }
+  ["CustomHeader"]=>
+  array(0) {
+  }
+  ["message_type"]=>
+  string(5) "plain"
+  ["boundary"]=>
+  array(2) {
+    [1]=>
+    string(35) "b1_de850ea65e976557ee8e65ddd3ca8ca3"
+    [2]=>
+    string(35) "b2_de850ea65e976557ee8e65ddd3ca8ca3"
+  }
+  ["language"]=>
+  array(0) {
+  }
+  ["error_count"]=>
+  int(2)
+  ["LE"]=>
+  string(1) "
+"
+  ["SMTPOptions"]=>
+  array(1) {
+    ["ssl"]=>
+    array(3) {
+      ["verify_peer"]=>
+      bool(false)
+      ["verify_peer_name"]=>
+      bool(false)
+      ["allow_self_signed"]=>
+      bool(true)
+    }
+  }
+  ["SMTPSecure"]=>
+  bool(false)
+}
