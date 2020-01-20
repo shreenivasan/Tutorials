@@ -1,0 +1,234 @@
+# create a node
+
+	create (node_name)[, ((node_name))]
+	e.g. create (sample)
+		 create (sample1),(sample2)
+
+# get number of nodes in db
+
+	match (n) return n;
+
+# Creating a Node with a Label
+
+	CREATE (node:label) 
+
+	e.g. CREATE (Dhawan:player)		
+
+# Creating a Node with Multiple Labels
+
+	CREATE (node:label1:label2:. . . . labeln) 
+	e.g. CREATE (Dhawan:person:player)
+
+# Create Node with Properties
+
+	CREATE (node:label { key1: value, key2: value, . . . . . . . . .  }) 
+	e.g. CREATE (Dhawan:player{name: "Shikar Dhawan", YOB: 1985, POB: "Delhi"}) 
+
+# Returning the Created Node
+
+	CREATE (Node:Label{properties. . . . }) RETURN Node 
+	e.g. CREATE (Dhawan:player{name: "Shikar Dhawan", YOB: 1985, POB: "Delhi"}) RETURN Dhawan 
+
+# Creating Relationships
+
+	CREATE (node1)-[:RelationshipType]->(node2) 
+
+	e.g. 
+
+		CREATE (Dhawan:player{name: "Shikar Dhawan", YOB: 1985, POB: "Delhi"}) 
+		CREATE (Ind:Country {name: "India"})	
+		CREATE (Dhawan)-[r:BATSMAN_OF]->(Ind) 
+		RETURN Dhawan, Ind 
+
+# Creating a Relationship Between the Existing Nodes
+
+	MATCH (a:LabeofNode1), (b:LabeofNode2) 
+    WHERE a.name = "nameofnode1" AND b.name = " nameofnode2" 
+	CREATE (a)-[: Relation]->(b) 
+	RETURN a,b 		
+
+	e.g.
+
+		MATCH (a:player), (b:Country) WHERE a.name = "Shikar Dhawan" AND b.name = "India" 
+		CREATE (a)-[r: BATSMAN_OF]->(b) 
+		RETURN a,b
+
+# Creating a Relationship with Label and Properties
+
+	CREATE (node1)-[label:Rel_Type {key1:value1, key2:value2, . . . n}]-> (node2) 
+
+	e.g MATCH (a:player), (b:Country) WHERE a.name = "Shikar Dhawan" AND b.name = "India" 
+	CREATE (a)-[r:BATSMAN_OF {Matches:5, Avg:90.75}]->(b)  
+	RETURN a,b
+
+# Creating a Complete Path
+
+	CREATE p = (Node1 {properties})-[:Relationship_Type]->
+   				(Node2 {properties})[:Relationship_Type]->
+   				(Node3 {properties}) 
+			    RETURN p 
+
+	e.g. 
+		 CREATE p = (Dhawan{name:"Shikhar Dhawan"})-[:TOPSCORER_OF]->(Ind{name:"India"})-[:WINNER_OF]->(CT2013{name:"Champions Trophy 2013"})
+		 RETURN P
+
+# MERGE command		 
+
+	It returns the results, if not exists creates & then return the result.
+
+# Setting/Updating a Property
+
+	MATCH (node:label{properties . . . . . . . . . . . . . . }) 
+	SET node.property = value 
+	RETURN node	
+
+	e.g. 
+
+	MATCH (Dhawan:player{name: "shikar Dhawan", YOB: 1985, POB: "Delhi"}) 
+	SET Dhawan.highestscore = 187 
+	RETURN Dhawan	
+
+# Setting/Updating Multiple Properties
+
+	MATCH (node:label {properties}) 
+	SET node.property1 = value, node.property2 = value 
+	RETURN node 
+
+	e.g.
+
+		MATCH (Jadeja:player {name: "Ravindra Jadeja", YOB: 1988})  
+		SET Jadeja.POB = "NavagamGhed", Jadeja.HS = "90" 
+		RETURN Jadeja
+
+# Setting/Updating a Label on a Node
+
+	MATCH (n {properties . . . . . . . }) 
+	SET n :label 
+	RETURN n 
+
+	e.g.
+
+		CREATE (Anderson {name: "James Anderson", YOB: 1982, POB: "Burnely"})
+
+		MATCH (Anderson {name: "James Anderson", YOB: 1982, POB: "Burnely"}) 
+		SET Anderson: player 
+		RETURN Anderson 
+
+# Setting Multiple Labels on a Node
+
+	MATCH (n {properties . . . . . . . }) 
+	SET n :label1:label2 
+	RETURN n 
+
+	e.g. 
+
+	MATCH (Ishant {name: "Ishant Sharma", YOB: 1988, POB: "Delhi"}) 
+	SET Ishant: player:person 
+	RETURN Ishant 
+
+# Removing a Property
+
+	MATCH (node:label {properties}) 
+	SET node.property = NULL 
+	RETURN node 	
+
+	e.g.
+
+		MATCH (Jadeja:player {name: "Ravindra Jadeja", YOB: 1988, POB: "NavagamGhed"}) 
+		SET Jadeja.POB = NULL 
+		RETURN Jadeja 
+
+# MATCH (n) DETACH DELETE n
+
+	# Delete all the nodes and the relationships in the database		
+
+		MATCH (n) DETACH DELETE n
+
+	# Deleting a Particular Node
+	
+		MATCH (node:label {properties . . . . . . . . . .  }) 
+		DETACH DELETE node	
+
+		e.g.
+
+			MATCH (Ishant:player {name: "Ishant Sharma", YOB: 1988, POB: "Delhi"}) 
+			DETACH DELETE Ishant
+
+# REMOVE clause - Used to remove properties and labels from graph.
+
+	The main difference between Neo4j CQL DELETE and REMOVE commands is −
+	
+		DELETE operation is used to delete nodes and associated relationships.
+
+		REMOVE operation is used to remove labels and properties.			
+
+		# Removing a Property
+
+			MATCH (node:label{properties . . . . . . . }) 
+			REMOVE node.property 
+			RETURN node 
+
+			e.g.
+					MATCH (Dhoni:player {name: "MahendraSingh Dhoni", YOB: 1981, POB: "Ranchi"}) 
+					REMOVE Dhoni.POB 
+					RETURN Dhoni
+
+		# Removing a Label From a Node
+
+			MATCH (node:label {properties . . . . . . . . . . . }) 
+			REMOVE node:label 
+			RETURN node 				
+
+			e.g.
+
+				MATCH (Dhoni:player {name: "MahendraSingh Dhoni", YOB: 1981, POB: "Ranchi"}) 
+				REMOVE Dhoni:player 
+				RETURN Dhoni
+
+		# Removing Multiple Labels
+
+			MATCH (node:label1:label2 {properties . . . . . . . . }) 
+			REMOVE node:label1:label2 
+			RETURN node	
+
+			CREATE (Ishant:player:person {name: "Ishant Sharma", YOB: 1988, POB: "Delhi"}) 
+
+			MATCH (Ishant:player:person {name: "Ishant Sharma", YOB: 1988, POB: "Delhi"}) 
+			REMOVE Ishant:player:person 
+			RETURN Ishant 
+
+# Get All Nodes Using Match
+
+	MATCH (node:label) 
+	RETURN node 			
+
+	e.g.
+
+	MATCH (n:player) 
+	RETURN n
+
+# Match by Relationship
+
+	MATCH (node:label)<-[: Relationship]-(n) 
+	RETURN n 	
+
+	MATCH (Ind:Country {name: "India", result: "Winners"})<-[: TOP_SCORER_OF]-(n) 
+	RETURN n.name 
+
+# OPTIONAL MATCH
+
+	MATCH (node:label {properties. . . . . . . . . . . . . .}) 
+	OPTIONAL MATCH (node)-->(x) 
+	RETURN x	
+
+	e.g.
+
+		MATCH (a:Tornament {name: "ICC Champions Trophy 2013"}) 
+		OPTIONAL MATCH (a)-->(x) 
+		RETURN x
+
+# Where Clause
+
+	MATCH (label)  
+	WHERE label.country = "property" 
+	RETURN label
