@@ -229,6 +229,12 @@
 
 # Where Clause
 
+# regular expression
+MATCH (p :person)-[r:ACTED_IN]->(m :movie)
+WHERE p.name =~ "K.+" or m.released > 2000
+RETURN p,r,m
+
+
 	MATCH (label)  
 	WHERE label.country = "property" 
 	RETURN label
