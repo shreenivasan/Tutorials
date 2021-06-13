@@ -202,7 +202,44 @@ Note that Lucene doesn't support using a * symbol as the first character of a se
     facet=true&facet.field=<field_name_for_grouping>
     
 -------------------------------------------------------------------------------------------------------------------
+delete core
 
+	http://localhost:8983/solr/solr_sample/update?stream.body=%3Cdelete%3E%3Cquery%3E*:*%3C/query%3E%3C/delete%3E&commit=true
+-------------------------------------------------------------------------------------------------------------------
+Data import handler
+
+	https://www.programmersought.com/article/57247086781/
+
+	http://localhost:8983/solr/solr_sample/dataimport?command=full-import
+
+	http://localhost:8983/solr/solr_sample/dataimport?command=full-import&debug=true
+	
+-------------------------------------------------------------------------------------------------------------------	
+Solarium
+
+	https://www.sitepoint.com/using-solarium-solr-search-implementation/
+
+	https://github.com/solariumphp/solarium/tree/master/examples
+
+	https://github.com/solariumphp/solarium/blob/master/examples/5.1-partial-usage.php
+	
+-------------------------------------------------------------------------------------------------------------------		
+
+tar xzf solr-5.5.5.tgz solr-5.5.5/bin/install_solr_service.sh --strip-components=2
+sudo bash ./install_solr_service.sh solr-5.5.5.tgz
+-------------------------------------------------------------------------------------------------------------------
+
+******************
+sudo service solr stop
+sudo rm -r /var/solr
+sudo rm -r /opt/solr-5.5.5
+sudo rm -r /opt/solr
+sudo rm /etc/init.d/solr
+sudo deluser --remove-home solr
+sudo deluser --group solr
+sudo update-rc.d -f solr remove
+sudo rm -rf /etc/default/solr.in.sh
+********************************
 -------------------------------------------------------------------------------------------------------------------
 
 -------------------------------------------------------------------------------------------------------------------
