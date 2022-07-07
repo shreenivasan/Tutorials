@@ -31,5 +31,8 @@ $ git config --global credential.helper 'cache --timeout=3600'
 D) Remove stored credentials in git (terminal)
 
 git config --unset credential.helper
-
-
+================================================================================================================================
+E) Clone repository with token & username
+git clone https://username:token@git_repo_url
+e.g. git clone https://shreenivasm:my_password@github.com/shreenivasan/clod-ops.git
+================================================================================================================================
